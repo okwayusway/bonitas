@@ -6,7 +6,7 @@
     $menus = array();
     if($_SERVER["REQUEST_METHOD"] == "GET"){
         include 'dbconnection.php';
-        $sql = "Select m.id, m.name, m.thumbnailurl, m.description, c.category,  m.price, m.issuggested, m.isfeatured FROM menu m INNER JOIN\n"
+        $sql = "Select m.id, m.name, m.thumbnailurl, m.description, c.category,  m.price, m.issuggested, m.isfeatured, c.Id as 'categoryId' FROM menu m INNER JOIN\n"
         . "menucategory c ON m.Category = c.Id where m.IsDeleted = 0;";
         $result = mysqli_query($conn, $sql);
 
@@ -24,7 +24,7 @@
 
     http_response_code(200);
     $json_response = json_encode($menus);
-	echo $json_response;
+	  echo $json_response;
 }
 catch(Exception $ex){
     echo $ex;

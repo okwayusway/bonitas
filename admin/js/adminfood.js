@@ -1,10 +1,15 @@
 let currentSelected = {
   id:0,
-  foodName:""
+  foodName:"",
+  description:"",
+  price:0,
+  category:0,
+  thumbnail:"",
+  thumbnailFullUrl:""
 };
 
 document.querySelector("table").onload = getMenuList();
-document.getElementById("cat").onload = getAdminCategory();
+document.getElementById("menuCategory").onload = getAdminCategory();
 document.getElementById("foodform").onsubmit = async (e) => {
  e.preventDefault();
  addMenu();
@@ -18,12 +23,14 @@ function getAdminCategory(){
           } else { 
             let optionList = JSON.parse(xmlhttp.responseText);
             let categories = [...optionList];
-            let select = document.getElementById("cat");
+            let select = document.getElementById("menuCategory");
+            let updateSelect = document.getElementById("updateMenuCategory");
             categories.forEach(item => {
               let opt = document.createElement("option");
               opt.value = Number.parseInt(item.id);
               opt.innerHTML = item.category;
               select.appendChild(opt);
+              updateSelect.appendChild(opt);
             });
    
           }
@@ -48,7 +55,7 @@ function getMenuList(){
             for(const [key, value] of Object.entries(element)){
               let td = document.createElement("td");
               td.classList.add("text-center");
-              if(key == "id"){
+              if(key == "id" || key=="categoryId"){
                 continue;
               }
               
@@ -84,6 +91,12 @@ function getMenuList(){
             tr.onclick = function(){
               currentSelected.foodName = element["name"];
               currentSelected.id = element["id"];
+              currentSelected.description = element["description"];
+              currentSelected.price = element["price"];
+              currentSelected.thumbnail = element["thumbnailurl"];
+              currentSelected.thumbnailFullUrl = "../Image/"+element["thumbnailurl"];
+              currentSelected.category = element["categoryId"];
+              setUpdateValue();
             }
 
             tblbody.appendChild(tr);
@@ -102,7 +115,7 @@ function addMenu(){
         alert(`Error ${xmlhttp.status}: ${xmlhttp.statusText}`); // e.g. 404: Not Found
       } 
    else{ 
-        console.log(xmlhttp);
+        showToastr("success","Successfully new menu");
       }
   }
   xmlhttp.open("POST", "../admin/php/addfood.php", true);
@@ -115,7 +128,7 @@ function appendActionButtons(tr){
  let td = document.createElement("td")
 
  td.innerHTML = `
- <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+ <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#updateFoodModal"></i>
  <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#deleteModal"></i>`;
  tr.appendChild(td);
 }
@@ -186,4 +199,35 @@ function deleteFoodOnMenuList(){
   formData.append("id", currentSelected.id);
   formData.append("action", "delete");
   xmlhttp.send(formData);
+}
+
+function updateFoodOnMenuList(){
+  showToastr("info", `Updating ${currentSelected.foodName} on the menu list`);
+  let xmlhttp = new XMLHttpRequest();
+  xmlhttp.onload = function(ev){
+    if (xmlhttp.status != 200) { // analyze HTTP status of the response
+        showToastr("error",`Error ${xmlhttp.status}: ${xmlhttp.statusText}`)
+      } 
+   else{ 
+        setTimeout(()=>{
+          toastr.remove();
+          showToastr("success",`${currentSelected.foodName} Successfully Updated `);
+        }, 1200); 
+        window.location.reload();
+      }
+  }
+  xmlhttp.open("POST", "../admin/php/updatefood.php", true);
+  let form = document.getElementById("updateFoodForm");
+  let formData = new FormData(form);
+  formData.append("id", currentSelected.id);
+  formData.append("update", true);
+  formData.append("hasNewImage", )
+  xmlhttp.send(formData);
+}
+
+function setUpdateValue(){
+  document.querySelector("#updateMenuName").value = currentSelected.foodName;
+  document.querySelector("#updateDescriptions").value = currentSelected.description;
+  document.querySelector("#updatePrice").value = currentSelected.price;
+  document.querySelector("#updateMenuCategory").value = currentSelected.category;
 }
