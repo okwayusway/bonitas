@@ -1,0 +1,2550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css'>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+  <script src='https://use.fontawesome.com/826a7e3dce.js'></script>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+  <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+  <link rel="stylesheet" href="css/AddFood.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+  <title>Bonitas | Foods</title>
+</head>
+<body>
+    <!--Navbar-->
+  <nav class="navigation-bar">
+    <div class="navigation-logo">
+        <img class="logo" src="/Images/bonitaslogo.png" alt="">
+    </div>
+    <div class="user_avatar">
+      <i class="las la-user-circle" id="avatar"></i>
+    </div>
+    <div class="cart">
+      <a href=""><i class="las la-shopping-bag" id="shopping-bag" alt="tooltip" title="Waiting list" onclick="window.location.href='waiting_list.html'"></i></a>
+    </div>
+    <div class="btn_logout">
+      <a href=""><i class="las la-door-open" id="logout"></i></a>
+    </div>
+  </nav>
+
+    <div class="user_hover">
+      <div class="hover_list">
+        <ul class="hover_content">
+          <li class="list_item"><a href="admin_panel.html" class="link_hover"><i class="las la-columns icon_link"></i>Dashboard</a>
+          <li class="list_item"><a href="orders.html" class="link_hover"><i class="las la-shopping-cart icon_link"></i>Orders</a>
+          <li class="list_item"><a href="foods.html" class="link_hover"><i class="las la-utensils icon_link"></i>Foods</a>
+          <li class="list_item"><a href="reservation_list.html" class="link_hover"><i class="las la-clipboard-check icon_link"></i>Reservation</li></a>
+          <li class="list_item"><a href="admin_profile.html" class="link_hover"><i class="las la-user-circle icon_link" id="profile"></i>Admin Profile</a>
+        </ul>
+      </div>
+    </div>
+
+    <div class="main-content">
+      <div class="tabFoods p-3 bg-white rounded shadow mb-5 mt-2">
+        <!-- Lined tabs-->
+        <ul id="myTab2" role="tablist" class="nav nav-tabs nav-pills with-arrow lined flex-column flex-sm-row text-center">
+          <li class="nav-item flex-sm-fill">
+            <a id="home2-tab" data-toggle="tab" href="#menu" role="tab" aria-controls="home2" aria-selected="true" class="nav-link text-uppercase font-weight-bold mr-sm-3 rounded-0 active">Menu Foods</a>
+          </li>
+          <li class="nav-item flex-sm-fill">
+            <a id="profile2-tab" data-toggle="tab" href="#recommended" role="tab" aria-controls="profile2" aria-selected="false" class="nav-link text-uppercase font-weight-bold mr-sm-3 rounded-0">Recommended Foods</a>
+          </li>
+          <li class="nav-item flex-sm-fill">
+            <a id="contact2-tab" data-toggle="tab" href="#featured" role="tab" aria-controls="contact2" aria-selected="false" class="nav-link text-uppercase font-weight-bold rounded-0">Featured Foods</a>
+          </li>
+        </ul>
+
+        <!--For menu foods-->
+        <div id="myTab2Content" class="tab-content">
+          <div id="menu" role="tabpanel" aria-labelledby="home-tab" class="tab-pane fade px-4 py-5 show active">
+            
+            <!--Family meals-->
+            <div class="addMenu mb-3">
+              <h6>Add Family meal to the menu:</h6>
+              <button class="btn btn-info" data-toggle="modal" data-target="#AddFamMealModal">Add Food</button>
+            </div>
+            <div class="table-responsive">
+              <table class="table table-bordered mt-4 menuTable">
+                <thead class="fw-bold">
+                  <th class="text-center">Food name</th>
+                  <th class="text-center">Picture</th>
+                  <th class="text-center">Includes</th>
+                  <th class="text-center">Category</th>
+                  <th class="text-center">Price/s</th>
+                  <th class="text-center">Actions</th>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="text-center">Blessed</td>
+                    <td class="text-center"><img src="images/Blessed.jpg" alt=""></td>
+                    <td class="text-center">- 2 T-bone Steak w/rice
+                      - 1 Baby Back Ribs Platter or Chicken BBQ Platter
+                      - 1 Trio Bundle Snacks
+                      - 2 Choice of Pasta
+                      - 1 Vegetable Salad
+                      - 2 Soup of the Day
+                      - 4 Plain Rice
+                      - 2 Pitcher of Iced/Red Tea</td>
+                    <td class="text-center">Family Meal</td>
+                    <td class="text-center">1390</td>
+                    <td class="text-center">
+                      <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                      <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-center">Grateful</td>
+                    <td class="text-center"><img src="images/Grateful.jpg" alt=""></td>
+                    <td class="text-center">- 1 Baby Back Ribs Platter or Chicken BBQ Platter
+                      - 1 Choice of Pasta
+                      - 2 Soup of the Day
+                      - 4 Plain Rice
+                      - 1 Pitcher of Iced/Red Tea</td>
+                    <td class="text-center">Family Meal</td>
+                    <td class="text-center">620</td>
+                    <td class="text-center">
+                      <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                      <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-center">Thankful</td>
+                    <td class="text-center"><img src="images/Thankful.jpg" alt=""></td>
+                    <td class="text-center">- 2 T-bone Steak
+                      - 1 Choice of Pasta
+                      - 2 Soup of the Day
+                      - 1 Vegetable Salad</td>
+                    <td class="text-center">Family Meal</td>
+                    <td class="text-center">580</td>
+                    <td class="text-center">
+                      <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                      <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!--Bread/Rice meals-->
+            <div class="addMenu mb-3">
+                <h6>Add Bread/Rice meal to the menu:</h6>
+                <button class="btn btn-info" data-toggle="modal" data-target="#AddBreadRiceModal">Add Food</button>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-bordered mt-4 menuTable">
+                  <thead class="fw-bold">
+                    <th class="text-center">Food name</th>
+                    <th class="text-center">Picture</th>
+                    <th class="text-center">Includes</th>
+                    <th class="text-center">Category</th>
+                    <th class="text-center">Size/s</th>
+                    <th class="text-center">Price/s</th>
+                    <th class="text-center">Actions</th>
+                  </thead>
+                  <tbody>
+                    <tr>
+                        <td class="text-center">Mushroom Soup</td>
+                        <td class="text-center"><img src="images/Mushroom.jpg" alt=""></td>
+                        <td class="text-center">- 1 Mushroom Soup</td>
+                        <td class="text-center">Soup</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">35</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Mashed Potato</td>
+                        <td class="text-center"><img src="images/mashed.jpg" alt=""></td>
+                        <td class="text-center">- 1 Mashed Potato</td>
+                        <td class="text-center">Soup</td>
+                        <td class="text-center">Medium | Large</td>
+                        <td class="text-center">40 | 60</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Tuna Sandwich</td>
+                        <td class="text-center"><img src="images/tuna.jpg" alt=""></td>
+                        <td class="text-center">- 1 Tuna Sandwich</td>
+                        <td class="text-center">Breads</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">85</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Ham and Cheese Sandwich</td>
+                        <td class="text-center"><img src="images/hamncheese.jpg" alt=""></td>
+                        <td class="text-center">- 1 Ham and Cheese Sandwich</td>
+                        <td class="text-center">Breads</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">85</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Clubhouse</td>
+                        <td class="text-center"><img src="images/clubhouse.jpg" alt=""></td>
+                        <td class="text-center">- 1 Clubhouse</td>
+                        <td class="text-center">Breads</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">120</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Bonitas Clubhouse</td>
+                        <td class="text-center"><img src="images/clubhouse.jpg" alt=""></td>
+                        <td class="text-center">- 1 Bonitas Clubhouse</td>
+                        <td class="text-center">Breads</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">135</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Cheesy Steak Burger</td>
+                        <td class="text-center"><img src="images/csteakburger.jpg" alt=""></td>
+                        <td class="text-center">- 1 Cheesy Steak Burger</td>
+                        <td class="text-center">Breads</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">95</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Chicken Bacon Burger</td>
+                        <td class="text-center"><img src="images/chickenbacon.jpg" alt=""></td>
+                        <td class="text-center">- 1 Chicken Bacon Burger</td>
+                        <td class="text-center">Breads</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">95</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Vegetable Salad</td>
+                        <td class="text-center"><img src="images/salad.jpg" alt=""></td>
+                        <td class="text-center">- 1 Vegetable Salad</td>
+                        <td class="text-center">Salad</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">100</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Macaroni Salad</td>
+                        <td class="text-center"><img src="images/salad.jpg" alt=""></td>
+                        <td class="text-center">- 1 Macaroni Salad</td>
+                        <td class="text-center">Salad</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">85</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Caesar Salad</td>
+                        <td class="text-center"><img src="images/salad.jpg" alt=""></td>
+                        <td class="text-center">- 1 Caesar Salad</td>
+                        <td class="text-center">Salad</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">140</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">T-bone</td>
+                        <td class="text-center"><img src="images/t-bone.jpg" alt=""></td>
+                        <td class="text-center">- 1 T-bone meal</td>
+                        <td class="text-center">Steak/Grilled</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">180</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Pork Steak</td>
+                        <td class="text-center"><img src="images/porksteak.jpg" alt=""></td>
+                        <td class="text-center">- 1 Pork Steak meal</td>
+                        <td class="text-center">Steak/Grilled</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">110</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Baby Back Ribs</td>
+                        <td class="text-center"><img src="images/babyback.jpg" alt=""></td>
+                        <td class="text-center">- 1 Baby Back Ribs meal</td>
+                        <td class="text-center">Steak/Grilled</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">110</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Chicken BBQ</td>
+                        <td class="text-center"><img src="images/chickenBBQ.jpg" alt=""></td>
+                        <td class="text-center">- 1 Chicken BBQ meal</td>
+                        <td class="text-center">Steak/Grilled</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">110</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Classic Chicken</td>
+                        <td class="text-center"><img src="images/classicchicken.jpg" alt=""></td>
+                        <td class="text-center">- 1 Classic Chicken meal</td>
+                        <td class="text-center">Steak/Grilled</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">165</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Boneless Bangus</td>
+                        <td class="text-center"><img src="images/bonelessbangus.jpg" alt=""></td>
+                        <td class="text-center">- 1 Boneless Bangus meal</td>
+                        <td class="text-center">Steak/Grilled</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">165</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Grilled Salmon Belly</td>
+                        <td class="text-center"><img src="images/grilledsalmonbelly.jpg" alt=""></td>
+                        <td class="text-center">- 1 Grilled Salmon Belly meal</td>
+                        <td class="text-center">Steak/Grilled</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">165</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Smoked Salmon</td>
+                        <td class="text-center"><img src="images/smokedsalmon.jpg" alt=""></td>
+                        <td class="text-center">- 1 Smoked Salmon meal</td>
+                        <td class="text-center">Steak/Grilled</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">265</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Salmon Steak</td>
+                        <td class="text-center"><img src="images/salmon.jpg" alt=""></td>
+                        <td class="text-center">- 1 Salmon Steak meal</td>
+                        <td class="text-center">Steak/Grilled</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">265</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Beef Strips w/ Mushroom</td>
+                        <td class="text-center"><img src="images/beefstrips.jpg" alt=""></td>
+                        <td class="text-center">- 1 Beef Strips w/ Mushroom meal</td>
+                        <td class="text-center">Steak/Grilled</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">165</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Beef Tapa</td>
+                        <td class="text-center"><img src="images/beeftapa.jpg" alt=""></td>
+                        <td class="text-center">- 1 Beef Tapa meal</td>
+                        <td class="text-center">Rice Meal</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">110</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Liempo</td>
+                        <td class="text-center"><img src="images/liempo.jpg" alt=""></td>
+                        <td class="text-center">- 1 Liempo meal</td>
+                        <td class="text-center">Rice Meal</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">110</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Fried Chicken</td>
+                        <td class="text-center"><img src="images/chickens.jpg" alt=""></td>
+                        <td class="text-center">- 1 Fried Chicken meal</td>
+                        <td class="text-center">Rice Meal</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">110</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Breaded Porkchop</td>
+                        <td class="text-center"><img src="images/breadedporkchop.jpg" alt=""></td>
+                        <td class="text-center">- 1 Breaded Porkchop meal</td>
+                        <td class="text-center">Rice Meal</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">110</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Fish Fillet</td>
+                        <td class="text-center"><img src="images/fishfillet.jpg" alt=""></td>
+                        <td class="text-center">- 1 Fish Fillet meal</td>
+                        <td class="text-center">Rice Meal</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">110</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Spam</td>
+                        <td class="text-center"><img src="images/spam.jpg" alt=""></td>
+                        <td class="text-center">- 1 Spam meal</td>
+                        <td class="text-center">Rice Meal</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">110</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                  </tbody>
+                </table>
+            </div>
+
+            <!--Pasta/Platter-->
+            <div class="addMenu mb-3 mt-5">
+                <h6>Add Pasta/Platter to the menu:</h6>
+                <button class="btn btn-info" data-toggle="modal" data-target="#AddPastaPlatterModal">Add Food</button>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-bordered mt-4 menuTable">
+                  <thead class="fw-bold">
+                    <th class="text-center">Food name</th>
+                    <th class="text-center">Picture</th>
+                    <th class="text-center">Includes</th>
+                    <th class="text-center">Category</th>
+                    <th class="text-center">Price/s</th>
+                    <th class="text-center">Actions</th>
+                  </thead>
+                  <tbody>
+                    <tr>
+                        <td class="text-center">Back Ribs Platter</td>
+                        <td class="text-center"><img src="images/platter.jpg" alt=""></td>
+                        <td class="text-center">- 1 Back Ribs Platter</td>
+                        <td class="text-center">Pasta/Platter</td>
+                        <td class="text-center">360</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Chicken BBQ Platter</td>
+                        <td class="text-center"><img src="images/platter.jpg" alt=""></td>
+                        <td class="text-center">- 1 Chicken BBQ Platter</td>
+                        <td class="text-center">Pasta/Platter</td>
+                        <td class="text-center">350</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Bucket of Chicken</td>
+                        <td class="text-center"><img src="images/chickens.jpg" alt=""></td>
+                        <td class="text-center">- 1 Bucket of Chicken</td>
+                        <td class="text-center">Pasta/Platter</td>
+                        <td class="text-center">350</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Fries</td>
+                        <td class="text-center"><img src="images/picapica.jpg" alt=""></td>
+                        <td class="text-center">- 1 Fries</td>
+                        <td class="text-center">Snacks</td>
+                        <td class="text-center">75</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Nachos</td>
+                        <td class="text-center"><img src="images/picapica.jpg" alt=""></td>
+                        <td class="text-center">- 1 Nachos</td>
+                        <td class="text-center">Snacks</td>
+                        <td class="text-center">90</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Mojos</td>
+                        <td class="text-center"><img src="images/picapica.jpg" alt=""></td>
+                        <td class="text-center">- 1 Mojos</td>
+                        <td class="text-center">Snacks</td>
+                        <td class="text-center">90</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Chicken Wings</td>
+                        <td class="text-center"><img src="images/picapica.jpg" alt=""></td>
+                        <td class="text-center">- 1 Chicken Wings</td>
+                        <td class="text-center">Snacks</td>
+                        <td class="text-center">95</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Chicken Strips</td>
+                        <td class="text-center"><img src="images/picapica.jpg" alt=""></td>
+                        <td class="text-center">- 1 Chicken Strips</td>
+                        <td class="text-center">Snacks</td>
+                        <td class="text-center">95</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Squid Rings and Chips</td>
+                        <td class="text-center"><img src="images/picapica.jpg" alt=""></td>
+                        <td class="text-center">- 1 Squid Rings and Chips</td>
+                        <td class="text-center">Snacks</td>
+                        <td class="text-center">140</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Buffalo Wings</td>
+                        <td class="text-center"><img src="images/picapica.jpg" alt=""></td>
+                        <td class="text-center">- 1 Buffalo Wings</td>
+                        <td class="text-center">Snacks</td>
+                        <td class="text-center">170</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Nachos Platter</td>
+                        <td class="text-center"><img src="images/picapicatrays.jpg" alt=""></td>
+                        <td class="text-center">- 1 Nachos Platter</td>
+                        <td class="text-center">Snacks</td>
+                        <td class="text-center">170</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Trio Set 1 Bundle Snacks</td>
+                        <td class="text-center"><img src="images/picapicatrays.jpg" alt=""></td>
+                        <td class="text-center">- 1 Mojos
+                          - 1 Chicken Wings
+                          - 1 Fries</td>
+                        <td class="text-center">Snacks</td>
+                        <td class="text-center">240</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Trio Set 2 Bundle Snacks</td>
+                        <td class="text-center"><img src="images/picapicatrays.jpg" alt=""></td>
+                        <td class="text-center">- 1 Nachos
+                          - 1 Chicken Strips
+                          - 1 Fries</td>
+                        <td class="text-center">Snacks</td>
+                        <td class="text-center">240</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Creamy Carbonara</td>
+                        <td class="text-center"><img src="images/carbonara.jpg" alt=""></td>
+                        <td class="text-center">- 1 Creamy Carbonara</td>
+                        <td class="text-center">Pasta</td>
+                        <td class="text-center">105</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Saucy Spaghetti</td>
+                        <td class="text-center"><img src="images/spaghetti.jpg" alt=""></td>
+                        <td class="text-center">- 1 Saucy Spaghetti</td>
+                        <td class="text-center">Pasta</td>
+                        <td class="text-center">105</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Cheesy Baked Macaroni</td>
+                        <td class="text-center"><img src="images/bakedmacaroni.jpg" alt=""></td>
+                        <td class="text-center">- 1 Cheesy Baked Macaroni</td>
+                        <td class="text-center">Pasta</td>
+                        <td class="text-center">105</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Grilled Chicken Pesto</td>
+                        <td class="text-center"><img src="images/grilledchickenpesto.jpg" alt=""></td>
+                        <td class="text-center">- 1 Grilled Chicken Pesto</td>
+                        <td class="text-center">Pasta</td>
+                        <td class="text-center">105</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Baked Lasagna</td>
+                        <td class="text-center"><img src="images/bakedlasagna.jpg" alt=""></td>
+                        <td class="text-center">- 1 Baked Lasagna</td>
+                        <td class="text-center">Pasta</td>
+                        <td class="text-center">130</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Chocolate Cheese Cake</td>
+                        <td class="text-center"><img src="images/cakes.jpg" alt=""></td>
+                        <td class="text-center">- 1 slice - Chocolate Cheese Cake</td>
+                        <td class="text-center">Dessert</td>
+                        <td class="text-center">130</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Blueberry Cheese Cake</td>
+                        <td class="text-center"><img src="images/cakes.jpg" alt=""></td>
+                        <td class="text-center">- 1 slice - Blueberry Cheese Cake</td>
+                        <td class="text-center">Dessert</td>
+                        <td class="text-center">130</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Newyork Cheese Cake</td>
+                        <td class="text-center"><img src="images/cakes.jpg" alt=""></td>
+                        <td class="text-center">- 1 slice - Newyork Cheese Cake</td>
+                        <td class="text-center">Dessert</td>
+                        <td class="text-center">130</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Oreo Cheese Cake</td>
+                        <td class="text-center"><img src="images/cakes.jpg" alt=""></td>
+                        <td class="text-center">- 1 slice - Oreo Cheese Cake</td>
+                        <td class="text-center">Dessert</td>
+                        <td class="text-center">130</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Mini Chocolate Cake</td>
+                        <td class="text-center"><img src="images/cakes.jpg" alt=""></td>
+                        <td class="text-center">- 1 - Mini Chocolate Cake</td>
+                        <td class="text-center">Dessert</td>
+                        <td class="text-center">75</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Brownies</td>
+                        <td class="text-center"><img src="images/cakes.jpg" alt=""></td>
+                        <td class="text-center">- 1 - Brownies</td>
+                        <td class="text-center">Dessert</td>
+                        <td class="text-center">30</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                  </tbody>
+                </table>
+            </div>
+
+             <!--Party Trays-->
+             <div class="addMenu mb-3 mt-5">
+                <h6>Add Party Trays to the menu:</h6>
+                <button class="btn btn-info" data-toggle="modal" data-target="#AddPartyTraysModal">Add Food</button>
+              </div>
+              <div class="table-responsive">
+                <table class="table table-bordered mt-4 menuTable">
+                  <thead class="fw-bold">
+                    <th class="text-center">Food name</th>
+                    <th class="text-center">Picture</th>
+                    <th class="text-center">Includes</th>
+                    <th class="text-center">Category</th>
+                    <th class="text-center">Size/s</th>
+                    <th class="text-center">Combo Choices</th>
+                    <th class="text-center">Price/s</th>
+                    <th class="text-center">Actions</th>
+                  </thead>
+                  <tbody>
+                    <tr>
+                        <td class="text-center">Creamy Carbonara Tray</td>
+                        <td class="text-center"><img src="images/pastaplatter.jpg" alt=""></td>
+                        <td class="text-center">- 1 - Creamy Carbonara Tray</td>
+                        <td class="text-center">Pasta Trays</td>
+                        <td class="text-center">Medium (Good for 6-8 persons) | Large (Good for 10-12 persons)</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">700 | 900</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Baked Macaroni Tray</td>
+                        <td class="text-center"><img src="images/pastaplatter.jpg" alt=""></td>
+                        <td class="text-center">- 1 - Baked Macaroni Tray</td>
+                        <td class="text-center">Pasta Trays</td>
+                        <td class="text-center">Medium (Good for 6-8 persons) | Large (Good for 10-12 persons)</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">700 | 900</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Grilled Chicken Pesto Tray</td>
+                        <td class="text-center"><img src="images/pastaplatter.jpg" alt=""></td>
+                        <td class="text-center">- 1 - Grilled Chicken Pesto Tray</td>
+                        <td class="text-center">Pasta Trays</td>
+                        <td class="text-center">Medium (Good for 6-8 persons) | Large (Good for 10-12 persons)</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">700 | 900</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Saucy Spaghetti Tray</td>
+                        <td class="text-center"><img src="images/pastaplatter.jpg" alt=""></td>
+                        <td class="text-center">- 1 - Saucy Spaghetti Tray</td>
+                        <td class="text-center">Pasta Trays</td>
+                        <td class="text-center">Medium (Good for 6-8 persons) | Large (Good for 10-12 persons)</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">700 | 900</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Baked Lasagna Tray</td>
+                        <td class="text-center"><img src="images/pastaplatter.jpg" alt=""></td>
+                        <td class="text-center">- 1 - Baked Lasagna Tray</td>
+                        <td class="text-center">Pasta Trays</td>
+                        <td class="text-center">Medium (Good for 6-8 persons) | Large (Good for 10-12 persons)</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">900 | 1100</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Chicken BBQ Tray</td>
+                        <td class="text-center"><img src="images/platter.jpg" alt=""></td>
+                        <td class="text-center">- 1 - Chicken BBQ Tray</td>
+                        <td class="text-center">Food Trays</td>
+                        <td class="text-center">Medium (Good for 6-8 persons) | Large (Good for 10-12 persons)</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">750 | 1050</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Fried Chicken Tray</td>
+                        <td class="text-center"><img src="images/platter.jpg" alt=""></td>
+                        <td class="text-center">- 1 - Fried Chicken Tray</td>
+                        <td class="text-center">Food Trays</td>
+                        <td class="text-center">Medium (Good for 6-8 persons) | Large (Good for 10-12 persons)</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">750 | 1050</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Buffalo Wings Tray</td>
+                        <td class="text-center"><img src="images/platter.jpg" alt=""></td>
+                        <td class="text-center">- 1 - Buffalo Wings Tray</td>
+                        <td class="text-center">Food Trays</td>
+                        <td class="text-center">Medium (Good for 6-8 persons) | Large (Good for 10-12 persons)</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">750 | 1050</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Pork Steak Tray</td>
+                        <td class="text-center"><img src="images/platter.jpg" alt=""></td>
+                        <td class="text-center">- 1 - Pork Steak Tray</td>
+                        <td class="text-center">Food Trays</td>
+                        <td class="text-center">Medium (Good for 6-8 persons) | Large (Good for 10-12 persons)</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">750 | 1050</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Baby Back Ribs Tray</td>
+                        <td class="text-center"><img src="images/platter.jpg" alt=""></td>
+                        <td class="text-center">- 1 - Baby Back Ribs Tray</td>
+                        <td class="text-center">Food Trays</td>
+                        <td class="text-center">Medium (Good for 6-8 persons) | Large (Good for 10-12 persons)</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">750 | 1050</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Meat Platter</td>
+                        <td class="text-center"><img src="images/platter.jpg" alt=""></td>
+                        <td class="text-center">- 1 - Meat Platter</td>
+                        <td class="text-center">Food Trays</td>
+                        <td class="text-center">Large (Good for 10-12 persons)</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">1100</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Choice of Three</td>
+                        <td class="text-center"><img src="images/platter.jpg" alt=""></td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">Combo Trays</td>
+                        <td class="text-center">Medium (Good for 6-8 persons) | Large (Good for 10-12 persons)</td>
+                        <td class="text-center">- 1 Baby Back Ribs
+                            - 1 Chicken BBQ
+                            - 1 Fried Chicken
+                            - 1 Buffalo Wings</td>
+                        <td class="text-center">750 | 1100</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Beef Strips w/ Mushroom</td>
+                        <td class="text-center"><img src="images/platter.jpg" alt=""></td>
+                        <td class="text-center">- 1 - Beef Strips w/ Mushroom Tray</td>
+                        <td class="text-center">Other Trays</td>
+                        <td class="text-center">Medium (Good for 8-10 persons)</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">1050</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Fish Fillet Tray</td>
+                        <td class="text-center"><img src="images/platter.jpg" alt=""></td>
+                        <td class="text-center">- 1 - Fish Fillet Tray</td>
+                        <td class="text-center">Other Trays</td>
+                        <td class="text-center">Medium (Good for 8-10 persons)</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">850</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                  </tbody>
+                </table>
+              </div>
+
+            <!--Bonitas Cakes-->
+            <div class="addMenu mb-3 mt-5">
+                <h6>Add Bonitas Cake to the menu:</h6>
+                <button class="btn btn-info" data-toggle="modal" data-target="#AddBonitasCakeModal">Add Food</button>
+              </div>
+              <div class="table-responsive">
+                <table class="table table-bordered mt-4 menuTable">
+                  <thead class="fw-bold">
+                    <th class="text-center">Food name</th>
+                    <th class="text-center">Picture</th>
+                    <th class="text-center">Includes</th>
+                    <th class="text-center">Category</th>
+                    <th class="text-center">Size/s</th>
+                    <th class="text-center">Price/s</th>
+                    <th class="text-center">Actions</th>
+                  </thead>
+                  <tbody>
+                    <tr>
+                        <td class="text-center">Choco Heart Cake</td>
+                        <td class="text-center"><img src="images/cakes.jpg" alt=""></td>
+                        <td class="text-center">- 1 whole - Choco Heart Cake</td>
+                        <td class="text-center">Chocolate Cakes</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">550</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Choco Round Cake</td>
+                        <td class="text-center"><img src="images/cakes.jpg" alt=""></td>
+                        <td class="text-center">- 1 whole - Choco Round Cake</td>
+                        <td class="text-center">Chocolate Cakes</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">550</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Blueberry Cheesecake</td>
+                        <td class="text-center"><img src="images/cakes.jpg" alt=""></td>
+                        <td class="text-center">- Blueberry Cheesecake</td>
+                        <td class="text-center">Cheesecakes</td>
+                        <td class="text-center">Slice | Cannister (4inches) | Tin Can (8inches) | Whole (9inches)</td>
+                        <td class="text-center">130 | 350 | 550 | 1300</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Newyork Cheesecake</td>
+                        <td class="text-center"><img src="images/cakes.jpg" alt=""></td>
+                        <td class="text-center">- Blueberry Cheesecake</td>
+                        <td class="text-center">Cheesecakes</td>
+                        <td class="text-center">Slice | Cannister (4inches) | Tin Can (8inches) | Whole (9inches)</td>
+                        <td class="text-center">130 | 350 | 550 | 1300</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Oreo Cheesecake</td>
+                        <td class="text-center"><img src="images/cakes.jpg" alt=""></td>
+                        <td class="text-center">- Oreo Cheesecake</td>
+                        <td class="text-center">Cheesecakes</td>
+                        <td class="text-center">Slice | Cannister (4inches) | Tin Can (8inches) | Whole (9inches)</td>
+                        <td class="text-center">130 | 350 | 550 | 1300</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Chocolate Cheesecake</td>
+                        <td class="text-center"><img src="images/cakes.jpg" alt=""></td>
+                        <td class="text-center">- Chocolate Cheesecake</td>
+                        <td class="text-center">Cheesecakes</td>
+                        <td class="text-center">Slice | Whole (9inches)</td>
+                        <td class="text-center">130 | 1300</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                  </tbody>
+                </table>
+              </div>
+
+            <!--Coffee/Frappe-->
+            <div class="addMenu mb-3 mt-5">
+                <h6>Add Coffee/Frappe to the menu:</h6>
+                <button class="btn btn-info" data-toggle="modal" data-target="#AddCoffeeFrappeModal">Add Food</button>
+              </div>
+              <div class="table-responsive">
+                <table class="table table-bordered mt-4 menuTable">
+                  <thead class="fw-bold">
+                    <th class="text-center">Food name</th>
+                    <th class="text-center">Picture</th>
+                    <th class="text-center">Includes</th>
+                    <th class="text-center">Category</th>
+                    <th class="text-center">Size/s</th>
+                    <th class="text-center">Price/s</th>
+                    <th class="text-center">Actions</th>
+                  </thead>
+                  <tbody>
+                    <tr>
+                        <td class="text-center">Mocha</td>
+                        <td class="text-center"><img src="images/frappe.jpg" alt=""></td>
+                        <td class="text-center">- 1 Mocha Frappe</td>
+                        <td class="text-center">Frappe</td>
+                        <td class="text-center">Medium (16oz) | Large (22oz)</td>
+                        <td class="text-center">80 | 100</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Vanilla</td>
+                        <td class="text-center"><img src="images/frappe.jpg" alt=""></td>
+                        <td class="text-center">- 1 Vanilla Frappe</td>
+                        <td class="text-center">Frappe</td>
+                        <td class="text-center">Medium (16oz) | Large (22oz)</td>
+                        <td class="text-center">80 | 100</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Cappucino</td>
+                        <td class="text-center"><img src="images/frappe.jpg" alt=""></td>
+                        <td class="text-center">- 1 Cappucino Frappe</td>
+                        <td class="text-center">Frappe</td>
+                        <td class="text-center">Medium (16oz) | Large (22oz)</td>
+                        <td class="text-center">80 | 100</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Chocolate Chip</td>
+                        <td class="text-center"><img src="images/frappe.jpg" alt=""></td>
+                        <td class="text-center">- 1 Chocolate Chip Frappe</td>
+                        <td class="text-center">Frappe</td>
+                        <td class="text-center">Medium (16oz) | Large (22oz)</td>
+                        <td class="text-center">80 | 100</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Choco Cookie</td>
+                        <td class="text-center"><img src="images/frappe.jpg" alt=""></td>
+                        <td class="text-center">- 1 Choco Cookie Frappe</td>
+                        <td class="text-center">Frappe</td>
+                        <td class="text-center">Medium (16oz) | Large (22oz)</td>
+                        <td class="text-center">80 | 100</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Dark Chocolate</td>
+                        <td class="text-center"><img src="images/frappe.jpg" alt=""></td>
+                        <td class="text-center">- 1 Dark Chocolate Frappe</td>
+                        <td class="text-center">Frappe</td>
+                        <td class="text-center">Medium (16oz) | Large (22oz)</td>
+                        <td class="text-center">80 | 100</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Strawberry</td>
+                        <td class="text-center"><img src="images/frappe.jpg" alt=""></td>
+                        <td class="text-center">- 1 Strawberry Frappe</td>
+                        <td class="text-center">Frappe</td>
+                        <td class="text-center">Medium (16oz) | Large (22oz)</td>
+                        <td class="text-center">80 | 100</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Hazelnut</td>
+                        <td class="text-center"><img src="images/frappe.jpg" alt=""></td>
+                        <td class="text-center">- 1 Hazelnut Frappe</td>
+                        <td class="text-center">Frappe</td>
+                        <td class="text-center">Medium (16oz) | Large (22oz)</td>
+                        <td class="text-center">80 | 100</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Chocomalt</td>
+                        <td class="text-center"><img src="images/frappe.jpg" alt=""></td>
+                        <td class="text-center">- 1 Strawberry Frappe</td>
+                        <td class="text-center">Frappe</td>
+                        <td class="text-center">Medium (16oz) | Large (22oz)</td>
+                        <td class="text-center">100 | 120</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Green Tea</td>
+                        <td class="text-center"><img src="images/frappe.jpg" alt=""></td>
+                        <td class="text-center">- 1 Green Tea Frappe</td>
+                        <td class="text-center">Frappe</td>
+                        <td class="text-center">Medium (16oz) | Large (22oz)</td>
+                        <td class="text-center">100 | 120</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Salted Caramel</td>
+                        <td class="text-center"><img src="images/frappe.jpg" alt=""></td>
+                        <td class="text-center">- 1 Salted Caramel Frappe</td>
+                        <td class="text-center">Frappe</td>
+                        <td class="text-center">Medium (16oz) | Large (22oz)</td>
+                        <td class="text-center">100 | 120</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Caramel Macchiato</td>
+                        <td class="text-center"><img src="images/frappe.jpg" alt=""></td>
+                        <td class="text-center">- 1 Caramel Macchiato Frappe</td>
+                        <td class="text-center">Frappe</td>
+                        <td class="text-center">Medium (16oz) | Large (22oz)</td>
+                        <td class="text-center">100 | 120</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Coffee Jelly</td>
+                        <td class="text-center"><img src="images/frappe.jpg" alt=""></td>
+                        <td class="text-center">- 1 Coffee Jelly Frappe</td>
+                        <td class="text-center">Frappe</td>
+                        <td class="text-center">Medium (16oz) | Large (22oz)</td>
+                        <td class="text-center">100 | 120</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Ultimate Chocolate</td>
+                        <td class="text-center"><img src="images/frappe.jpg" alt=""></td>
+                        <td class="text-center">- 1 Ultimate Chocolate Frappe</td>
+                        <td class="text-center">Frappe</td>
+                        <td class="text-center">Medium (16oz) | Large (22oz)</td>
+                        <td class="text-center">100 | 120</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Dark Mocha</td>
+                        <td class="text-center"><img src="images/frappe.jpg" alt=""></td>
+                        <td class="text-center">- 1 Dark Mocha Frappe</td>
+                        <td class="text-center">Frappe</td>
+                        <td class="text-center">Medium (16oz) | Large (22oz)</td>
+                        <td class="text-center">100 | 120</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Nutella</td>
+                        <td class="text-center"><img src="images/frappe.jpg" alt=""></td>
+                        <td class="text-center">- 1 Nutella Frappe</td>
+                        <td class="text-center">Frappe</td>
+                        <td class="text-center">Medium (16oz) | Large (22oz)</td>
+                        <td class="text-center">110 | 130</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Oreo Matcha</td>
+                        <td class="text-center"><img src="images/frappe.jpg" alt=""></td>
+                        <td class="text-center">- 1 Oreo Matcha Frappe</td>
+                        <td class="text-center">Frappe</td>
+                        <td class="text-center">Medium (16oz) | Large (22oz)</td>
+                        <td class="text-center">110 | 130</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Choco Berry</td>
+                        <td class="text-center"><img src="images/frappe.jpg" alt=""></td>
+                        <td class="text-center">- 1 Choco Berry Frappe</td>
+                        <td class="text-center">Frappe</td>
+                        <td class="text-center">Medium (16oz) | Large (22oz)</td>
+                        <td class="text-center">110 | 130</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Iced Tea</td>
+                        <td class="text-center"><img src="images/frappe.jpg" alt=""></td>
+                        <td class="text-center">- 1 Iced Tea</td>
+                        <td class="text-center">Cold</td>
+                        <td class="text-center">Large (22oz) | Pitcher</td>
+                        <td class="text-center">45 | 70</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Red Tea</td>
+                        <td class="text-center"><img src="images/frappe.jpg" alt=""></td>
+                        <td class="text-center">- 1 Red Tea</td>
+                        <td class="text-center">Cold</td>
+                        <td class="text-center">Large (22oz) | Pitcher</td>
+                        <td class="text-center">45 | 70</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Espresso Americano</td>
+                        <td class="text-center"><img src="images/hot.jpg" alt=""></td>
+                        <td class="text-center">- 1 Espresso Americano</td>
+                        <td class="text-center">Hot</td>
+                        <td class="text-center">Large (22oz)</td>
+                        <td class="text-center">85</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Cappucino</td>
+                        <td class="text-center"><img src="images/hot.jpg" alt=""></td>
+                        <td class="text-center">- 1 Hot Cappucino</td>
+                        <td class="text-center">Hot</td>
+                        <td class="text-center">Large (22oz)</td>
+                        <td class="text-center">85</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Mocha Latte</td>
+                        <td class="text-center"><img src="images/hot.jpg" alt=""></td>
+                        <td class="text-center">- 1 Hot Mocha Latte</td>
+                        <td class="text-center">Hot</td>
+                        <td class="text-center">Large (22oz)</td>
+                        <td class="text-center">85</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Cafe Latte</td>
+                        <td class="text-center"><img src="images/hot.jpg" alt=""></td>
+                        <td class="text-center">- 1 Hot Cafe Latte</td>
+                        <td class="text-center">Hot</td>
+                        <td class="text-center">Large (22oz)</td>
+                        <td class="text-center">85</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Hazelnut Latte</td>
+                        <td class="text-center"><img src="images/hot.jpg" alt=""></td>
+                        <td class="text-center">- 1 Hot Hazelnut Latte</td>
+                        <td class="text-center">Hot</td>
+                        <td class="text-center">Large (22oz)</td>
+                        <td class="text-center">85</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Macchiato Latte</td>
+                        <td class="text-center"><img src="images/hot.jpg" alt=""></td>
+                        <td class="text-center">- 1 Hot Macchiato Latte</td>
+                        <td class="text-center">Hot</td>
+                        <td class="text-center">Large (22oz)</td>
+                        <td class="text-center">85</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Hot Choco</td>
+                        <td class="text-center"><img src="images/hot.jpg" alt=""></td>
+                        <td class="text-center">- 1 Hot Choco</td>
+                        <td class="text-center">Hot</td>
+                        <td class="text-center">Large (22oz)</td>
+                        <td class="text-center">85</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Green Tea Latte</td>
+                        <td class="text-center"><img src="images/hot.jpg" alt=""></td>
+                        <td class="text-center">- 1 Hot Green Tea Latte</td>
+                        <td class="text-center">Hot</td>
+                        <td class="text-center">Large (22oz)</td>
+                        <td class="text-center">85</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Green Tea (Tea Bag)</td>
+                        <td class="text-center"><img src="images/hot.jpg" alt=""></td>
+                        <td class="text-center">- 1 Hot Green Tea (Tea Bag)</td>
+                        <td class="text-center">Hot</td>
+                        <td class="text-center">Large (22oz)</td>
+                        <td class="text-center">60</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Black Tea (Brewed Tea)</td>
+                        <td class="text-center"><img src="images/hot.jpg" alt=""></td>
+                        <td class="text-center">- 1 Hot Black Tea (Brewed Tea)</td>
+                        <td class="text-center">Hot</td>
+                        <td class="text-center">Large (22oz)</td>
+                        <td class="text-center">60</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Hot Lemon</td>
+                        <td class="text-center"><img src="images/hot.jpg" alt=""></td>
+                        <td class="text-center">- 1 Hot Lemon</td>
+                        <td class="text-center">Hot</td>
+                        <td class="text-center">Large (22oz)</td>
+                        <td class="text-center">60</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                  </tbody>
+                </table>
+              </div>
+
+            <!--Over Ice/Milk Tea-->
+            <div class="addMenu mb-3 mt-5">
+                <h6>Add Over Ice/ Milk Tea to the menu:</h6>
+                <button class="btn btn-info" data-toggle="modal" data-target="#AddOverIceMilkTeaModal">Add Food</button>
+              </div>
+              <div class="table-responsive">
+                <table class="table table-bordered mt-4 menuTable">
+                  <thead class="fw-bold">
+                    <th class="text-center">Food name</th>
+                    <th class="text-center">Picture</th>
+                    <th class="text-center">Includes</th>
+                    <th class="text-center">Category</th>
+                    <th class="text-center">Size/s</th>
+                    <th class="text-center">Price/s</th>
+                    <th class="text-center">Add Ons</th>
+                    <th class="text-center">Prices of Add Ons</th>
+                    <th class="text-center">Actions</th>
+                  </thead>
+                  <tbody>
+                    <tr>
+                        <td class="text-center">Iced Cappucino</td>
+                        <td class="text-center"><img src="images/overice.jpg" alt=""></td>
+                        <td class="text-center">- 1 Iced Cappucino</td>
+                        <td class="text-center">Over Ice</td>
+                        <td class="text-center">Medium (16oz) | Large (22oz)</td>
+                        <td class="text-center">90 | 110</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Iced Mocha</td>
+                        <td class="text-center"><img src="images/overice.jpg" alt=""></td>
+                        <td class="text-center">- 1 Iced Mocha</td>
+                        <td class="text-center">Over Ice</td>
+                        <td class="text-center">Medium (16oz) | Large (22oz)</td>
+                        <td class="text-center">90 | 110</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Iced Macchiato</td>
+                        <td class="text-center"><img src="images/overice.jpg" alt=""></td>
+                        <td class="text-center">- 1 Iced Macchiato</td>
+                        <td class="text-center">Over Ice</td>
+                        <td class="text-center">Medium (16oz) | Large (22oz)</td>
+                        <td class="text-center">90 | 110</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Iced Vanilla</td>
+                        <td class="text-center"><img src="images/overice.jpg" alt=""></td>
+                        <td class="text-center">- 1 Iced Vanilla</td>
+                        <td class="text-center">Over Ice</td>
+                        <td class="text-center">Medium (16oz) | Large (22oz)</td>
+                        <td class="text-center">90 | 110</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Iced Green Tea</td>
+                        <td class="text-center"><img src="images/overice.jpg" alt=""></td>
+                        <td class="text-center">- 1 Iced Green Tea</td>
+                        <td class="text-center">Over Ice</td>
+                        <td class="text-center">Medium (16oz) | Large (22oz)</td>
+                        <td class="text-center">90 | 110</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Classic Iced Coffee</td>
+                        <td class="text-center"><img src="images/overice.jpg" alt=""></td>
+                        <td class="text-center">- 1 Classic Iced Coffee</td>
+                        <td class="text-center">Over Ice</td>
+                        <td class="text-center">Medium (16oz) | Large (22oz)</td>
+                        <td class="text-center">90 | 110</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Cucumber Shake</td>
+                        <td class="text-center"><img src="images/overice.jpg" alt=""></td>
+                        <td class="text-center">- 1 Cucumber Shake</td>
+                        <td class="text-center">Fruit Juice</td>
+                        <td class="text-center">Medium (16oz) | Large (22oz)</td>
+                        <td class="text-center">65 | 85</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Lemonade Juice</td>
+                        <td class="text-center"><img src="images/overice.jpg" alt=""></td>
+                        <td class="text-center">- 1 Lemonade Juice</td>
+                        <td class="text-center">Fruit Juice</td>
+                        <td class="text-center">Medium (16oz) | Large (22oz)</td>
+                        <td class="text-center">65 | 85</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Pearl</td>
+                        <td class="text-center"><img src="images/milktea.jpg" alt=""></td>
+                        <td class="text-center">- 1 Pearl Milk Tea</td>
+                        <td class="text-center">Milk Tea</td>
+                        <td class="text-center">Medium (16oz) | Large (22oz)</td>
+                        <td class="text-center">60 | 80</td>
+                        <td class="text-center">Tapioca/Pearl | Crushed Oreo | Egg Pudding</td>
+                        <td class="text-center">10 | 10 | 15</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Wintermelon</td>
+                        <td class="text-center"><img src="images/milktea.jpg" alt=""></td>
+                        <td class="text-center">- 1 Wintermelon Milk Tea</td>
+                        <td class="text-center">Milk Tea</td>
+                        <td class="text-center">Medium (16oz) | Large (22oz)</td>
+                        <td class="text-center">70 | 90</td>
+                        <td class="text-center">Tapioca/Pearl | Crushed Oreo | Egg Pudding</td>
+                        <td class="text-center">10 | 10 | 15</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Hazelnut</td>
+                        <td class="text-center"><img src="images/milktea.jpg" alt=""></td>
+                        <td class="text-center">- 1 Hazelnut Milk Tea</td>
+                        <td class="text-center">Milk Tea</td>
+                        <td class="text-center">Medium (16oz) | Large (22oz)</td>
+                        <td class="text-center">70 | 90</td>
+                        <td class="text-center">Tapioca/Pearl | Crushed Oreo | Egg Pudding</td>
+                        <td class="text-center">10 | 10 | 15</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Dark Chocolate</td>
+                        <td class="text-center"><img src="images/milktea.jpg" alt=""></td>
+                        <td class="text-center">- 1 Dark Chocolate Milk Tea</td>
+                        <td class="text-center">Milk Tea</td>
+                        <td class="text-center">Medium (16oz) | Large (22oz)</td>
+                        <td class="text-center">70 | 90</td>
+                        <td class="text-center">Tapioca/Pearl | Crushed Oreo | Egg Pudding</td>
+                        <td class="text-center">10 | 10 | 15</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Chocolate Malt</td>
+                        <td class="text-center"><img src="images/milktea.jpg" alt=""></td>
+                        <td class="text-center">- 1 Chocolate Malt Milk Tea</td>
+                        <td class="text-center">Milk Tea</td>
+                        <td class="text-center">Medium (16oz) | Large (22oz)</td>
+                        <td class="text-center">70 | 90</td>
+                        <td class="text-center">Tapioca/Pearl | Crushed Oreo | Egg Pudding</td>
+                        <td class="text-center">10 | 10 | 15</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Strawberry</td>
+                        <td class="text-center"><img src="images/milktea.jpg" alt=""></td>
+                        <td class="text-center">- 1 Strawberry Milk Tea</td>
+                        <td class="text-center">Milk Tea</td>
+                        <td class="text-center">Medium (16oz) | Large (22oz)</td>
+                        <td class="text-center">70 | 90</td>
+                        <td class="text-center">Tapioca/Pearl | Crushed Oreo | Egg Pudding</td>
+                        <td class="text-center">10 | 10 | 15</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Bottled Water</td>
+                        <td class="text-center"><img src="images/milktea.jpg" alt=""></td>
+                        <td class="text-center">- 1 Bottled Water</td>
+                        <td class="text-center">Other</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">20</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Pineapple Juice</td>
+                        <td class="text-center"><img src="images/milktea.jpg" alt=""></td>
+                        <td class="text-center">- 1 Pineapple Juice</td>
+                        <td class="text-center">Other</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">40</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                  </tbody>
+                </table>
+              </div>
+
+            <!--Promos-->
+            <div class="addMenu mb-3 mt-5">
+                <h6>Add Promo to the menu:</h6>
+                <button class="btn btn-info" data-toggle="modal" data-target="#AddPromoModal">Add Food</button>
+              </div>
+              <div class="table-responsive">
+                <table class="table table-bordered mt-4 menuTable">
+                  <thead class="fw-bold">
+                    <th class="text-center">Food name</th>
+                    <th class="text-center">Picture</th>
+                    <th class="text-center">Includes</th>
+                    <th class="text-center">Category</th>
+                    <th class="text-center">Price/s</th>
+                    <th class="text-center">Actions</th>
+                  </thead>
+                  <tbody>
+                    <tr>
+                        <td class="text-center">Birthday Blowout</td>
+                        <td class="text-center"><img src="images/blowout.jpg" alt=""></td>
+                        <td class="text-center">- 1 Chocolate Cake
+                            - 1 Medium Combo Tray
+                            - 1 Choice of Pasta
+                            - 1 Choice of Pica-pica
+                            - 2 Mushroom Soup
+                            - 4 Small Iced Tea
+                            - 1 Bowl of Rice</td>
+                        <td class="text-center">Promo</td>
+                        <td class="text-center">1880</td>
+                        <td class="text-center">
+                          <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                          <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                        </td>
+                      </tr>
+                  </tbody>
+                </table>
+              </div>
+
+        </div>
+
+           <!--For best seller foods-->
+          <div id="recommended" role="tabpanel" aria-labelledby="profile-tab" class="tab-pane fade px-4 py-5">
+            <div class="addRecom">
+              <h6>Add recommended food (only 4 can be added):</h6>
+              <button class="btn btn-info" data-toggle="modal" data-target="#AddModal">Add food</button>
+            </div>
+            <div class="table-responsive">
+              <table class="table table-bordered mt-2 recomTable">
+                <thead class="fw-bold">
+                  <th class="text-center">Food name</th>
+                  <th class="text-center">Picture</th>
+                  <th class="text-center">Includes</th>
+                  <th class="text-center">Category</th>
+                  <th class="text-center">Price</th>
+                  <th class="text-center">Actions</th>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="text-center">T-bone Steak</td>
+                    <td class="text-center"><img src="images/t-bone.jpg" alt=""></td>
+                    <td class="text-center">- 1 T-bone meal</td>
+                    <td class="text-center">Steak/Grilled</td>
+                    <td class="text-center">180</td>
+                    <td class="text-center">
+                      <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                      <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-center">Baby Back Ribs</td>
+                    <td class="text-center"><img src="images/ribs.jpg" alt=""></td>
+                    <td class="text-center">- 1 Baby Back Ribs meal</td>
+                    <td class="text-center">Steak/Grilled</td>
+                    <td class="text-center">110</td>
+                    <td class="text-center">
+                      <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                      <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-center">Buffalo wings</td>
+                    <td class="text-center"><img src="images/picapica.jpg" alt=""></td>
+                    <td class="text-center">- 1 Buffalo Wings</td>
+                    <td class="text-center">Snacks</td>
+                    <td class="text-center">170</td>
+                    <td class="text-center">
+                      <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                      <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-center">Grilled Cchicken Pesto</td>
+                    <td class="text-center"><img src="images/grilledchickenpesto.jpg" alt=""></td>
+                    <td class="text-center">- 1 Grilled Chicken Pesto</td>
+                    <td class="text-center">Pasta</td>
+                    <td class="text-center">105</td>
+                    <td class="text-center">
+                      <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                      <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+           <!--For featured foods-->
+          <div id="featured" role="tabpanel" aria-labelledby="contact-tab" class="tab-pane fade px-4 py-5">
+            <div class="addFeatured">
+              <h6>Add featured food (only 4 can be added):</h6>
+              <button class="btn btn-info" data-toggle="modal" data-target="#AddModal">Add food</button>
+            </div>
+            <div class="table-responsive">
+              <table class="table table-bordered mt-2 featuredTable">
+                <thead class="fw-bold">
+                  <th class="text-center">Food name</th>
+                  <th class="text-center">Picture</th>
+                  <th class="text-center">Includes</th>
+                  <th class="text-center">Category</th>
+                  <th class="text-center">Price</th>
+                  <th class="text-center">Actions</th>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="text-center">T-bone Steak</td>
+                    <td class="text-center"><img src="images/t-bone.jpg" alt=""></td>
+                    <td class="text-center">- 1 T-bone meal</td>
+                    <td class="text-center">Steak/Grilled</td>
+                    <td class="text-center">180</td>
+                    <td class="text-center">
+                      <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                      <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-center">Baby Back Ribs</td>
+                    <td class="text-center"><img src="images/ribs.jpg" alt=""></td>
+                    <td class="text-center">- 1 Baby Back Ribs meal</td>
+                    <td class="text-center">Steak/Grilled</td>
+                    <td class="text-center">110</td>
+                    <td class="text-center">
+                      <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                      <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-center">Buffalo wings</td>
+                    <td class="text-center"><img src="images/picapica.jpg" alt=""></td>
+                    <td class="text-center">- 1 Buffalo Wings</td>
+                    <td class="text-center">Snacks</td>
+                    <td class="text-center">170</td>
+                    <td class="text-center">
+                      <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                      <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-center">Grilled Cchicken Pesto</td>
+                    <td class="text-center"><img src="images/grilledchickenpesto.jpg" alt=""></td>
+                    <td class="text-center">- 1 Grilled Chicken Pesto</td>
+                    <td class="text-center">Pasta</td>
+                    <td class="text-center">105</td>
+                    <td class="text-center">
+                      <i class="fas fa-edit" style="color: green; margin-right: 2px;" alt="tooltip" title="Edit" data-toggle="modal" data-target="#EditModal"></i>
+                      <i class="fas fa-trash-alt" style="color: red;" alt="tooltip" title="Delete" data-toggle="modal" data-target="#DeleteModal"></i>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <!-- End lined tabs -->
+      </div>
+    </div>
+
+  <!--Modal for add menu-->
+<div class="modal fade" id="AddModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle" style="font-weight: 600;">Add Food</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="warning_error">
+            <p class="error_messages">The number of food required already reach.</p>
+          </div>
+            <form action="">
+                <div class="input-group">
+                  <label for="fname">Food Name:</label>
+                  <input type="text" id="fname" class="input-control">
+                </div>
+                <div class="input-group">
+                    <label for="foodpic">Picture:</label>
+                    <input type="file" id="foodpic" class="input-control">
+                </div>
+                <div class="input-group">
+                    <label for="includes">Includes:</label>
+                    <textarea name="" id="includes" cols="23" rows="3" class="input-control"></textarea>
+                </div>
+                <div class="input-group">
+                  <label for="cat">Category:</label>
+                  <select name="Select category" id="cat">
+                    <option>Family meals</option>
+                    <option>Soup</option>
+                    <option>Breads</option>
+                    <option>Salad</option>
+                    <option>Steak/Grilled</option>
+                    <option>Rice meal</option>
+                    <option>Platter</option>
+                    <option>Snacks</option>
+                    <option>Pasta</option>
+                    <option>Dessert</option>
+                    <option>Pasta Trays</option>
+                    <option>Food Trays</option>
+                    <option>Combo Trays</option>
+                    <option>Pica pica Trays</option>
+                    <option>Other Trays</option>
+                    <option>Chocolate Cakes</option>
+                    <option>Cheesecakes</option>
+                    <option>Frappe</option>
+                    <option>Cold</option>
+                    <option>Hot</option>
+                    <option>Over Ice</option>
+                    <option>Fruit Juice</option>
+                    <option>Milk Tea</option>
+                    <option>Other</option>
+                    <option>Promo</option>
+                  </select>
+              </div>
+                <div class="input-group">
+                  <label for="price">Price:</label>
+                  <input type="number" id="price" class="input-control">
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer d-flex justify-content-center">
+          <button type="button" class="btn btn-success">Save</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<!--Modal for delete food-->
+<div class="modal fade" id="DeleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle" style="font-weight: 600;">Delete Food</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+          <p>Are you sure you want to delete this food?</p>
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button type="button" class="btn btn-success">Save</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Modal for add family meals-->
+<div class="modal fade" id="AddFamMealModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle" style="font-weight: 600;">Add Family Meal</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form action="">
+                <div class="input-group">
+                  <label for="fname">Food Name:</label>
+                  <input type="text" id="fname" class="input-control">
+                </div>
+                <div class="input-group">
+                    <label for="foodpic">Picture:</label>
+                    <input type="file" id="foodpic" class="input-control">
+                </div>
+                <div class="input-group">
+                    <label for="includes">Includes:</label>
+                    <textarea name="" id="includes" cols="23" rows="3" class="input-control"></textarea>
+                </div>
+                <div class="input-group">
+                  <label for="cat">Category:</label>
+                  <select name="Select category" id="cat">
+                    <option>Family meals</option>
+                  </select>
+              </div>
+                <div class="input-group">
+                  <label for="price">Price:</label>
+                  <input type="number" id="price" class="input-control">
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer d-flex justify-content-center">
+          <button type="button" class="btn btn-success">Save</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<!--Modal for add bread/rice meals-->
+<div class="modal fade" id="AddBreadRiceModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle" style="font-weight: 600;">Add Bread/Rice Meal</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form action="">
+                <div class="input-group">
+                  <label for="fname">Food Name:</label>
+                  <input type="text" id="fname" class="input-control">
+                </div>
+                <div class="input-group">
+                    <label for="foodpic">Picture:</label>
+                    <input type="file" id="foodpic" class="input-control">
+                </div>
+                <div class="input-group">
+                    <label for="includes">Includes:</label>
+                    <textarea name="" id="includes" cols="23" rows="3" class="input-control"></textarea>
+                </div>
+                <div class="input-group">
+                  <label for="cat">Category:</label>
+                  <select name="Select category" id="cat">
+                    <option>Soup</option>
+                    <option>Breads</option>
+                    <option>Salad</option>
+                    <option>Steak/Grilled</option>
+                    <option>Rice Meal</option>
+                  </select>
+              </div>
+              <div class="input-group">
+                <label for="s1">Size 1:</label>
+                <select name="s1" id="s1">
+                  <option>-</option>
+                  <option>Medium</option>
+                  <option>Large</option>
+                 </select>
+                </div>
+                <div class="input-group">
+                    <label for="ps1">Price of size 1:</label>
+                    <input type="number" id="ps1" class="input-control">
+                  </div>
+                  <div class="input-group">
+                    <label for="s2">Size 2:</label>
+                    <select name="s2" id="s2">
+                      <option>-</option>
+                      <option>Medium</option>
+                      <option>Large</option>
+                     </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="ps2">Price of size 2:</label>
+                        <input type="number" id="ps2" class="input-control">
+                      </div>
+                      <hr>
+                <div class="input-group">
+                  <label for="price">Price:</label>
+                  <input type="number" id="price" class="input-control">
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer d-flex justify-content-center">
+          <button type="button" class="btn btn-success">Save</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<!--Modal for add pasta/platter-->
+<div class="modal fade" id="AddPastaPlatterModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle" style="font-weight: 600;">Add Pasta/Platter</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form action="">
+                <div class="input-group">
+                  <label for="fname">Food Name:</label>
+                  <input type="text" id="fname" class="input-control">
+                </div>
+                <div class="input-group">
+                    <label for="foodpic">Picture:</label>
+                    <input type="file" id="foodpic" class="input-control">
+                </div>
+                <div class="input-group">
+                    <label for="includes">Includes:</label>
+                    <textarea name="" id="includes" cols="23" rows="3" class="input-control"></textarea>
+                </div>
+                <div class="input-group">
+                  <label for="cat">Category:</label>
+                  <select name="Select category" id="cat">
+                    <option>Platter</option>
+                    <option>Snacks</option>
+                    <option>Pasta</option>
+                    <option>Dessert</option>
+                  </select>
+              </div>
+                <div class="input-group">
+                  <label for="price">Price:</label>
+                  <input type="number" id="price" class="input-control">
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer d-flex justify-content-center">
+          <button type="button" class="btn btn-success">Save</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<!--Modal for add party trays meals-->
+<div class="modal fade" id="AddPartyTraysModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle" style="font-weight: 600;">Add Party Trays</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" style="overflow-y: scroll; height: 400px;">
+            <form action="">
+                <div class="input-group">
+                  <label for="fname">Food Name:</label>
+                  <input type="text" id="fname" class="input-control">
+                </div>
+                <div class="input-group">
+                    <label for="foodpic">Picture:</label>
+                    <input type="file" id="foodpic" class="input-control">
+                </div>
+                <div class="input-group">
+                    <label for="includes">Includes:</label>
+                    <textarea name="" id="includes" cols="23" rows="3" class="input-control"></textarea>
+                </div>
+                <div class="input-group">
+                  <label for="cat">Category:</label>
+                  <select name="Select category" id="cat">
+                    <option>Pasta Trays</option>
+                    <option>Food Trays</option>
+                    <option>Combo Trays</option>
+                    <option>Other Trays</option>
+                  </select>
+              </div>
+              <div class="input-group">
+                <label for="s1">Size 1:</label>
+                <select name="s1" id="s1">
+                    <option>-</option>
+                    <option>Medium (Good for 6-8 persons)</option>
+                    <option>Medium (Good for 8-10 persons)</option>
+                    <option>Large (Good for 10-12 persons)</option>
+                 </select>
+                </div>
+                <div class="input-group">
+                    <label for="ps1">Price of size 1:</label>
+                    <input type="number" id="ps1" class="input-control">
+                  </div>
+                  <div class="input-group">
+                    <label for="s2">Size 2:</label>
+                    <select name="s2" id="s2">
+                      <option>-</option>
+                      <option>Medium (Good for 6-8 persons)</option>
+                      <option>Medium (Good for 8-10 persons)</option>
+                      <option>Large (Good for 10-12 persons)</option>
+                     </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="ps2">Price of size 2:</label>
+                        <input type="number" id="ps2" class="input-control">
+                      </div>
+                      <div class="input-group">
+                        <label for="co1">Combo Option 1:</label>
+                        <input type="text" id="co1" class="input-control">
+                      </div>
+                      <div class="input-group">
+                        <label for="co2">Combo Option 2:</label>
+                        <input type="text" id="co2" class="input-control">
+                      </div>
+                      <div class="input-group">
+                        <label for="co3">Combo Option 3:</label>
+                        <input type="text" id="co3" class="input-control">
+                      </div>
+                      <hr>
+                    <div class="input-group">
+                  <label for="price">Price:</label>
+                  <input type="number" id="price" class="input-control">
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer d-flex justify-content-center">
+          <button type="button" class="btn btn-success">Save</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<!--Modal for add bonitas cakes-->
+<div class="modal fade" id="AddBonitasCakeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle" style="font-weight: 600;">Add Bonitas Cake</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" style="overflow-y: scroll; height: 400px;">
+            <form action="">
+                <div class="input-group">
+                  <label for="fname">Food Name:</label>
+                  <input type="text" id="fname" class="input-control">
+                </div>
+                <div class="input-group">
+                    <label for="foodpic">Picture:</label>
+                    <input type="file" id="foodpic" class="input-control">
+                </div>
+                <div class="input-group">
+                    <label for="includes">Includes:</label>
+                    <textarea name="" id="includes" cols="23" rows="3" class="input-control"></textarea>
+                </div>
+                <div class="input-group">
+                  <label for="cat">Category:</label>
+                  <select name="Select category" id="cat">
+                    <option>Chocolate Cakes</option>
+                    <option>Cheesecakes</option>
+                  </select>
+              </div>
+              <div class="input-group">
+                <label for="s1">Size 1:</label>
+                <select name="s1" id="s1">
+                  <option>-</option>
+                  <option>Slice</option>
+                 </select>
+                </div>
+                <div class="input-group">
+                    <label for="ps1">Price of size 1:</label>
+                    <input type="number" id="ps1" class="input-control">
+                  </div>
+                  <div class="input-group">
+                    <label for="s2">Size 2:</label>
+                    <select name="s2" id="s2">
+                        <option>-</option>
+                        <option>Cannister (4 inches)</option>
+                     </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="ps2">Price of size 2:</label>
+                        <input type="number" id="ps2" class="input-control">
+                      </div>
+                      <div class="input-group">
+                        <label for="s3">Size 3:</label>
+                        <select name="s3" id="s3">
+                            <option>-</option>
+                            <option>Tin Can (8 inches)</option>
+                         </select>
+                        </div>
+                        <div class="input-group">
+                            <label for="ps3">Price of size 3:</label>
+                            <input type="number" id="ps3" class="input-control">
+                          </div>
+                          <div class="input-group">
+                            <label for="s4">Size 4:</label>
+                            <select name="s3" id="s3">
+                                <option>-</option>
+                                <option>Whole (9 inches)</option>
+                             </select>
+                            </div>
+                            <div class="input-group">
+                                <label for="ps4">Price of size 4:</label>
+                                <input type="number" id="ps4" class="input-control">
+                              </div>
+                      <hr>
+                <div class="input-group">
+                  <label for="price">Price:</label>
+                  <input type="number" id="price" class="input-control">
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer d-flex justify-content-center">
+          <button type="button" class="btn btn-success">Save</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<!--Modal for add coffee/frappe-->
+<div class="modal fade" id="AddCoffeeFrappeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle" style="font-weight: 600;">Add Coffee/Frappe</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form action="">
+                <div class="input-group">
+                  <label for="fname">Food Name:</label>
+                  <input type="text" id="fname" class="input-control">
+                </div>
+                <div class="input-group">
+                    <label for="foodpic">Picture:</label>
+                    <input type="file" id="foodpic" class="input-control">
+                </div>
+                <div class="input-group">
+                    <label for="includes">Includes:</label>
+                    <textarea name="" id="includes" cols="23" rows="3" class="input-control"></textarea>
+                </div>
+                <div class="input-group">
+                  <label for="cat">Category:</label>
+                  <select name="Select category" id="cat">
+                    <option>Frappe</option>
+                    <option>Cold</option>
+                    <option>Hot</option>
+                  </select>
+              </div>
+              <div class="input-group">
+                <label for="s1">Size 1:</label>
+                <select name="s1" id="s1">
+                  <option>-</option>
+                  <option>Medium (16oz)</option>
+                  <option>Large (22oz)</option>
+                 </select>
+                </div>
+                <div class="input-group">
+                    <label for="ps1">Price of size 1:</label>
+                    <input type="number" id="ps1" class="input-control">
+                  </div>
+                  <div class="input-group">
+                    <label for="s2">Size 2:</label>
+                    <select name="s2" id="s2">
+                      <option>-</option>
+                      <option>Medium (16oz)</option>
+                      <option>Large (22oz)</option>
+                      <option>Pitcher</option>
+                     </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="ps2">Price of size 2:</label>
+                        <input type="number" id="ps2" class="input-control">
+                      </div>
+                      <hr>
+                <div class="input-group">
+                  <label for="price">Price:</label>
+                  <input type="number" id="price" class="input-control">
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer d-flex justify-content-center">
+          <button type="button" class="btn btn-success">Save</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<!--Modal for add milktea/over ice-->
+<div class="modal fade" id="AddOverIceMilkTeaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle" style="font-weight: 600;">Add Over Ice/ Milk Tea</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" style="overflow-y: scroll; height: 400px;">
+            <form action="">
+                <div class="input-group">
+                  <label for="fname">Food Name:</label>
+                  <input type="text" id="fname" class="input-control">
+                </div>
+                <div class="input-group">
+                    <label for="foodpic">Picture:</label>
+                    <input type="file" id="foodpic" class="input-control">
+                </div>
+                <div class="input-group">
+                    <label for="includes">Includes:</label>
+                    <textarea name="" id="includes" cols="23" rows="3" class="input-control"></textarea>
+                </div>
+                <div class="input-group">
+                  <label for="cat">Category:</label>
+                  <select name="Select category" id="cat">
+                    <option>Over Ice</option>
+                    <option>Fruit Juice</option>
+                    <option>Milk Tea</option>
+                    <option>Other</option>
+                  </select>
+              </div>
+              <div class="input-group">
+                <label for="s1">Size 1:</label>
+                <select name="s1" id="s1">
+                  <option>-</option>
+                  <option>Medium (16oz)</option>
+                  <option>Large (22oz)</option>
+                 </select>
+                </div>
+                <div class="input-group">
+                    <label for="ps1">Price of size 1:</label>
+                    <input type="number" id="ps1" class="input-control">
+                  </div>
+                  <div class="input-group">
+                    <label for="s2">Size 2:</label>
+                    <select name="s2" id="s2">
+                        <option>-</option>
+                        <option>Medium (16oz)</option>
+                        <option>Large (22oz)</option>
+                     </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="ps2">Price of size 2:</label>
+                        <input type="number" id="ps2" class="input-control">
+                    </div>
+                    <div class="input-group">
+                        <label for="ao1">Add Ons Option 1:</label>
+                        <input type="text" id="ao1" class="input-control">
+                    </div>  
+                    <div class="input-group">
+                        <label for="pao1">Price of Ad Ons Option 1:</label>
+                        <input type="number" id="pao1" class="input-control">
+                    </div>
+                    <div class="input-group">
+                        <label for="ao2">Add Ons Option 2:</label>
+                        <input type="text" id="ao2" class="input-control">
+                    </div>  
+                    <div class="input-group">
+                        <label for="pao2">Price of Ad Ons Option 2:</label>
+                        <input type="number" id="pao2" class="input-control">
+                    </div>
+                    <div class="input-group">
+                        <label for="ao3">Add Ons Option 3:</label>
+                        <input type="text" id="ao3" class="input-control">
+                    </div>  
+                    <div class="input-group">
+                        <label for="pao3">Price of Ad Ons Option 3:</label>
+                        <input type="number" id="pao3" class="input-control">
+                    </div>
+                      <hr>
+                <div class="input-group">
+                  <label for="price">Price:</label>
+                  <input type="number" id="price" class="input-control">
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer d-flex justify-content-center">
+          <button type="button" class="btn btn-success">Save</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<!--Modal for add promo-->
+<div class="modal fade" id="AddPromoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle" style="font-weight: 600;">Add Promo</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form action="">
+                <div class="input-group">
+                  <label for="fname">Food Name:</label>
+                  <input type="text" id="fname" class="input-control">
+                </div>
+                <div class="input-group">
+                    <label for="foodpic">Picture:</label>
+                    <input type="file" id="foodpic" class="input-control">
+                </div>
+                <div class="input-group">
+                    <label for="includes">Includes:</label>
+                    <textarea name="" id="includes" cols="23" rows="3" class="input-control"></textarea>
+                </div>
+                <div class="input-group">
+                  <label for="cat">Category:</label>
+                  <select name="Select category" id="cat">
+                    <option>Promo</option>
+                  </select>
+              </div>
+                <div class="input-group">
+                  <label for="price">Price:</label>
+                  <input type="number" id="price" class="input-control">
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer d-flex justify-content-center">
+          <button type="button" class="btn btn-success">Save</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src="js/AddFood.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"  crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"  crossorigin="anonymous"></script>
+
+</body>
+</html>

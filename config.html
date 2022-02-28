@@ -1,0 +1,13 @@
+<?php
+
+$dbhost = 'localhost:3325';
+$dbuser = 'root';
+$dbpass = '';
+$db     = 'login';
+
+
+$conn  = mysqli_connect($dbhost,$dbuser,'',$db);
+
+if(! $conn){
+  echo('Could not connect connect: ') ;
+}

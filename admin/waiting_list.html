@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    <script src='https://use.fontawesome.com/826a7e3dce.js'></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+    <link rel="stylesheet" href="css/waiting_list.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <title>Bonitas | Waiting Orders</title>
+</head>
+<body>
+    <!--Navbar-->
+  <nav class="navigation-bar">
+      <div class="navigation-logo">
+          <img class="logo" src="/Images/bonitaslogo.png" alt="">
+      </div>
+      <div class="user_avatar">
+        <i class="las la-user-circle" id="avatar"></i>
+      </div>
+      <div class="cart">
+        <a href=""><i class="las la-shopping-bag" id="shopping-bag" alt="tooltip" title="Waiting list" onclick="window.location.href='waiting_list.html'"></i></a>
+      </div>
+      <div class="btn_logout">
+        <a href=""><i class="las la-door-open" id="logout"></i></a>
+      </div>
+  </nav>
+  <div class="user_hover">
+    <div class="hover_list">
+      <ul class="hover_content">
+        <li class="list_item"><a href="admin_panel.html" class="link_hover"><i class="las la-columns icon_link"></i>Dashboard</a>
+        <li class="list_item"><a href="orders.html" class="link_hover"><i class="las la-shopping-cart icon_link"></i>Orders</a>
+        <li class="list_item"><a href="foods.html" class="link_hover"><i class="las la-utensils icon_link"></i>Foods</a>
+        <li class="list_item"><a href="reservation_list.html" class="link_hover"><i class="las la-clipboard-check icon_link"></i>Reservation</li></a>
+        <li class="list_item"><a href="admin_profile.html" class="link_hover"><i class="las la-user-circle icon_link" id="profile"></i>Admin Profile</a>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="container tWaiting">
+    <div class="row">
+      <div class="title-des d-flex justify-content-between">
+        <div class="tName">
+          <h3 class="fw-bold">Waiting list of Orders</h3>
+        </div>
+      </div>
+      <div class="col-lg-12 table-responsive mt-3">
+        <table class=" table table-bordered">
+          <thead class="fw-bold">
+            <td class="text-center">Order No.</td>
+            <td class="text-center">Date/Time</td>
+            <td class="text-center">Name</td>
+            <td class="text-center">Order/s</td>
+            <td class="text-center">Price</td>
+            <td class="text-center">MOD-Status</td>
+            <td class="text-center">Status</td>
+            <td class="text-center">Action</td>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="text-center">001</td>
+              <td class="text-center">January 9, 2022, 8:00 pm</td>
+              <td class="text-center">Julius Boomer</td>
+              <td class="text-center">French fries, milktea</td>
+              <td class="text-center">P 350</td>
+              <td class="text-center">COD <span class="badge badge-danger">Unpaid</span></td>
+              <td class="text-center">Pending</td>
+              <td class="text-center" style="cursor: pointer; color: green;"><i class="fas fa-check" alt="tooltip" title="Proceed" data-toggle="modal" data-target="#ProceedModal"></i></td>
+            </tr>
+            <tr>
+              <td class="text-center">001</td>
+              <td class="text-center">January 9, 2022, 8:00 pm</td>
+              <td class="text-center">Julius Boomer</td>
+              <td class="text-center">French fries, milktea</td>
+              <td class="text-center">P 350</td>
+              <td class="text-center">COD <span class="badge badge-danger">Unpaid</span></td>
+              <td class="text-center">Pending</td>
+              <td class="text-center" style="cursor: pointer; color: green;"><i class="fas fa-check" alt="tooltip" title="Proceed" data-toggle="modal" data-target="#ProceedModal"></i></td>
+            </tr>
+            <tr>
+              <td class="text-center">001</td>
+              <td class="text-center">January 9, 2022, 8:00 pm</td>
+              <td class="text-center">Julius Boomer</td>
+              <td class="text-center">French fries, milktea</td>
+              <td class="text-center">P 350</td>
+              <td class="text-center">COD <span class="badge badge-danger">Unpaid</span></td>
+              <td class="text-center">Pending</td>
+              <td class="text-center" style="cursor: pointer; color: green;"><i class="fas fa-check" alt="tooltip" title="Proceed" data-toggle="modal" data-target="#ProceedModal"></i></td>
+            </tr>
+            <tr>
+              <td class="text-center">001</td>
+              <td class="text-center">January 9, 2022, 8:00 pm</td>
+              <td class="text-center">Julius Boomer</td>
+              <td class="text-center">French fries, milktea</td>
+              <td class="text-center">P 350</td>
+              <td class="text-center">COD <span class="badge badge-danger">Unpaid</span></td>
+              <td class="text-center">Pending</td>
+              <td class="text-center" style="cursor: pointer; color: green;"><i class="fas fa-check" alt="tooltip" title="Proceed" data-toggle="modal" data-target="#ProceedModal"></i></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="ProceedModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle" style="font-weight: 600;">Proceed Order</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+          <p>Are you sure you want this order to proceed?</p>
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button type="button" class="btn btn-success">Yes</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+  <!-- End of Content -->
+
+  <script src="js/waiting_list.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"  crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"  crossorigin="anonymous"></script>
+
+</body>
+</html>

@@ -1,0 +1,222 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+:root{
+    --brown: #FEF8D0;
+    --maroon: #854442;
+    --softRed: hsl(14, 88%, 65%);
+    --veryDarkGrayBlue: hsl(237, 12%, 33%);
+    --darkGrayBlue: hsl(240, 6%, 50%);
+    --lightGrayBlue: hsl(240, 5%, 91%);
+    --fontSize: 12px;
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+li{
+    list-style: none;
+}
+
+nav{
+    background: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1000;
+}
+
+.navigation-bar{
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 24px;
+    width: 100%;
+}
+
+.navigation-logo{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.navigation-logo .logo{
+    width: 10rem;
+    height: 10rem;
+}
+
+.navigation-item .navigation-link{
+    text-decoration: none;
+    color: #fff;
+    position: relative;
+}
+
+.navigation-item a{
+    text-transform: uppercase;
+    font-family: 'Work Sans' sans-serif; font-weight: bolder;
+}
+
+.hamburger{
+    display: none;
+    cursor: pointer;
+}
+
+.bar{
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    background-color: #fff;
+    position: relative;
+    right: 40px;
+}
+
+#shopping-bag{
+    position: fixed;
+    right: 30px;
+    top: 22px; cursor: pointer;
+    font-size: 1.6rem; color: #fff;
+}
+
+.bag-container{
+    width: 26rem; height: 60rem; padding: 1.2rem;
+    position: fixed; z-index: 1100;
+    top: 0; right: -100%;
+    background: #fff;
+    transition: 0.4s;
+}
+
+.bag-container.active{
+    right: 0;
+}
+
+.bag-container i{
+    color: crimson; font-size: 1.6rem; width: 100%; text-align: end;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.bag-container .no-orders{
+    box-shadow: 1px 1px 1px 1.6px #ccc;
+    background-image: url(/Images/marginalia-order-completed-1.png);
+    height: 38.5rem;
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.no-orders h4{
+    height: 15rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Work Sans', sans-serif;
+    color: rgb(173, 163, 163);
+}
+
+.no-orders a{
+    height: 15rem;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    font-family: 'Work Sans', sans-serif;
+    color: rgb(173, 163, 163);
+    text-decoration: none;
+}
+
+.navigation-menu{
+    width: 100%; height: 44rem;
+    position: fixed; z-index: 1100;
+    left: 0;
+    visibility: hidden;
+    background: #24262b;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navigation-menu i{
+    color: whitesmoke; font-size: 2rem; width: 100%; text-align: end;
+    cursor: pointer; position: absolute; left: -4%; top: 3%;
+}
+
+.navigation-menu.active{
+    visibility: visible;
+}
+.list{
+    width: 100%;
+    margin: .5rem;
+}
+
+.list .navigation-list{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.navigation-list .navItem-list{
+    font-size: 3rem; text-decoration: none; color: #af9e9e;
+}
+.navItem-list:hover{
+    color: #fff; transition: all 0.3s ease;
+}
+
+.tMore{
+    margin-top: 7rem;
+}
+
+.tName h3{
+    color: var(--maroon);
+}
+
+.backBtn a{
+    color: var(--maroon);
+    text-decoration: none;
+}   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Media Queries Navbar*/
+
+@media(max-width:1400px){
+
+    .hamburger{
+        display: block;
+    }
+}
+
+@media(max-width: 1150px){
+    .navigation-list .navItem-list{
+        font-size: 3rem;
+    }
+}
+@media(max-width: 430px){
+    .navigation-list .navItem-list{
+        font-size: 8vw;
+        padding: 0;
+    }
+}
