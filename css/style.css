@@ -106,7 +106,6 @@ nav {
   cursor: pointer;
   font-size: 1.8rem;
   color: rgb(37, 36, 36);
-  display: none;
 }
 
 #avatar:hover,
@@ -628,7 +627,7 @@ header h4 {
 }
 
 .about-section {
-  background: url(/Images/about.jpg) no-repeat left;
+  background: url(../Images/about.jpg) no-repeat left;
   background-size: 55%;
   background-color: #fdfdfd;
   overflow: hidden;
@@ -713,7 +712,7 @@ header h4 {
 }
 
 .about-section-left {
-  background: url(/Images/location.jpg) no-repeat left;
+  background: url(../Images/location.jpg) no-repeat left;
   background-size: 100%;
   background-color: #fdfdfd;
   overflow: hidden;
@@ -914,7 +913,7 @@ header h4 {
 }
 
 .image__wrapper_inner {
-  background: url(/Images/pexels-malidate-van-784632.jpg);
+  background: url(../Images/pexels-malidate-van-784632.jpg);
   height: 100%;
   background-repeat: no-repeat;
   background-position: center;

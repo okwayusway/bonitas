@@ -1,5 +1,4 @@
 <?php
- ob_start();
  session_start();
  include './php/connection.php';
  
@@ -28,7 +27,7 @@
          // Check if inputted password matches the password from database
          if(password_verify($password, $fetch_password)){
             $_SESSION["userid"] = $fetch_user_id;
-             echo "<script>window.location.replace('./index.html')</script>";
+             echo "<script>window.location.replace('./index.php')</script>";
          }else {
              echo error_message("Password is incorrect!");
          }

@@ -1,3 +1,6 @@
+<?php 
+ session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,12 +28,14 @@
       <div class="navigation-logo">
           <img class="logo" src="Images/bonitaslogo.png" alt="">
       </div>
-      <div class="login_con">
-        <a href="login.html" class="button_login">Login</a>
-      </div>
-      <div class="user_avatar">
-        <i class="las la-user-circle" id="avatar"></i>
-      </div>
+      <?php 
+       if(isset($_SESSION["userid"])){
+        echo "<div class='user_avatar'><i class='las la-user-circle' id='avatar'></i></div>";
+       }
+       else{
+        echo "<div class='login_con'><a href='login.php' class='button_login'>Login</a></div>";  
+       }
+      ?>
       <div class="cart">
         <a href=""><i class="las la-shopping-bag" id="shopping-bag"></i></a>
       </div>
@@ -47,7 +52,7 @@
         <li class="list_item"><a href="/user.html" class="link_hover"><i class="las la-user-circle icon_link" id="profile"></i>My Profile</a>
         <li class="list_item"><a href="" class="link_hover"><i class="las la-shopping-bag icon_link"></i>My Orders</a>
         <li class="list_item"><a href="" class="link_hover"><i class="las la-ticket-alt icon_link"></i>Coupons</a>
-        <li class="list_item"><a href="" class="link_hover"><i class="las la-door-open icon_link"></i>Logout</li></a>
+        <li class="list_item"><a href="./php/logout.php" target="_self" class="link_hover"><i class="las la-door-open icon_link"></i>Logout</li></a>
       </ul>
     </div>
   </div>
