@@ -9,7 +9,7 @@
 
     // Check connection
     if($conn) {
-      echo "<script>alert('Connected Successfully..');</script>"; 
+     // echo "<script>alert('Connected Successfully..');</script>"; 
     }
     else
     {

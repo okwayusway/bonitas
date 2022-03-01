@@ -83,11 +83,11 @@ if(isset($_POST["update"])){
         $category = $_POST["category"];
         $price = $_POST["price"];
         $description = $_POST["description"];
+        $hasNewImage = $_POST["hasNewImage"];
         $thumbnailUrl;
 
-        if($_FILES["image"]["name"] == 4){
-            $sql = "UPDATE menu set menuName = '$name', category = $category, price = $price, description = '$description', 
-            where id = $id";
+        if(filter_var($hasNewImage, FILTER_VALIDATE_BOOLEAN) == FALSE){
+             $sql = "UPDATE menu set name = '$name', category = $category, price = $price, description = '$description' where id = $id";
              $result = mysqli_query($conn, $sql);
              if (!$result) {
                  http_response_code(500);
@@ -111,7 +111,7 @@ if(isset($_POST["update"])){
         }
 
             http_response_code(200);
-            $result = array("message" => "successfully deleted");
+            $result = array("message" => "successfully updated");
             $json_response = json_encode($result);
             echo $json_response;
         }

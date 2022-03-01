@@ -9,13 +9,14 @@ let currentSelected = {
 };
 
 document.querySelector("table").onload = getMenuList();
-document.getElementById("menuCategory").onload = getAdminCategory();
+document.getElementById("menuCategory").onload = getMenuCategory();
 document.getElementById("foodform").onsubmit = async (e) => {
  e.preventDefault();
  addMenu();
 }
 
-function getAdminCategory(){
+function getMenuCategory(){
+  console.log("Test");
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onload = function(ev){
         if (xmlhttp.status != 200) { // analyze HTTP status of the response
@@ -27,10 +28,13 @@ function getAdminCategory(){
             let updateSelect = document.getElementById("updateMenuCategory");
             categories.forEach(item => {
               let opt = document.createElement("option");
+              let upOpt = document.createElement("option");
               opt.value = Number.parseInt(item.id);
               opt.innerHTML = item.category;
+              upOpt.value = Number.parseInt(item.id);
+              upOpt.innerHTML = item.category;
               select.appendChild(opt);
-              updateSelect.appendChild(opt);
+              updateSelect.appendChild(upOpt);
             });
    
           }
@@ -210,18 +214,22 @@ function updateFoodOnMenuList(){
       } 
    else{ 
         setTimeout(()=>{
-          toastr.remove();
           showToastr("success",`${currentSelected.foodName} Successfully Updated `);
-        }, 1200); 
-        window.location.reload();
+          setTimeout(()=>{
+            location.reload();
+          },500)
+        }, 1200);
+
       }
   }
   xmlhttp.open("POST", "../admin/php/updatefood.php", true);
   let form = document.getElementById("updateFoodForm");
+  let formUpdateImage =document.getElementById("updateThumbnail");
+
   let formData = new FormData(form);
   formData.append("id", currentSelected.id);
   formData.append("update", true);
-  formData.append("hasNewImage", )
+  formData.append("hasNewImage", formUpdateImage.value != "");
   xmlhttp.send(formData);
 }
 

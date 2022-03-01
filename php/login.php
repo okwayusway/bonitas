@@ -22,26 +22,12 @@
             //  Access row content of selected email
             $row = mysqli_fetch_assoc($email_query_result);
             $fetch_password = $row["password"];
-            $fetch_acc_type = $row["account_type"];
-            $fetch_admission = $row["admission"];
             $fetch_user_id = $row["user_id"];
             
             // Check if inputted password matches the password from database
-            if(password_verify($password,$fetch_password)){
-                // Check if account is already verified or not
-                if($fetch_admission != "pending"){
-                    // Check account type to identify the page destination
-                    if($fetch_acc_type == "user"){
-                        $_SESSION['user_id'] = $fetch_user_id; //Create a session for user_id for authentication
-                        echo "user";
-                    } else {
-                        echo "admin";
-                    }
-
-                } else {
-                    echo error_message(" This account is not verified by admin yet!");
-                }
-            } else {
+            if(password_verify($password, $fetch_password)){
+                echo "<script>window.location.replace('./index.html')</script>";
+            }else {
                 echo error_message(" Password is incorrect!");
             }
         } else {

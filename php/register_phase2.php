@@ -64,9 +64,13 @@
             $datetime_created = date('Y-m-d H:i:s');
 
             // Inserting into database
-            $insertInfosQuery = mysqli_query($conn, "INSERT INTO users(email, first_name, last_name, password, phone_number, household_no, street, barangay, city, datetime_created) 
-                                VALUES ('$email', '$firstname', '$lastname', '$hash_password', '$num', '$household_num', '$street', '$barangay', '$city', '$datetime_created')");
-            echo "success";
+            $insertInfosQuery = mysqli_query($conn, "INSERT INTO users(email, first_name, last_name, password, phone_number, household_no, street, barangay, city, datetime_created, roleId) 
+                                VALUES ('$email', '$firstname', '$lastname', '$hash_password', '$num', '$household_num', '$street', '$barangay', '$city', '$datetime_created', 2)");
+             if (!$insertInfosQuery) {
+                echo 'Could not run query: ' . mysqli_error();
+                exit;
+            }                   
+            echo "<script>toastr['success']('Successfully Registered');setTimeout(()=>{window.location.replace('./login.html')},1500)</script>";
         } else {
             echo 
             "<div class='warning_error'>
