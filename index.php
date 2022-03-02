@@ -37,7 +37,7 @@
        }
       ?>
       <div class="cart">
-        <a href=""><i class="las la-shopping-bag" id="shopping-bag"></i></a>
+        <i class="las la-shopping-bag" id="shopping-bag"></i>
       </div>
       <div class="hamburger">
           <span class="bar"></span>
@@ -51,7 +51,6 @@
       <ul class="hover_content">
         <li class="list_item"><a href="/user.html" class="link_hover"><i class="las la-user-circle icon_link" id="profile"></i>My Profile</a>
         <li class="list_item"><a href="" class="link_hover"><i class="las la-shopping-bag icon_link"></i>My Orders</a>
-        <li class="list_item"><a href="" class="link_hover"><i class="las la-ticket-alt icon_link"></i>Coupons</a>
         <li class="list_item"><a href="./php/logout.php" target="_self" class="link_hover"><i class="las la-door-open icon_link"></i>Logout</li></a>
       </ul>
     </div>
@@ -59,12 +58,12 @@
 
   <div class="navigation-menu">
     <i class="las la-times" id="close-menu"></i>
-    <div class="additional-img"><img src="Images/img-menu.jpg" alt=""></div>
+    <div class="additional-img"><img src="./Images/img-menu.jpg" alt=""></div>
     <div class="list">
       <ul class="navigation-list">
-        <li class="navigation-item"><a href="index.html" class="navItem-list">Home</a></li>
-        <li class="navigation-item"><a href="menu.html" class="navItem-list">Menu</a></li>
-        <li class="navigation-item"><a href="reservation.html" class="navItem-list">Reservation</a></li>
+        <li class="navigation-item"><a href="index.php" class="navItem-list">Home</a></li>
+        <li class="navigation-item"><a href="menu.php" class="navItem-list">Menu</a></li>
+        <li class="navigation-item"><a href="reservation.php" class="navItem-list">Reservation</a></li>
       </ul>
     </div>
   </div>
@@ -100,15 +99,15 @@
         </div>
       </div> -->
 
+    <!-- Carousel HTML -->
       <div id="myCarousel" class="carousel slide">
         <div class="carousel-inner">
           <div class="item active">
-            <img src="Images/slide-01.jpg" alt="">
+            <img src="Images/slide-01.jpg" alt="" id="images1">
             <div class="container">
               <div class="carousel-caption">
-                <h1 class="carousel_text">Try our blueberry cheese cake for only P105.00.</h1>
-                <p class="lead"></p>
-                <a class="btn btn-large btn-primary" href="menu.html">View menu</a>
+                <h1 class="carousel_text">try our blueberry cheesecake now.</h1>
+                <a class="btn btn-large btn-primary" data-toggle="modal" data-target="#modalCarousel"><i class="las la-cart-plus"></i></a>
               </div>
             </div>
           </div>
@@ -116,9 +115,8 @@
             <img src="Images/slide-02.jpg" alt="">
             <div class="container">
               <div class="carousel-caption">
-                <h1 class="carousel_text">Craving for this? check out now for only P225.00.</h1>
-                <p class="lead"></p>
-                <a class="btn btn-large btn-primary" href="menu.html">View menu</a>
+                <h1 class="carousel_text">checkout our mouthwatering desserts</h1>
+                <a class="btn btn-large btn-primary" data-toggle="modal" data-target="#modalCarousel"><i class="las la-cart-plus"></i></a>
               </div>
             </div>
           </div>
@@ -127,8 +125,7 @@
             <div class="container">
               <div class="carousel-caption">
                 <h1 class="carousel_text">Ribs steak available at Bonita's.</h1>
-                <p class="lead"></p>
-                <a class="btn btn-large btn-primary" href="menu.html">View menu</a>
+                <a class="btn btn-large btn-primary" data-toggle="modal" data-target="#modalCarousel"><i class="las la-cart-plus"></i></a>
               </div>
             </div>
           </div> 
@@ -136,13 +133,113 @@
         <a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
         <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
       </div>
-
-
-
       <!-- Eend -->
 
+      <!-- Modal for Carousel Item -->
+      <div class="modal fade" id="modalCarousel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Family Meal - Grateful</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <div class="pic_modal" style="background-image: url(images/Grateful.jpg);">
+                </div>
+                <div class="deets_modal">
+                    <div class="dhead d-flex justify-content-between">
+                        <h6 style="font-weight: 600;">Includes: </h6>
+                    </div>
+                    <ul>
+                        <li>- 1 Baby Back Ribs Platter or Chicken BBQ Platter</li>
+                        <li>- 1 Choice of Pasta</li>
+                        <li>- 2 Soup of the Day</li>
+                        <li>- 4 Plain Rice</li>
+                        <li>- 1 Pitcher of Iced/Red Tea</li>
+                    </ul>
+                </div>
+                <small>Good for 4-5 persons</small>
+                <div class="quantityFood">
+                    <div class="form-group">
+                        <label>Quantity: </label>
+                        <div class="input-group d-flex justify-content-center">
+                            <div class="input-group-btn">
+                                <button class="down btn btn-default" onclick="down('0')"><span class="fas fa-minus"></span></button>
+                            </div>
+                            <input type="text" id="myNumber" class="input-number" value="1" />
+                            <div class="input-group-btn">
+                                <button class="up btn btn-default" onclick="up('10')"><span class="fas fa-plus"></span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="totalPrice d-flex justify-content-end">
+                    <h3 class="total-price">Total: P230.00</h3>
+                </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-success">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End -->
 
-      <!--Our story-->
+      <!-- Cart for Index -->
+      <div class="cart-container">
+        <h2 class="cart-title">My Cart</h2>
+        <div class="item-container">
+            <div class="row-item">
+                <div class="quantity">
+                    <form action="" class="incrementDec">
+                        <button type="button" class="decrement-btn" onclick="decrementValue()"><i class="las la-times-circle"></i></button>
+                        <div class="quanti-count">
+                            <input type="text" id="number" value="1" disabled="disabled">
+                        </div>
+                        <button type="button" class="increment-btn" onclick="incrementValue()"><i class="las la-plus-circle"></i></button>
+                    </form>
+                </div>
+                <div class="user-orders">
+                    <h4 class="order-text">Baby Backribs w/ Nachos.</h4>
+                </div>
+                <div class="item-price">
+                    <span class="peso-sign-regular">₱</span>129.00
+                </div>
+            </div>
+        </div>
+        <div class="total-container">
+            <div>
+                <button class="checkout-btn" type="button" onclick="window.location.href='/checkout.html'">Proceed to Checkout</button>
+            </div>
+            <div class="row-sub">
+                <div class="col-left sub">
+                    Subtotal
+                </div>
+                <div class="col-right sub">
+                    <span class="peso-sign-regular">₱</span>129.00
+                </div>
+            </div>
+            <div class="row-delivery-fee">
+                <div class="col-left sub">
+                    Tax
+                </div>
+                <div class="col-right sub">
+                    <span class="peso-sign-regular">₱</span>129.00
+                </div>
+            </div>
+            <div class="row-total">
+                <div class="col-left sub">
+                    Total
+                </div>
+                <div class="col-right sub">
+                    <span class="peso-sign-regular">₱</span>129.00
+                </div>
+            </div>
+        </div>
+    </div>
+      <!-- End -->
 
       <!-- Gallery -->
 
@@ -356,6 +453,7 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/owl.carousel.min.js'></script>
     <script src='https://use.fontawesome.com/826a7e3dce.js'></script>
     <script  src="./js/index.js"></script>
+    <script src="./js/cart.js"></script>
 
 
 </body>

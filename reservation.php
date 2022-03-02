@@ -1,3 +1,6 @@
+<?php 
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,15 +27,14 @@
     <div class="navigation-logo">
         <img class="logo" src="./Images/bonitaslogo.png" alt="">
     </div>
-    <div class="login_con">
-      <a href="/login.html" class="button_login">Login</a>
-    </div>
-    <div class="user_avatar">
-      <i class="las la-user-circle" id="avatar"></i>
-    </div>
-    <div class="cart">
-      <a href=""><i class="las la-shopping-bag" id="shopping-bag"></i></a>
-    </div>
+    <?php 
+       if(isset($_SESSION["userid"])){
+        echo "<div class='user_avatar'><i class='las la-user-circle' id='avatar'></i></div>";
+       }
+       else{
+        echo "<div class='login_con'><a href='login.php' class='button_login'>Login</a></div>";  
+       }
+      ?>
     <div class="hamburger">
         <span class="bar"></span>
         <span class="bar"></span>
@@ -42,9 +44,9 @@
 <div class="user_hover">
   <div class="hover_list">
     <ul class="hover_content">
-      <li class="list_item"><a href="/user.html" class="link_hover"><i class="las la-user-circle icon_link" id="profile"></i>My Profile</a>
+      <li class="list_item"><a href="user.html" class="link_hover"><i class="las la-user-circle icon_link" id="profile"></i>My Profile</a>
       <li class="list_item"><a href="" class="link_hover"><i class="las la-shopping-bag icon_link"></i>My Orders</a>
-      <li class="list_item"><a href="" class="link_hover"><i class="las la-door-open icon_link"></i>Logout</li></a>
+      <li class="list_item"><a href="./php/logout.php" class="link_hover"><i class="las la-door-open icon_link"></i>Logout</li></a>
     </ul>
   </div>
 </div>
@@ -54,12 +56,14 @@
   <div class="additional-img"><img src="./Images/img-menu.jpg" alt=""></div>
   <div class="list">
     <ul class="navigation-list">
-      <li class="navigation-item"><a href="/index.html" class="navItem-list">Home</a></li>
-      <li class="navigation-item"><a href="/menu.html" class="navItem-list">Menu</a></li>
-      <li class="navigation-item"><a href="/reservation.html" class="navItem-list">Reservation</a></li>
+      <li class="navigation-item"><a href="index.php" class="navItem-list">Home</a></li>
+      <li class="navigation-item"><a href="menu.php" class="navItem-list">Menu</a></li>
+      <li class="navigation-item"><a href="reservation.php" class="navItem-list">Reservation</a></li>
     </ul>
   </div>
 </div>
+
+
 
     <!-- Content Reservation -->
 
@@ -74,8 +78,8 @@
 
     <!-- End -->
 
-    <!-- Modal for reserve -->
-    <div class="modal fade" id="reserveModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<!-- Modal for reserve -->
+<div class="modal fade" id="reserveModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -125,9 +129,14 @@
                   <input type="button" value="2:00pm - 4:00pm" data-dismiss="modal" data-toggle="modal" data-target="#event-details">
                   <input type="button" value="4:00pm - 6:00pm" data-dismiss="modal" data-toggle="modal" data-target="#event-details">
                 </div>
+                <div class="num-people">
+                  <h3 class="numPerson-text">Number of person:</h3>
+                  <input type="number" name="date" id="#number-people">
+                </div>
               </form>
           </div>
           <div class="modal-footer">
+            <button type="button" class="btn btn-success">Okay</button>
             <button type="button" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" data-target="#incomingOrders">Back</button>
           </div>
         </div>
@@ -161,9 +170,56 @@
                   </div>
                 </div>
               </div>
+              <div class="numOf-person">
+                <div class="person-info">
+                  <i class="las la-user-friends"></i>
+                  <div class="person-con">
+                    <h3 class="person-text">3 persons</h3>
+                  </div>
+                </div>
+              </div>
           </div>
           <div class="btnBook-container">
-            <button class="btn-create">Book now</button>
+            <button class="btn-create" id="btn-book">Book now</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="event-container" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">events</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body d-flex justify-content-center">
+                <div class="eventF-div">
+                  <h3 class="eventF-title">WE ACCEPT CUSTOMIZED BOOKINGS!</h3>
+                  <div class="list-events">
+                    <ul>
+                      <li><i class="las la-check-circle"></i>Weddings</li>
+                      <li><i class="las la-check-circle"></i>Baptismal</li>
+                      <li><i class="las la-check-circle"></i>Meetings</li>
+                      <li><i class="las la-check-circle"></i>Birthdays</li>
+                      <li><i class="las la-check-circle"></i>Other Events</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="eventS-div">
+                  <h3 class="eventS-title">FOR LIMITED TIME ONLY!</h3>
+                  <h5>For inquiries, please contact us at:</h5>
+                  <div class="info-events">
+                    <h3><i class="las la-phone"></i>09054049421</h3>
+                    <a href=""><i class="lab la-facebook"></i>Bonita's Coffee.Tea.Bread + Steak</a>
+                    <a href=""><i class="lab la-instagram"></i>@bonitascoffeeteabread</a>
+                  </div>
+                </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" data-target="#incomingOrders">Back</button>
           </div>
         </div>
       </div>

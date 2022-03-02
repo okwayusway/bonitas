@@ -67,12 +67,6 @@ nav {
   position: relative;
 }
 
-.navigation-item .navItem-list {
-  text-transform: uppercase;
-  font-family: 'Work Sans'sans-serif;
-  font-weight: bolder;
-}
-
 .hamburger {
   display: none;
   cursor: pointer;
@@ -221,12 +215,13 @@ nav {
 .additional-img {
   width: 100%;
   border: 1px solid #fff;
-  height: 100%;
+  height: 20rem;
+  margin-left: 3rem;
 }
 
 .additional-img img {
   width: 47rem;
-  height: 39rem;
+  height: 20rem;
   padding: .5rem;
 }
 
@@ -243,10 +238,13 @@ nav {
 }
 
 .navigation-list .navItem-list {
-  font-size: 3rem;
+  font-size: 3.5rem;
   text-decoration: none;
   color: #af9e9e;
   transition: 0.7s;
+  text-transform: uppercase;
+  font-family: 'Poppins'sans-serif;
+  font-weight: bolder;
 }
 
 .navItem-list:hover {
@@ -255,7 +253,7 @@ nav {
 }
 
 .navigation-item {
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
 }
 
 /* Media Queries Navbar*/
@@ -452,6 +450,9 @@ header h4 {
   font-family: 'Poppins', sans-serif;
   transition: all ease-in-out .5s;
   text-transform: lowercase;
+  width: 7rem;
+  font-size: 1.8rem;
+  padding: 7px;
 }
 
 .carousel-caption .btn:hover {
@@ -460,6 +461,182 @@ header h4 {
   background: #fff;
   transition: all ease-in-out .5s;
 }
+
+/* food modal for carousel */
+.modal{
+  background: none;
+}
+
+.form-group{
+  margin:1rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-group .input-group input{
+  height: 1.9rem;
+}
+
+.totalPrice{
+  margin: 0;
+  height: 2rem;
+}
+
+.totalPrice .total-price{
+  font-size: 1rem;
+}
+
+.modal-footer button{
+  border: 1px solid #fff;
+  width: 100%;
+  outline: none;
+  background: crimson;
+  transition: all ease-in .3s;
+}
+
+.modal-footer button:hover{
+  border: 1px solid #fff;
+  outline: none;
+  transition: all ease-in .3s;
+}
+
+/* End */
+
+/* Cart CSS */
+
+.cart-container{
+  min-width: 40%;
+  box-shadow: 1px 1px 1px 1px #24262b;
+  position: fixed;
+  right: 0; top: 10.4%;
+  z-index: 1000;
+  background: #fff;
+  height: 38rem;
+  padding: 1rem;
+  visibility: hidden;
+  overflow-y: auto;
+}
+
+.cart-container.active{
+  visibility: visible;
+}
+
+.cart-title{
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+}
+
+.item-container{
+  padding: 10px;
+  overflow-y: visible;
+}
+
+.row-item{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.quantity{
+  margin-top: 1rem;
+}
+
+.quantity i{
+  margin-top: 2px;
+  font-size: 1.5rem;
+  color: rgb(10, 192, 116);
+}
+
+.quanti-count{
+  font-family: 'Poppins', sans-serif;
+  margin: 7px;
+}
+
+.user-orders{
+  width: 60%;
+}
+
+.order-text{
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  text-align: center;
+  margin-top: 7px;
+}
+
+.quantity .incrementDec{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.incrementDec .decrement-btn,
+.incrementDec .increment-btn{
+  border: none;
+  outline: none;
+  background: #fff;
+}
+
+.quanti-count{
+  width: 1rem;
+}
+.quanti-count #number{
+  width: .9rem;
+  border: none;
+  text-align: center;
+  margin-top: .7rem;
+  font-size: 1rem;
+  padding: 0;
+  background: #fff;
+  outline: none;
+  border: none;
+}
+
+.item-price{
+  font-size: 1rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+}
+
+.total-container{
+  width: 500px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2rem auto;
+  position: fixed;
+  bottom: 0;
+  padding: 1rem;
+  box-shadow: 1px 1px 1px 1px#cecece;
+}
+
+.col-left,
+.col-right{
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+}
+
+.col-left{
+  font-weight: bolder;
+}
+
+.checkout-btn{
+  outline: none;
+  border: none;
+  padding: 1rem;
+  width: 100%;
+  border-radius: 1rem;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+}
+
+.checkout-btn:hover{
+  color: #fff;
+  background: crimson;
+}
+
+
+/* END */
 
 /* Gallery */
 

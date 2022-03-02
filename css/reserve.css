@@ -59,11 +59,6 @@ nav{
     position: relative;
 }
 
-.navigation-item .navItem-list{
-    text-transform: uppercase;
-    font-family: 'Work Sans' sans-serif; font-weight: bolder;
-}
-
 .hamburger{
     display: none;
     cursor: pointer;
@@ -81,19 +76,11 @@ nav{
     right: 0px;
 }
 
-#shopping-bag{
-    position: fixed;
-    right: 66px;
-    top: 22px; cursor: pointer;
-    font-size: 1.6rem; color: rgb(37, 36, 36);
-}
-
 #avatar{
     position: fixed;
-    right: 100px;
+    right: 5%;
     top: 22px; cursor: pointer;
     font-size: 1.8rem; color: rgb(37, 36, 36);
-    display: none;
 }
 
 #avatar:hover,
@@ -105,7 +92,7 @@ nav{
 
 .button_login{
     position: fixed;
-    right: 120px;
+    right: 5%;
     top: 20px; cursor: pointer;
     color: rgb(37, 36, 36);
     border: 1px solid crimson;
@@ -178,7 +165,7 @@ nav{
 
 .navigation-menu{
     width: 100%; height: 44rem;
-    position: fixed; z-index: 1100;
+    position: fixed; z-index: 1500;
     top: -200%; left: 0;
     background: #24262b;
     transition: all 0.4s ease-in-out;
@@ -196,19 +183,22 @@ nav{
     top: 0;
 }
 
-.additional-img{
+.additional-img {
     width: 100%;
     border: 1px solid #fff;
-    height: 100%;
-}
-.additional-img img{
+    height: 20rem;
+    margin-left: 3rem;
+  }
+  
+  .additional-img img {
     width: 47rem;
-    height: 39rem;
+    height: 20rem;
     padding: .5rem;
-    margin-top: 1.5rem;
-}
+  }
+
 .list{
     width: 100%;
+    margin: .5rem;
 }
 
 .list .navigation-list{
@@ -216,11 +206,14 @@ nav{
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin: 0;
 }
 
 .navigation-list .navItem-list{
-    font-size: 3rem; text-decoration: none; color: #af9e9e; transition: 0.7s;
+    font-size: 3.5rem; text-decoration: none; color: #af9e9e; transition: 0.7s;
+    font-family: 'Poppins', sans-serif; 
+    font-weight: bolder;
+    text-transform: uppercase;
+    margin: 0;
 }
 .navItem-list:hover{
     color: #fff; transition: all 0.3s ease;
@@ -261,7 +254,7 @@ nav{
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.3)),url(/Images/pexels-ksenia-chernaya-4450335.jpg);
+    background: linear-gradient(rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.3)),url(../Images/pexels-ksenia-chernaya-4450335.jpg);
     background-color: rgba(0, 0, 0, 0.5);
     background-position: center;
     background-repeat: no-repeat;
@@ -395,6 +388,26 @@ select{
     width: 10rem;
 }
 
+.num-people{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.num-people .numPerson-text{
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    margin-right: .6rem;
+}
+
+.num-people input{
+    margin-bottom: .5rem;
+    border: 1px solid #000;
+    font-family: 'Poppins', sans-serif;
+    width: 3rem;
+    text-align: center;
+}
+
 .time-button{
     display: flex;
     justify-content: center;
@@ -463,6 +476,28 @@ select{
     font-size: 1.3rem;
 }
 
+.numOf-person{
+    width: 100%;
+}
+
+.person-info{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.person-info i{
+    font-size: 2rem;
+    margin-right: 1rem;
+    margin-bottom: .8rem;
+}
+
+.person-con h3{
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.3rem;
+}
+
+
 .btnBook-container{
     display: flex;
     justify-content: center;
@@ -484,4 +519,97 @@ select{
     background: #057ff1;
     color: #fff;
     border-radius: 1rem;
+}
+
+/* Events CSS's */
+
+.eventF-div{
+    width: 100%;
+}
+
+.eventF-div .eventF-title{
+    font-size: 1.5rem;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bolder;
+}
+
+.list-events{
+    list-style: none;
+}
+
+.list-events ul{
+    width: 100%;
+    margin: 1rem auto;
+}
+
+.list-events ul li{
+    font-size: 1.3rem;
+    font-family: 'Poppins', sans-serif;
+}
+
+.list-events ul li i{
+    margin-right: 6px;
+    color: #07c556;
+}
+
+.eventS-div{
+    width: 100%;
+}
+
+.eventS-div .eventS-title{
+    font-size: 1.5rem;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bolder;
+}
+
+.eventS-div h5{
+    text-align: center;
+    text-transform: lowercase;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    color: #a8a6a6;
+    margin-bottom: 1rem;
+}
+
+.info-events{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    width: 100%;
+}
+
+.info-events h3,
+.info-events a{
+    margin-left: 2rem;
+}
+
+.info-events h3{
+    font-size: 1.3rem;
+    font-family: 'Poppins', sans-serif;
+}
+
+.info-events a{
+    font-size: 1.3rem;
+    text-transform: lowercase;
+    text-decoration: none;
+    color: #000;
+    font-family: 'Poppins', sans-serif;
+}
+
+.info-events .la-phone{
+    color: #057ff1;
+    font-size: 1.3rem; margin-right: 6px;
+}
+
+.info-events .la-facebook{
+    color: #057ff1;
+    font-size: 1.5rem; margin-right: 6px;
+}
+
+.info-events .la-instagram{
+    color: #f14805;
+    font-size: 1.5rem; margin-right: 6px;
 }

@@ -39,7 +39,7 @@ this.addEventListener("DOMContentLoaded", () =>{
   }))
 })
 
-//Drop Down CSS
+//Drop Down JS
 const user_avatar = document.querySelector("#avatar");
 const hover = document.querySelector(".user_hover");
 
@@ -47,3 +47,25 @@ user_avatar.addEventListener("click", () => {
     hover.classList.toggle("active");
 })
 
+//Cart JS
+const btnCart = document.querySelector("#shopping-bag");
+const cartCon = document.querySelector(".cart-container");
+
+btnCart.addEventListener("click", () => {
+    cartCon.classList.toggle("active");
+})
+
+function incrementValue()
+{
+    var value = parseInt(document.getElementById('number').value, 10);
+    value = isNaN(value) ? 0 : value;
+    value++;
+    document.getElementById('number').value = value;
+}
+
+function decrementValue(){
+    var value = parseInt(document.getElementById('number').value, 10);
+    value = isNaN(value) ? 0 : value;
+    value--;
+    document.getElementById('number').value = value;
+}
