@@ -23,7 +23,7 @@
 		</div>
 		<div class="register2_content">
 			<form>
-				<h2 class="title">to know you better please fill up all informations below.</h2>
+				<h2 class="title">to know you better, please fill up all informations below.</h2>
 				
 				<div id="errorMessage"></div>
 				<!-- <div class='warning_error'>

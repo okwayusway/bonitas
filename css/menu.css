@@ -389,7 +389,7 @@ nav{
 }
 
 .start-img{
-    background: url(/Images/menu-2.jpg) no-repeat left;
+    background: url(../Images/menu-2.jpg) no-repeat left;
     background-size: 100%;
     overflow: hidden;
     padding: 60px 0;

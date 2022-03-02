@@ -70,7 +70,7 @@
                 echo 'Could not run query: ' . mysqli_error();
                 exit;
             }                   
-            echo "<script>toastr['success']('Successfully Registered');setTimeout(()=>{window.location.replace('./login.html')},1500)</script>";
+            echo "<script>toastr['success']('Successfully Registered');setTimeout(()=>{window.location.replace('./login.php')},1500)</script>";
         } else {
             echo 
             "<div class='warning_error'>

@@ -33,19 +33,6 @@ document.querySelectorAll("#close-menu").forEach(n => n.addEventListener("click"
     navMenu.classList.remove("active");
 }))
 
-const shoppingBag = document.querySelector("#shopping-bag");
-const bagContainer = document.querySelector(".bag-container");
-const closeContainer = document.querySelector("#close-con");
-
-shoppingBag.addEventListener("click", () => {
-    bagContainer.classList.toggle("active");
-})
-
-document.querySelectorAll("#close-con").forEach(n => n.addEventListener("click", () => {
-    shoppingBag.classList.remove("active");
-    bagContainer.classList.remove("active");
-}))
-
 const viewmap = document.querySelector(".view-map");
 const mapContainer = document.querySelector(".map-container");
 const closeMap = document.querySelector("#close-map");
@@ -76,6 +63,8 @@ this.addEventListener("DOMContentLoaded", () =>{
 })
 
 
+
+
 //Drop Down CSS
 
 const user_avatar = document.querySelector("#avatar");
@@ -84,3 +73,4 @@ const hover = document.querySelector(".user_hover");
 user_avatar.addEventListener("click", () => {
     hover.classList.toggle("active");
 })
+

@@ -106,6 +106,7 @@ nav {
   cursor: pointer;
   font-size: 1.8rem;
   color: rgb(37, 36, 36);
+  display: none;
 }
 
 #avatar:hover,
@@ -320,77 +321,6 @@ header h4 {
   }
 }
 
-/*featured*/
-/* .carousel-wrap {
-    margin: 15px auto;
-    padding: 0 5%;
-    width: 80%;
-    position: relative;
-}
-
-.carousel-wrap .carousel-title{
-    text-align: center;
-    padding: 1rem;
-    top: 10%;
-}
-
-.carousel-wrap .carousel-title h2 span{
-    font-family: 'Poppins', sans-serif; text-transform: uppercase;
-    font-size: 3rem;
-    color: var(--maroon);
-}
-
-.carousel-wrap .carousel-title h2{
-    color: var(--maroon);
-}
-  
-.carousel-wrap .carousel-btn{
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    padding: 1rem;
-}
-
-.carousel-wrap .carousel-btn .btn-primary{
-    background-color: #fff;
-    color: crimson;
-    border: 1px solid crimson;
-    outline: none;
-    font-family: 'Work Sans', sans-serif;
-    text-transform: lowercase;
-    transition: .7s all ease-in-out;
-}
-
-.carousel-wrap .carousel-btn .btn-primary:hover{
-    background-color: crimson;
-    color: #fff;
-}
-
-.owl-carousel .item {
-    position: relative;
-    z-index: 100; 
-    -webkit-backface-visibility: hidden; 
-}
-
-.owl-nav > div {
-    margin-top: -26px;
-    position: absolute;
-    top: 50%;
-    color: var(--maroon);
-}
-  
-.owl-nav i {
-    font-size: 52px;
-}
-  
-.owl-nav .owl-prev {
-    left: -30px;
-}
-  
-.owl-nav .owl-next {
-    right: -30px;
-} */
-
 .carousel {
   margin-bottom: 1rem;
 }
@@ -414,12 +344,12 @@ header h4 {
   height: 500px;
 }
 
-.carousel img {
+.carousel .item img {
   position: absolute;
   top: 0;
   left: 0;
-  min-width: 100%;
   height: 500px;
+  min-width: 100%;
 }
 
 .carousel-caption {
@@ -428,6 +358,8 @@ header h4 {
   max-width: 550px;
   padding: 0 20px;
   margin-top: 200px;
+  font-family: 'Poppins', sans-serif;
+  text-transform: lowercase;
 }
 
 .carousel-caption .carousel_text {
@@ -452,6 +384,9 @@ header h4 {
   font-family: 'Poppins', sans-serif;
   transition: all ease-in-out .5s;
   text-transform: lowercase;
+  width: 7rem;
+  font-size: 1.8rem;
+  padding: 7px;
 }
 
 .carousel-caption .btn:hover {
@@ -460,6 +395,183 @@ header h4 {
   background: #fff;
   transition: all ease-in-out .5s;
 }
+
+/* food modal for carousel */
+
+.modal{
+  background: none;
+}
+
+.form-group{
+  margin:1rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-group .input-group input{
+  height: 1.9rem;
+}
+
+.totalPrice{
+  margin: 0;
+  height: 2rem;
+}
+
+.totalPrice .total-price{
+  font-size: 1rem;
+}
+
+.modal-footer button{
+  border: 1px solid #fff;
+  width: 100%;
+  outline: none;
+  background: crimson;
+  transition: all ease-in .3s;
+}
+
+.modal-footer button:hover{
+  border: 1px solid #fff;
+  outline: none;
+  transition: all ease-in .3s;
+}
+
+/* End */
+
+/* Cart CSS */
+
+.cart-container{
+  min-width: 40%;
+  box-shadow: 1px 1px 1px 1px #24262b;
+  position: fixed;
+  right: 0; top: 10.4%;
+  z-index: 1000;
+  background: #fff;
+  height: 38rem;
+  padding: 1rem;
+  visibility: hidden;
+  overflow-y: auto;
+}
+
+.cart-container.active{
+  visibility: visible;
+}
+
+.cart-title{
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+}
+
+.item-container{
+  padding: 10px;
+  overflow-y: visible;
+}
+
+.row-item{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.quantity{
+  margin-top: 1rem;
+}
+
+.quantity i{
+  margin-top: 2px;
+  font-size: 1.5rem;
+  color: rgb(10, 192, 116);
+}
+
+.quanti-count{
+  font-family: 'Poppins', sans-serif;
+  margin: 7px;
+}
+
+.user-orders{
+  width: 60%;
+}
+
+.order-text{
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  text-align: center;
+  margin-top: 7px;
+}
+
+.quantity .incrementDec{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.incrementDec .decrement-btn,
+.incrementDec .increment-btn{
+  border: none;
+  outline: none;
+  background: #fff;
+}
+
+.quanti-count{
+  width: 1rem;
+}
+.quanti-count #number{
+  width: .9rem;
+  border: none;
+  text-align: center;
+  margin-top: .7rem;
+  font-size: 1rem;
+  padding: 0;
+  background: #fff;
+  outline: none;
+  border: none;
+}
+
+.item-price{
+  font-size: 1rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+}
+
+.total-container{
+  width: 500px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2rem auto;
+  position: fixed;
+  bottom: 0;
+  padding: 1rem;
+  box-shadow: 1px 1px 1px 1px#cecece;
+}
+
+.col-left,
+.col-right{
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+}
+
+.col-left{
+  font-weight: bolder;
+}
+
+.checkout-btn{
+  outline: none;
+  border: none;
+  padding: 1rem;
+  width: 100%;
+  border-radius: 1rem;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+}
+
+.checkout-btn:hover{
+  color: #fff;
+  background: crimson;
+}
+
+
+/* END */
 
 /* Gallery */
 
@@ -627,7 +739,7 @@ header h4 {
 }
 
 .about-section {
-  background: url(../Images/about.jpg) no-repeat left;
+  background: url(..//Images/about.jpg) no-repeat left;
   background-size: 55%;
   background-color: #fdfdfd;
   overflow: hidden;
@@ -712,7 +824,7 @@ header h4 {
 }
 
 .about-section-left {
-  background: url(../Images/location.jpg) no-repeat left;
+  background: url(..//Images/location.jpg) no-repeat left;
   background-size: 100%;
   background-color: #fdfdfd;
   overflow: hidden;
@@ -913,7 +1025,7 @@ header h4 {
 }
 
 .image__wrapper_inner {
-  background: url(../Images/pexels-malidate-van-784632.jpg);
+  background: url(..//Images/pexels-malidate-van-784632.jpg);
   height: 100%;
   background-repeat: no-repeat;
   background-position: center;

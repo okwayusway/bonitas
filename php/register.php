@@ -26,7 +26,7 @@
             $errorMessage .= "<br>" .$no++. ". The email is required.";
         } elseif(validateEmail($_POST['email'])){
             $errorMessage .= "<br>" .$no++. ". The email is invalid.";
-        } else {
+        } else{
             $email = validate_input($_POST['email']);
         }
         
