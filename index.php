@@ -258,17 +258,17 @@
       <div class="gallery-con">
         <div class="image-gallery">
             <div class="gallery-title">
-                <h2> our <span>Gallery</span></h2>
+                <a href="./gallery.html"> our <span>Gallery</span></a>
             </div>
             <div class="image-box">
               <img src="Images/sotry1.jpg" alt="img.jpg" />
               <div class="overlay">
                 <div class="details">
                   <h3 class="title">
-                    <a href="https://www.facebook.com/bonitascoffeeteabread">Bonitas Daily</a>
+                    <p>Bon Appetit</p>
                   </h3>
                   <span class="category">
-                    <a>Check our daily habit.</a>
+                    <p>Inspiring life of Ms. Mary as a CEO of her owm cafe.</p>
                   </span>
                 </div>
               </div>
@@ -278,10 +278,10 @@
               <div class="overlay">
                 <div class="details">
                   <h3 class="title">
-                    <a href="https://www.facebook.com/bonitascoffeeteabread">Satisfied Customers</a>
+                    <p>In times of Pandemic</p>
                   </h3>
                   <span class="category">
-                    <a>What are you waiting for? <br> Be our satisfied customers</a>
+                    <p>What are you waiting for? <br> Be our satisfied customers</p>
                   </span>
                 </div>
               </div>
@@ -291,10 +291,10 @@
               <div class="overlay">
                 <div class="details">
                   <h3 class="title">
-                    <a href="https://www.facebook.com/bonitascoffeeteabread">Our Delicacy</a>
+                    <p>Our Delicacy</p>
                   </h3>
                   <span class="category">
-                    <a>Check the story behind<br> our delicious menu</a>
+                    <p>Check the story behind<br> our delicious menu</p>
                   </span>
                 </div>
               </div>
@@ -304,10 +304,10 @@
               <div class="overlay">
                 <div class="details">
                   <h3 class="title">
-                    <a href="https://www.facebook.com/bonitascoffeeteabread">Sweet Tooths</a>
+                    <p>Bonitas Bible Verses</p>
                   </h3>
                   <span class="category">
-                    <a href="#">Do you have a Sweet tooths?<br> Wanna check our mouthwatering cakes.  </a>
+                    <p>Read some motivational verses to our cafe.</p>
                   </span>
                 </div>
               </div>
@@ -317,10 +317,10 @@
               <div class="overlay">
                 <div class="details">
                   <h3 class="title">
-                    <a href="https://www.facebook.com/bonitascoffeeteabread">Bonitas Events</a>
+                    <p>Bonitas Events</p>
                   </h3>
                   <span class="category">
-                    <a>History does not belong to us,<br> We belong to it.</a>
+                    <p>History does not belong to us,<br> We belong to it.</p>
                   </span>
                 </div>
               </div>
@@ -335,7 +335,7 @@
         <div class="inner-container">
             <h1>Let's Talk About Bonitas</h1>
             <p class="text">
-              The Bonita's Cafe success is not an easy road. Against all those hardships Bona stay strong and faithful to god until she reach where she is now.  Even at the young age bona try different type of business that will give her an income. As she is the eldest one in her siblings she persevere and became hardworking to reach her dreams. The Bonitas we know today, start from a humble begining of a simple milk tea/frappe shop. As time comes it became an actual cafe and it expands and expands because of the hardwork of Bona.
+              The Bonita's Cafe success is not an easy road. Against all those hardships Bona stay strong and faithful to god until she reach where she is now.  Even at the young age bona try different type of business that will give her an income. As she is the eldest one in her siblings she persevere and became hardworking to reach her dreams. The Bonitas we know today, start from a humble begining of a simple milk tea/frappe shop. As time comes it became an actual cafe and it expands and expands because of the hardwork of the Owner.
             </p>
             <a href="https://www.facebook.com/bonitascoffeeteabread" class="about_bonitas">See more</a>
         </div>
@@ -372,12 +372,12 @@
             <div class="question-answer__accordion">
                 <div class="question">
                     <h3 class="title__question">
-                        How to earn more coupon?
+                        Where is your location?
                     </h3>
                     <img class="arrow-img" src="Images/icon-arrow-down.svg" >
                 </div>
                 <div class="answer">
-                     By ordering thru our website our buying some food in our Cafe.
+                We are located at Gov. F. Halili Ave 3022 Santa Maria Bulacan, Come and taste our best dishes here at Bonitas.
                 </div>
             </div>
   

@@ -33,7 +33,11 @@
            		   </div>
            		   <div class="div">
            		   		<h5>First Name</h5>
+<<<<<<< HEAD
            		   		<input type="text" class="input" id="firstname" required>
+=======
+           		   		<input type="text" class="input" name="firstname">
+>>>>>>> 5d7dc6f02018c8fbe467b7a108ab843b29d61701
            		   </div>
            		</div>
            		<div class="input-div one">
@@ -42,7 +46,11 @@
            		   </div>
            		   <div class="div">
            		   		<h5>Last Name</h5>
+<<<<<<< HEAD
            		   		<input type="text" class="input" id="lastname" required>
+=======
+           		   		<input type="text" class="input" name="lastname">
+>>>>>>> 5d7dc6f02018c8fbe467b7a108ab843b29d61701
            		   </div>
            		</div>
            		<div class="input-div pass">

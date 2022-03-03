@@ -128,14 +128,12 @@
         <p class="text-center">Opening hours: Monday-Saturday 9:00 AM to 8:00 PM<br> Sunday: 11:00 AM to 6:00 PM</p>
     </div>
 
- 
     <!-- End -->
 </div>
 
-
   <div class="menu_con">
         <div class="menu-tabs">
-            <h3>Recommended</h3>
+            <h3 class="text-recom">Recommended</h3>
             <div class="container-fluid bg-trasparent my-4 p-1" style="position: relative;">
             <div class="row">
             <?php
@@ -182,16 +180,6 @@
                      </div>
                      <div class="quantityFood">
                          <div class="form-group">
-                             <label>Quantity: </label>
-                             <div class="input-group d-flex justify-content-center">
-                                 <div class="input-group-btn">
-                                     <button id="down" class="btn btn-default" onclick="down("0")"><span class="fas fa-minus"></span></button>
-                                 </div>
-                                 <input type="text" id="myNumber" class="input-number" value="1" />
-                                 <div class="input-group-btn">
-                                     <button id="up" class="btn btn-default" onclick="up("10")"><span class="fas fa-plus"></span></button>
-                                 </div>
-                             </div>
                          </div>
                      </div>
                      <div class="totalPrice d-flex justify-content-end">
@@ -252,28 +240,11 @@
                                 <div class="deets_modal">
                                     <div class="dhead d-flex justify-content-between">
                                         <h6 style="font-weight: 600;">Includes: </h6>
-                                        <h6 style="font-weight: 600;">Price:'.$row["price"].'</h6>
+                                        <h6 style="font-weight: bold; font-size: 1rem;">Price: ₱'.$row["price"].'</h6>
                                     </div>
                                    <div class="food-descriptions">
                                     '.$row["description"].'
                                    </div>
-                                </div>
-                                <div class="quantityFood">
-                                    <div class="form-group">
-                                        <label>Quantity: </label>
-                                        <div class="input-group d-flex justify-content-center">
-                                            <div class="input-group-btn">
-                                                <button class="down btn btn-default" onclick="down("0")"><span class="fas fa-minus"></span></button>
-                                            </div>  
-                                            <input type="text" id="myNumber" class="input-number" value="1" />
-                                            <div class="input-group-btn">
-                                                <button class="up btn btn-default" onclick="up("10")"><span class="fas fa-plus"></span></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="totalPrice d-flex justify-content-end">
-                                    <small>Total Price: <span>P 1,390</span></small>
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -331,28 +302,11 @@
                                 <div class="deets_modal">
                                     <div class="dhead d-flex justify-content-between">
                                         <h6 style="font-weight: 600;">Includes: </h6>
-                                        <h6 style="font-weight: 600;">Price:'.$row["price"].'</h6>
+                                        <h6 style="font-weight: bold; font-size: 1rem;">Price: ₱'.$row["price"].'</h6>
                                     </div>
                                    <div class="food-descriptions">
                                     '.$row["description"].'
                                    </div>
-                                </div>
-                                <div class="quantityFood">
-                                    <div class="form-group">
-                                        <label>Quantity: </label>
-                                        <div class="input-group d-flex justify-content-center">
-                                            <div class="input-group-btn">
-                                                <button class="down btn btn-default" onclick="down("0")"><span class="fas fa-minus"></span></button>
-                                            </div>  
-                                            <input type="text" id="myNumber" class="input-number" value="1" />
-                                            <div class="input-group-btn">
-                                                <button class="up btn btn-default" onclick="up("10")"><span class="fas fa-plus"></span></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="totalPrice d-flex justify-content-end">
-                                    <small>Total Price: <span>P 1,390</span></small>
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -409,28 +363,11 @@
                                 <div class="deets_modal">
                                     <div class="dhead d-flex justify-content-between">
                                         <h6 style="font-weight: 600;">Includes: </h6>
-                                        <h6 style="font-weight: 600;">Price:'.$row["price"].'</h6>
+                                        <h6 style="font-weight: bold; font-size: 1rem;">Price: ₱'.$row["price"].'</h6>
                                     </div>
                                    <div class="food-descriptions">
                                     '.$row["description"].'
                                    </div>
-                                </div>
-                                <div class="quantityFood">
-                                    <div class="form-group">
-                                        <label>Quantity: </label>
-                                        <div class="input-group d-flex justify-content-center">
-                                            <div class="input-group-btn">
-                                                <button class="down btn btn-default" onclick="down("0")"><span class="fas fa-minus"></span></button>
-                                            </div>  
-                                            <input type="text" id="myNumber" class="input-number" value="1" />
-                                            <div class="input-group-btn">
-                                                <button class="up btn btn-default" onclick="up("10")"><span class="fas fa-plus"></span></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="totalPrice d-flex justify-content-end">
-                                    <small>Total Price: <span>P 1,390</span></small>
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -488,28 +425,11 @@
                                 <div class="deets_modal">
                                     <div class="dhead d-flex justify-content-between">
                                         <h6 style="font-weight: 600;">Includes: </h6>
-                                        <h6 style="font-weight: 600;">Price:'.$row["price"].'</h6>
+                                        <h6 style="font-weight: bold; font-size: 1rem;">Price: ₱'.$row["price"].'</h6>
                                     </div>
                                    <div class="food-descriptions">
                                     '.$row["description"].'
                                    </div>
-                                </div>
-                                <div class="quantityFood">
-                                    <div class="form-group">
-                                        <label>Quantity: </label>
-                                        <div class="input-group d-flex justify-content-center">
-                                            <div class="input-group-btn">
-                                                <button class="down btn btn-default" onclick="down("0")"><span class="fas fa-minus"></span></button>
-                                            </div>  
-                                            <input type="text" id="myNumber" class="input-number" value="1" />
-                                            <div class="input-group-btn">
-                                                <button class="up btn btn-default" onclick="up("10")"><span class="fas fa-plus"></span></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="totalPrice d-flex justify-content-end">
-                                    <small>Total Price: <span>P 1,390</span></small>
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -566,28 +486,11 @@
                                 <div class="deets_modal">
                                     <div class="dhead d-flex justify-content-between">
                                         <h6 style="font-weight: 600;">Includes: </h6>
-                                        <h6 style="font-weight: 600;">Price:'.$row["price"].'</h6>
+                                        <h6 style="font-weight: bold; font-size: 1rem;">Price: ₱'.$row["price"].'</h6>
                                     </div>
                                    <div class="food-descriptions">
                                     '.$row["description"].'
                                    </div>
-                                </div>
-                                <div class="quantityFood">
-                                    <div class="form-group">
-                                        <label>Quantity: </label>
-                                        <div class="input-group d-flex justify-content-center">
-                                            <div class="input-group-btn">
-                                                <button class="down btn btn-default" onclick="down("0")"><span class="fas fa-minus"></span></button>
-                                            </div>  
-                                            <input type="text" id="myNumber" class="input-number" value="1" />
-                                            <div class="input-group-btn">
-                                                <button class="up btn btn-default" onclick="up("10")"><span class="fas fa-plus"></span></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="totalPrice d-flex justify-content-end">
-                                    <small>Total Price: <span>P 1,390</span></small>
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -644,28 +547,11 @@
                                 <div class="deets_modal">
                                     <div class="dhead d-flex justify-content-between">
                                         <h6 style="font-weight: 600;">Includes: </h6>
-                                        <h6 style="font-weight: 600;">Price:'.$row["price"].'</h6>
+                                        <h6 style="font-weight: bold; font-size: 1rem;">Price: ₱'.$row["price"].'</h6>
                                     </div>
                                    <div class="food-descriptions">
                                     '.$row["description"].'
                                    </div>
-                                </div>
-                                <div class="quantityFood">
-                                    <div class="form-group">
-                                        <label>Quantity: </label>
-                                        <div class="input-group d-flex justify-content-center">
-                                            <div class="input-group-btn">
-                                                <button class="down btn btn-default" onclick="down("0")"><span class="fas fa-minus"></span></button>
-                                            </div>  
-                                            <input type="text" id="myNumber" class="input-number" value="1" />
-                                            <div class="input-group-btn">
-                                                <button class="up btn btn-default" onclick="up("10")"><span class="fas fa-plus"></span></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="totalPrice d-flex justify-content-end">
-                                    <small>Total Price: <span>P 1,390</span></small>
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -722,28 +608,11 @@
                                 <div class="deets_modal">
                                     <div class="dhead d-flex justify-content-between">
                                         <h6 style="font-weight: 600;">Includes: </h6>
-                                        <h6 style="font-weight: 600;">Price:'.$row["price"].'</h6>
+                                        <h6 style="font-weight: bold; font-size: 1rem;">Price: ₱'.$row["price"].'</h6>
                                     </div>
                                    <div class="food-descriptions">
                                     '.$row["description"].'
                                    </div>
-                                </div>
-                                <div class="quantityFood">
-                                    <div class="form-group">
-                                        <label>Quantity: </label>
-                                        <div class="input-group d-flex justify-content-center">
-                                            <div class="input-group-btn">
-                                                <button class="down btn btn-default" onclick="down("0")"><span class="fas fa-minus"></span></button>
-                                            </div>  
-                                            <input type="text" id="myNumber" class="input-number" value="1" />
-                                            <div class="input-group-btn">
-                                                <button class="up btn btn-default" onclick="up("10")"><span class="fas fa-plus"></span></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="totalPrice d-flex justify-content-end">
-                                    <small>Total Price: <span>P 1,390</span></small>
                                 </div>
                             </div>
                             <div class="modal-footer">

@@ -123,11 +123,11 @@
                   <input type="date" name="date" id="#book-date">
                 </div>
                 <div class="time-button">
-                  <input type="button" value="8:00am - 10:00am" data-dismiss="modal" data-toggle="modal" data-target="#event-details">
-                  <input type="button" value="10:00am - 12:00pm" data-dismiss="modal" data-toggle="modal" data-target="#event-details">
-                  <input type="button" value="12:00pm - 2:00pm" data-dismiss="modal" data-toggle="modal" data-target="#event-details">
-                  <input type="button" value="2:00pm - 4:00pm" data-dismiss="modal" data-toggle="modal" data-target="#event-details">
-                  <input type="button" value="4:00pm - 6:00pm" data-dismiss="modal" data-toggle="modal" data-target="#event-details">
+                  <input type="button" value="8:00am - 10:00am">
+                  <input type="button" value="10:00am - 12:00pm">
+                  <input type="button" value="12:00pm - 2:00pm">
+                  <input type="button" value="2:00pm - 4:00pm">
+                  <input type="button" value="4:00pm - 6:00pm">
                 </div>
                 <div class="num-people">
                   <h3 class="numPerson-text">Number of person:</h3>
@@ -136,7 +136,7 @@
               </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-success">Okay</button>
+            <button type="button" class="btn btn-success"  data-dismiss="modal" data-toggle="modal" data-target="#event-details">Okay</button>
             <button type="button" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" data-target="#incomingOrders">Back</button>
           </div>
         </div>
