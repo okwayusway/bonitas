@@ -1,5 +1,6 @@
 <?php 
  session_start();
+ $total = 0;
 ?>
 
 <!DOCTYPE html>
@@ -13,7 +14,22 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <script src="./js/menu.js" defer async = false></script>
     <title>Menu | Bonitas</title>
+    <script>
+     let total = 0;
+     let event = new CustomEvent(
+        "AddToCartEvent", 
+        {
+          detail: {
+            message: "Items Added to cart",
+            time: new Date(),
+          },
+          bubbles: true,
+          cancelable: true
+        }
+      );
+    </script>
 </head>
 <body>
 <div class="wrapper">
@@ -38,37 +54,20 @@
             <span class="bar"></span>
         </div>
     </nav>
-    <div class="cart-container">
+    <div class="cart-container" id="cart-main-container">
         <h2 class="cart-title">My Cart</h2>
-        <div class="item-container">
-            <div class="row-item">
-                <div class="quantity">
-                    <form action="" class="incrementDec">
-                        <button type="button" onclick="decrementValue()"><i class="las la-times-circle"></i></button>
-                        <div class="quanti-count">
-                            <input type="text" id="number" value="1" disabled="disabled">
-                        </div>
-                        <button type="button" onclick="incrementValue()"><i class="las la-plus-circle"></i></button>
-                    </form>
-                </div>
-                <div class="user-orders">
-                    <h4 class="order-text">Baby Backribs w/ Nachos.</h4>
-                </div>
-                <div class="item-price">
-                    <span class="peso-sign-regular">₱</span>129.00
-                </div>
-            </div>
+        <div class="item-container" id="cart-container">
         </div>
         <div class="total-container">
             <div>
-                <button class="checkout-btn" type="button" onclick="window.location.href='./checkout.php'">Proceed to Checkout</button>
+                <button class="checkout-btn" type="button" onclick="window.location.href='./checkout.php'" data-toggle="modal" data-target="#placeOrderModal">Proceed to Checkout</button>
             </div>
             <div class="row-sub">
                 <div class="col-left sub">
                     Subtotal
                 </div>
                 <div class="col-right sub">
-                    <span class="peso-sign-regular">₱</span>129.00
+                    <span class="peso-sign-regular sub-total">0</span>
                 </div>
             </div>
             <div class="row-delivery-fee">
@@ -76,7 +75,7 @@
                     Tax
                 </div>
                 <div class="col-right sub">
-                    <span class="peso-sign-regular">₱</span>129.00
+                    <span class="peso-sign-regular">15%</span>
                 </div>
             </div>
             <div class="row-total">
@@ -84,7 +83,7 @@
                     Total
                 </div>
                 <div class="col-right sub">
-                    <span class="peso-sign-regular">₱</span>129.00
+                    <span class="peso-sign-regular total-price">0</span>
                 </div>
             </div>
         </div>
@@ -208,7 +207,6 @@
                       include './php/connection.php';
                       $sql = "SELECT m.id,m.thumbnailurl, m.name,m.price, m.description, c.Category as CategoryName from menu m INNER JOIN menucategory c on m.Category = c.Id where m.category=1 AND m.isdeleted = 0;";
                       $result = mysqli_query($conn, $sql);
-
                       if (!$result) {
                           echo 'Could not run query: ' . mysqli_error();
                           exit;
@@ -248,7 +246,68 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                              <button type="button" onclick="addToCart(document.getElementById("myNumber")["value"])" class="btn btn-success btn-add-to-cart">Add to Cart</button>
+                              <button type="button" id="cart-'.$row["id"].'" class="btn btn-success btn-add-to-cart">Add to Cart</button>
+                              <script>
+                               var addedToCart = [];
+                               document.getElementById("cart-'.$row["id"].'").onclick = function(){
+                                  if(!addedToCart.includes("'.$row["id"].'")){
+                                  total +=  Number.parseInt("'.$row["price"].'");
+                                  document.dispatchEvent(event);
+                                  addedToCart.push("'.$row["id"].'");
+                                  document.getElementById("shopping-bag").dataset.count = Number.parseInt(document.getElementById("shopping-bag").dataset.count) + 1
+                                  document.getElementById("cart-container").innerHTML += 
+                                  `<div class="row-item"><div class="quantity">
+                                     <form action="" class="incrementDec">
+                                         <button type="button" class="dec-'.$row["id"].'"><i class="las la-times-circle"></i></button>
+                                         <div class="quanti-count">
+                                             <input class="f-'.$row["id"].'" type="text" id="number" value="1" disabled="disabled">
+                                         </div>
+                                         <button type="button" class="inc-'.$row["id"].'"><i class="las la-plus-circle"></i></button>
+                                     </form>
+                                   </div>
+                                   <div class="user-orders">
+                                     <h4 class="order-text">'.$row["name"].'</h4>
+                                   </div>
+                                   <div class="item-price">
+                                     <span class="peso-sign-regular">₱</span> <span id="price-'.$row["id"].'">'.$row["price"].'</span>
+                                   </div>
+                                   </div>`
+                                  }
+                                  else{
+                                    let quantity = document.querySelector(".f-'.$row["id"].'");
+                                    let price = document.getElementById("price-'.$row["id"].'");
+                                    let val = Number.parseInt(quantity.value) + 1;
+                                    quantity.value = val;
+                                    price.innerHTML =  Number.parseInt("'.$row["price"].'") + Number.parseInt(price.innerHTML);
+                                    total +=  Number.parseInt("'.$row["price"].'");
+
+                                    document.dispatchEvent(event);
+                                  }
+                                  document.querySelector(".dec-'.$row["id"].'").onclick = function(){
+                                    let quantity = document.querySelector(".f-'.$row["id"].'");
+                                    let price = document.getElementById("price-'.$row["id"].'");
+                                    if(Number.parseInt(quantity.value) > 0){
+                                      let val = Number.parseInt(quantity.value) - 1;
+                                      quantity.value = val;
+                                      let tprice = Number.parseInt(price.innerHTML) - Number.parseInt("'.$row["price"].'");
+                                      price.innerHTML =  tprice;
+                                      total -= Number.parseInt("'.$row["price"].'")
+                                      document.dispatchEvent(event);
+                                    }
+                                  }
+                                  document.querySelector(".inc-'.$row["id"].'").onclick = function(){
+                                    let price = document.getElementById("price-'.$row["id"].'");
+                                    let quantity = document.querySelector(".f-'.$row["id"].'");
+                                    let val = Number.parseInt(quantity.value) + 1;
+                                    quantity.value = val;
+                                    let tprice =  Number.parseInt("'.$row["price"].'") + Number.parseInt(price.innerHTML);
+                                    price.innerHTML = tprice;
+                                    total +=  Number.parseInt("'.$row["price"].'");
+                                    document.dispatchEvent(event);
+                                  }
+                                  
+                                 } 
+                              </script>
                             </div>
                           </div>
                         </div>
@@ -275,7 +334,6 @@
                           echo 'Could not run query: ' . mysqli_error();
                           exit;
                       }
-
                       while($row = $result->fetch_assoc()) {
                           //create li of bread meals
                           echo '
@@ -310,13 +368,73 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                              <button type="button" onclick="addToCart(document.getElementById("myNumber")["value"])" class="btn btn-success btn-add-to-cart">Add to Cart</button>
+                            <button type="button" id="cart-'.$row["id"].'" class="btn btn-success btn-add-to-cart">Add to Cart</button>
+                            <script>
+                             var addedToCart = [];
+                             document.getElementById("cart-'.$row["id"].'").onclick = function(){
+                                if(!addedToCart.includes("'.$row["id"].'")){
+                                total +=  Number.parseInt("'.$row["price"].'");
+                                document.dispatchEvent(event);
+                                addedToCart.push("'.$row["id"].'");
+                                document.getElementById("shopping-bag").dataset.count = Number.parseInt(document.getElementById("shopping-bag").dataset.count) + 1
+                                document.getElementById("cart-container").innerHTML += 
+                                `<div class="row-item"><div class="quantity">
+                                   <form action="" class="incrementDec">
+                                       <button type="button" class="dec-'.$row["id"].'"><i class="las la-times-circle"></i></button>
+                                       <div class="quanti-count">
+                                           <input class="f-'.$row["id"].'" type="text" id="number" value="1" disabled="disabled">
+                                       </div>
+                                       <button type="button" class="inc-'.$row["id"].'"><i class="las la-plus-circle"></i></button>
+                                   </form>
+                                 </div>
+                                 <div class="user-orders">
+                                   <h4 class="order-text">'.$row["name"].'</h4>
+                                 </div>
+                                 <div class="item-price">
+                                   <span class="peso-sign-regular">₱</span> <span id="price-'.$row["id"].'">'.$row["price"].'</span>
+                                 </div>
+                                 </div>`
+                                }
+                                else{
+                                  let quantity = document.querySelector(".f-'.$row["id"].'");
+                                  let price = document.getElementById("price-'.$row["id"].'");
+                                  let val = Number.parseInt(quantity.value) + 1;
+                                  quantity.value = val;
+                                  price.innerHTML =  Number.parseInt("'.$row["price"].'") + Number.parseInt(price.innerHTML);
+                                  total +=  Number.parseInt("'.$row["price"].'");
+
+                                  document.dispatchEvent(event);
+                                }
+                                document.querySelector(".dec-'.$row["id"].'").onclick = function(){
+                                  let quantity = document.querySelector(".f-'.$row["id"].'");
+                                  let price = document.getElementById("price-'.$row["id"].'");
+                                  if(Number.parseInt(quantity.value) > 0){
+                                    let val = Number.parseInt(quantity.value) - 1;
+                                    quantity.value = val;
+                                    let tprice = Number.parseInt(price.innerHTML) - Number.parseInt("'.$row["price"].'");
+                                    price.innerHTML =  tprice;
+                                    total -= Number.parseInt("'.$row["price"].'")
+                                    document.dispatchEvent(event);
+                                  }
+                                }
+                                document.querySelector(".inc-'.$row["id"].'").onclick = function(){
+                                  let price = document.getElementById("price-'.$row["id"].'");
+                                  let quantity = document.querySelector(".f-'.$row["id"].'");
+                                  let val = Number.parseInt(quantity.value) + 1;
+                                  quantity.value = val;
+                                  let tprice =  Number.parseInt("'.$row["price"].'") + Number.parseInt(price.innerHTML);
+                                  price.innerHTML = tprice;
+                                  total +=  Number.parseInt("'.$row["price"].'");
+                                  document.dispatchEvent(event);
+                                }
+                                
+                               } 
+                            </script>
                             </div>
                           </div>
                         </div>
                        </div>';
                       }
-
                     ?>
                    </ul>
                 </div>
@@ -371,7 +489,68 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                              <button type="button" onclick="addToCart(document.getElementById("myNumber")["value"])" class="btn btn-success btn-add-to-cart">Add to Cart</button>
+                            <button type="button" id="cart-'.$row["id"].'" class="btn btn-success btn-add-to-cart">Add to Cart</button>
+                            <script>
+                             var addedToCart = [];
+                             document.getElementById("cart-'.$row["id"].'").onclick = function(){
+                                if(!addedToCart.includes("'.$row["id"].'")){
+                                total +=  Number.parseInt("'.$row["price"].'");
+                                document.dispatchEvent(event);
+                                addedToCart.push("'.$row["id"].'");
+                                document.getElementById("shopping-bag").dataset.count = Number.parseInt(document.getElementById("shopping-bag").dataset.count) + 1
+                                document.getElementById("cart-container").innerHTML += 
+                                `<div class="row-item"><div class="quantity">
+                                   <form action="" class="incrementDec">
+                                       <button type="button" class="dec-'.$row["id"].'"><i class="las la-times-circle"></i></button>
+                                       <div class="quanti-count">
+                                           <input class="f-'.$row["id"].'" type="text" id="number" value="1" disabled="disabled">
+                                       </div>
+                                       <button type="button" class="inc-'.$row["id"].'"><i class="las la-plus-circle"></i></button>
+                                   </form>
+                                 </div>
+                                 <div class="user-orders">
+                                   <h4 class="order-text">'.$row["name"].'</h4>
+                                 </div>
+                                 <div class="item-price">
+                                   <span class="peso-sign-regular">₱</span> <span id="price-'.$row["id"].'">'.$row["price"].'</span>
+                                 </div>
+                                 </div>`
+                                }
+                                else{
+                                  let quantity = document.querySelector(".f-'.$row["id"].'");
+                                  let price = document.getElementById("price-'.$row["id"].'");
+                                  let val = Number.parseInt(quantity.value) + 1;
+                                  quantity.value = val;
+                                  price.innerHTML =  Number.parseInt("'.$row["price"].'") + Number.parseInt(price.innerHTML);
+                                  total +=  Number.parseInt("'.$row["price"].'");
+
+                                  document.dispatchEvent(event);
+                                }
+                                document.querySelector(".dec-'.$row["id"].'").onclick = function(){
+                                  let quantity = document.querySelector(".f-'.$row["id"].'");
+                                  let price = document.getElementById("price-'.$row["id"].'");
+                                  if(Number.parseInt(quantity.value) > 0){
+                                    let val = Number.parseInt(quantity.value) - 1;
+                                    quantity.value = val;
+                                    let tprice = Number.parseInt(price.innerHTML) - Number.parseInt("'.$row["price"].'");
+                                    price.innerHTML =  tprice;
+                                    total -= Number.parseInt("'.$row["price"].'")
+                                    document.dispatchEvent(event);
+                                  }
+                                }
+                                document.querySelector(".inc-'.$row["id"].'").onclick = function(){
+                                  let price = document.getElementById("price-'.$row["id"].'");
+                                  let quantity = document.querySelector(".f-'.$row["id"].'");
+                                  let val = Number.parseInt(quantity.value) + 1;
+                                  quantity.value = val;
+                                  let tprice =  Number.parseInt("'.$row["price"].'") + Number.parseInt(price.innerHTML);
+                                  price.innerHTML = tprice;
+                                  total +=  Number.parseInt("'.$row["price"].'");
+                                  document.dispatchEvent(event);
+                                }
+                                
+                               } 
+                            </script>
                             </div>
                           </div>
                         </div>
@@ -433,7 +612,68 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                              <button type="button" onclick="addToCart(document.getElementById("myNumber")["value"])" class="btn btn-success btn-add-to-cart">Add to Cart</button>
+                            <button type="button" id="cart-'.$row["id"].'" class="btn btn-success btn-add-to-cart">Add to Cart</button>
+                            <script>
+                             var addedToCart = [];
+                             document.getElementById("cart-'.$row["id"].'").onclick = function(){
+                                if(!addedToCart.includes("'.$row["id"].'")){
+                                total +=  Number.parseInt("'.$row["price"].'");
+                                document.dispatchEvent(event);
+                                addedToCart.push("'.$row["id"].'");
+                                document.getElementById("shopping-bag").dataset.count = Number.parseInt(document.getElementById("shopping-bag").dataset.count) + 1
+                                document.getElementById("cart-container").innerHTML += 
+                                `<div class="row-item"><div class="quantity">
+                                   <form action="" class="incrementDec">
+                                       <button type="button" class="dec-'.$row["id"].'"><i class="las la-times-circle"></i></button>
+                                       <div class="quanti-count">
+                                           <input class="f-'.$row["id"].'" type="text" id="number" value="1" disabled="disabled">
+                                       </div>
+                                       <button type="button" class="inc-'.$row["id"].'"><i class="las la-plus-circle"></i></button>
+                                   </form>
+                                 </div>
+                                 <div class="user-orders">
+                                   <h4 class="order-text">'.$row["name"].'</h4>
+                                 </div>
+                                 <div class="item-price">
+                                   <span class="peso-sign-regular">₱</span> <span id="price-'.$row["id"].'">'.$row["price"].'</span>
+                                 </div>
+                                 </div>`
+                                }
+                                else{
+                                  let quantity = document.querySelector(".f-'.$row["id"].'");
+                                  let price = document.getElementById("price-'.$row["id"].'");
+                                  let val = Number.parseInt(quantity.value) + 1;
+                                  quantity.value = val;
+                                  price.innerHTML =  Number.parseInt("'.$row["price"].'") + Number.parseInt(price.innerHTML);
+                                  total +=  Number.parseInt("'.$row["price"].'");
+
+                                  document.dispatchEvent(event);
+                                }
+                                document.querySelector(".dec-'.$row["id"].'").onclick = function(){
+                                  let quantity = document.querySelector(".f-'.$row["id"].'");
+                                  let price = document.getElementById("price-'.$row["id"].'");
+                                  if(Number.parseInt(quantity.value) > 0){
+                                    let val = Number.parseInt(quantity.value) - 1;
+                                    quantity.value = val;
+                                    let tprice = Number.parseInt(price.innerHTML) - Number.parseInt("'.$row["price"].'");
+                                    price.innerHTML =  tprice;
+                                    total -= Number.parseInt("'.$row["price"].'")
+                                    document.dispatchEvent(event);
+                                  }
+                                }
+                                document.querySelector(".inc-'.$row["id"].'").onclick = function(){
+                                  let price = document.getElementById("price-'.$row["id"].'");
+                                  let quantity = document.querySelector(".f-'.$row["id"].'");
+                                  let val = Number.parseInt(quantity.value) + 1;
+                                  quantity.value = val;
+                                  let tprice =  Number.parseInt("'.$row["price"].'") + Number.parseInt(price.innerHTML);
+                                  price.innerHTML = tprice;
+                                  total +=  Number.parseInt("'.$row["price"].'");
+                                  document.dispatchEvent(event);
+                                }
+                                
+                               } 
+                            </script>
                             </div>
                           </div>
                         </div>
@@ -555,7 +795,68 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                              <button type="button" onclick="addToCart(document.getElementById("myNumber")["value"])" class="btn btn-success btn-add-to-cart">Add to Cart</button>
+                            <button type="button" id="cart-'.$row["id"].'" class="btn btn-success btn-add-to-cart">Add to Cart</button>
+                            <script>
+                             var addedToCart = [];
+                             document.getElementById("cart-'.$row["id"].'").onclick = function(){
+                                if(!addedToCart.includes("'.$row["id"].'")){
+                                total +=  Number.parseInt("'.$row["price"].'");
+                                document.dispatchEvent(event);
+                                addedToCart.push("'.$row["id"].'");
+                                document.getElementById("shopping-bag").dataset.count = Number.parseInt(document.getElementById("shopping-bag").dataset.count) + 1
+                                document.getElementById("cart-container").innerHTML += 
+                                `<div class="row-item"><div class="quantity">
+                                   <form action="" class="incrementDec">
+                                       <button type="button" class="dec-'.$row["id"].'"><i class="las la-times-circle"></i></button>
+                                       <div class="quanti-count">
+                                           <input class="f-'.$row["id"].'" type="text" id="number" value="1" disabled="disabled">
+                                       </div>
+                                       <button type="button" class="inc-'.$row["id"].'"><i class="las la-plus-circle"></i></button>
+                                   </form>
+                                 </div>
+                                 <div class="user-orders">
+                                   <h4 class="order-text">'.$row["name"].'</h4>
+                                 </div>
+                                 <div class="item-price">
+                                   <span class="peso-sign-regular">₱</span> <span id="price-'.$row["id"].'">'.$row["price"].'</span>
+                                 </div>
+                                 </div>`
+                                }
+                                else{
+                                  let quantity = document.querySelector(".f-'.$row["id"].'");
+                                  let price = document.getElementById("price-'.$row["id"].'");
+                                  let val = Number.parseInt(quantity.value) + 1;
+                                  quantity.value = val;
+                                  price.innerHTML =  Number.parseInt("'.$row["price"].'") + Number.parseInt(price.innerHTML);
+                                  total +=  Number.parseInt("'.$row["price"].'");
+
+                                  document.dispatchEvent(event);
+                                }
+                                document.querySelector(".dec-'.$row["id"].'").onclick = function(){
+                                  let quantity = document.querySelector(".f-'.$row["id"].'");
+                                  let price = document.getElementById("price-'.$row["id"].'");
+                                  if(Number.parseInt(quantity.value) > 0){
+                                    let val = Number.parseInt(quantity.value) - 1;
+                                    quantity.value = val;
+                                    let tprice = Number.parseInt(price.innerHTML) - Number.parseInt("'.$row["price"].'");
+                                    price.innerHTML =  tprice;
+                                    total -= Number.parseInt("'.$row["price"].'")
+                                    document.dispatchEvent(event);
+                                  }
+                                }
+                                document.querySelector(".inc-'.$row["id"].'").onclick = function(){
+                                  let price = document.getElementById("price-'.$row["id"].'");
+                                  let quantity = document.querySelector(".f-'.$row["id"].'");
+                                  let val = Number.parseInt(quantity.value) + 1;
+                                  quantity.value = val;
+                                  let tprice =  Number.parseInt("'.$row["price"].'") + Number.parseInt(price.innerHTML);
+                                  price.innerHTML = tprice;
+                                  total +=  Number.parseInt("'.$row["price"].'");
+                                  document.dispatchEvent(event);
+                                }
+                                
+                               } 
+                            </script>
                             </div>
                           </div>
                         </div>
@@ -616,7 +917,67 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                              <button type="button" onclick="addToCart(document.getElementById("myNumber")["value"])" class="btn btn-success btn-add-to-cart">Add to Cart</button>
+                            <button type="button" id="cart-'.$row["id"].'" class="btn btn-success btn-add-to-cart">Add to Cart</button>
+                            <script>
+                             var addedToCart = [];
+                             document.getElementById("cart-'.$row["id"].'").onclick = function(){
+                                if(!addedToCart.includes("'.$row["id"].'")){
+                                total +=  Number.parseInt("'.$row["price"].'");
+                                document.dispatchEvent(event);
+                                addedToCart.push("'.$row["id"].'");
+                                document.getElementById("shopping-bag").dataset.count = Number.parseInt(document.getElementById("shopping-bag").dataset.count) + 1
+                                document.getElementById("cart-container").innerHTML += 
+                                `<div class="row-item"><div class="quantity">
+                                   <form action="" class="incrementDec">
+                                       <button type="button" class="dec-'.$row["id"].'"><i class="las la-times-circle"></i></button>
+                                       <div class="quanti-count">
+                                           <input class="f-'.$row["id"].'" type="text" id="number" value="1" disabled="disabled">
+                                       </div>
+                                       <button type="button" class="inc-'.$row["id"].'"><i class="las la-plus-circle"></i></button>
+                                   </form>
+                                 </div>
+                                 <div class="user-orders">
+                                   <h4 class="order-text">'.$row["name"].'</h4>
+                                 </div>
+                                 <div class="item-price">
+                                   <span class="peso-sign-regular">₱</span> <span id="price-'.$row["id"].'">'.$row["price"].'</span>
+                                 </div>
+                                 </div>`
+                                }
+                                else{
+                                  let quantity = document.querySelector(".f-'.$row["id"].'");
+                                  let price = document.getElementById("price-'.$row["id"].'");
+                                  let val = Number.parseInt(quantity.value) + 1;
+                                  quantity.value = val;
+                                  price.innerHTML =  Number.parseInt("'.$row["price"].'") + Number.parseInt(price.innerHTML);
+                                  total +=  Number.parseInt("'.$row["price"].'");
+
+                                  document.dispatchEvent(event);
+                                }
+                                document.querySelector(".dec-'.$row["id"].'").onclick = function(){
+                                  let quantity = document.querySelector(".f-'.$row["id"].'");
+                                  let price = document.getElementById("price-'.$row["id"].'");
+                                  if(Number.parseInt(quantity.value) > 0){
+                                    let val = Number.parseInt(quantity.value) - 1;
+                                    quantity.value = val;
+                                    let tprice = Number.parseInt(price.innerHTML) - Number.parseInt("'.$row["price"].'");
+                                    price.innerHTML =  tprice;
+                                    total -= Number.parseInt("'.$row["price"].'")
+                                    document.dispatchEvent(event);
+                                  }
+                                }
+                                document.querySelector(".inc-'.$row["id"].'").onclick = function(){
+                                  let price = document.getElementById("price-'.$row["id"].'");
+                                  let quantity = document.querySelector(".f-'.$row["id"].'");
+                                  let val = Number.parseInt(quantity.value) + 1;
+                                  quantity.value = val;
+                                  let tprice =  Number.parseInt("'.$row["price"].'") + Number.parseInt(price.innerHTML);
+                                  price.innerHTML = tprice;
+                                  total +=  Number.parseInt("'.$row["price"].'");
+                                  document.dispatchEvent(event);
+                                }
+                               } 
+                            </script>
                             </div>
                           </div>
                         </div>
@@ -647,9 +1008,33 @@
                   </div>
                 </div>
         </div>
-</div>
-
-<script src="./js/menu.js"></script>
+        <!--Place Order-->
+        <div class="modal fade" id="placeOrderModal" tabindex="-1" role="dialog">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Place Order</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>Are you sure you want to place your order?</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Place Order</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+<script>
+   document.addEventListener("AddToCartEvent",function(){
+    document.querySelector(".sub-total").innerHTML = total;
+    document.querySelector(".total-price").innerHTML = total + (total * 0.15);
+   },false)
+</script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"  crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"  crossorigin="anonymous"></script>
