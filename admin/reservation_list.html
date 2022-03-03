@@ -22,7 +22,7 @@
 <body>
   <nav class="navigation-bar">
     <div class="navigation-logo">
-        <img class="logo" src="/Images/bonitaslogo.png" alt="">
+        <img class="logo" src="./Images/bonitaslogo.png" alt="">
     </div>
     <div class="user_avatar">
       <i class="las la-user-circle" id="avatar"></i>
@@ -37,23 +37,19 @@
 <div class="user_hover">
   <div class="hover_list">
     <ul class="hover_content">
-      <li class="list_item"><a href="admin_panel.html" class="link_hover"><i class="las la-columns icon_link"></i>Dashboard</a>
-      <li class="list_item"><a href="orders.html" class="link_hover"><i class="las la-shopping-cart icon_link"></i>Orders</a>
-      <li class="list_item"><a href="AddFood.html" class="link_hover"><i class="las la-utensils icon_link"></i>Foods</a>
-      <li class="list_item"><a href="reservation_list.html" class="link_hover"><i class="las la-clipboard-check icon_link"></i>Reservation</li></a>
-      <li class="list_item"><a href="admin_profile.html" class="link_hover"><i class="las la-user-circle icon_link" id="profile"></i>Admin Profile</a>
+      <li class="list_item"><a href="./admin_panel.html" class="link_hover"><i class="las la-columns icon_link"></i>Dashboard</a>
+      <li class="list_item"><a href="./orders.html" class="link_hover"><i class="las la-shopping-cart icon_link"></i>Orders</a>
+      <li class="list_item"><a href="./adminfoods.html" class="link_hover"><i class="las la-utensils icon_link"></i>Foods</a>
+      <li class="list_item"><a href="./reservation_list.html" class="link_hover"><i class="las la-clipboard-check icon_link"></i>Reservation</li></a>
     </ul>
   </div>
 </div>
 
     <div class="container tMore">
       <div class="row">
-        <div class="backBtn d-flex justify-content-start align-items-center mb-2">
-            <a href="admin.html"><i class="fas fa-arrow-left"></i> Back</a>
-        </div>
         <div class="title-des d-flex justify-content-between mb-3">
           <div class="tName">
-            <h3 class="fw-bold">Reservation list</h3>
+            <h3 class="fw-bold">Pending Reservation</h3>
           </div>
           <div class="searchBar">
             <div class="input-group rounded">
@@ -67,55 +63,62 @@
         <div class="col-lg-12 table-responsive">
           <table class=" table">
             <thead>
-              <td class="text-center">Order No.</td>
-              <td class="text-center">Date</td>
+              <td class="text-center">Reservation ID</td>
               <td class="text-center">Name</td>
-              <td class="text-center">Order/s</td>
-              <td class="text-center">Price</td>
-              <td class="text-center">Payment</td>
-              <td class="text-center">Status</td>
-              <td class="text-center">Action</td>
+              <td class="text-center">Date/Time</td>
+              <td class="text-center">No.Person</td>
+              <td class="text-center">Contact No.</td>
+              <td class="text-center">Decline</td>
+              <td class="text-center">Accept</td>
             </thead>
             <tbody>
               <tr>
                 <td class="text-center">01212</td>
-                <td class="text-center">January 9, 2022</td>
-                <td class="text-center">Julius Boomer</td>
-                <td class="text-center">French fries, milktea</td>
-                <td class="text-center">P 350</td>
-                <td class="text-center">GCASH - Paid</td>
-                <td class="text-center">Delivered</td>
+                <td class="text-center">Julius Carino</td>
+                <td class="text-center">March 4, 2022 | 10:00am to 12:00pm</td>
+                <td class="text-center">3</td>
+                <td class="text-center">0928323212</td>
                 <td class="text-center" style="cursor: pointer; color: red;"><i class="fas fa-trash-alt" alt="tooltip" title="Delete"></i></td>
+                <td class="text-center" style="cursor: pointer; color: green;"><i class="fas fa-check" alt="tooltip" title="Accept"></i></td>
               </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <div class="container tMore">
+      <div class="row">
+        <div class="title-des d-flex justify-content-between mb-3">
+          <div class="tName">
+            <h3 class="fw-bold">Reserved Date</h3>
+          </div>
+          <div class="searchBar">
+            <div class="input-group rounded">
+                <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+                <span class="input-group-text border-0" id="search-addon">
+                  <i class="fas fa-search"></i>
+                </span>
+              </div>
+          </div>
+        </div>
+        <div class="col-lg-12 table-responsive">
+          <table class=" table">
+            <thead>
+              <td class="text-center">Reservation ID</td>
+              <td class="text-center">Name</td>
+              <td class="text-center">Date/Time</td>
+              <td class="text-center">No.Person</td>
+              <td class="text-center">Status</td>
+            </thead>
+            <tbody>
               <tr>
                 <td class="text-center">01212</td>
-                <td class="text-center">January 9, 2022</td>
-                <td class="text-center">Julius Boomer</td>
-                <td class="text-center">French fries, milktea</td>
-                <td class="text-center">P 350</td>
-                <td class="text-center">GCASH - Paid</td>
-                <td class="text-center">Delivered</td>
-                <td class="text-center" style="cursor: pointer; color: red;"><i class="fas fa-trash-alt" alt="tooltip" title="Delete"></i></td>
-              </tr>
-              <tr>
-                <td class="text-center">01212</td>
-                <td class="text-center">January 9, 2022</td>
-                <td class="text-center">Julius Boomer</td>
-                <td class="text-center">French fries, milktea</td>
-                <td class="text-center">P 350</td>
-                <td class="text-center">GCASH - Paid</td>
-                <td class="text-center">Delivered</td>
-                <td class="text-center" style="cursor: pointer; color: red;"><i class="fas fa-trash-alt" alt="tooltip" title="Delete"></i></td>
-              </tr>
-              <tr>
-                <td class="text-center">01212</td>
-                <td class="text-center">January 9, 2022</td>
-                <td class="text-center">Julius Boomer</td>
-                <td class="text-center">French fries, milktea</td>
-                <td class="text-center">P 350</td>
-                <td class="text-center">GCASH - Paid</td>
-                <td class="text-center">Delivered</td>
-                <td class="text-center" style="cursor: pointer; color: red;"><i class="fas fa-trash-alt" alt="tooltip" title="Delete"></i></td>
+                <td class="text-center">Julius Carino</td>
+                <td class="text-center">March 4, 2022 | 10:00am to 12:00pm</td>
+                <td class="text-center">3</td>
+                <td class="text-center">Reserved</td>
               </tr>
             </tbody>
           </table>

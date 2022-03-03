@@ -17,7 +17,6 @@
 			<form action="/register_phase2.html">
 				<h2 class="title">Create an <br>account</h2>
 				<div id="errorMessage"></div>
-				
            		<div class="input-div one">
            		   <div class="i">
            		   		<i class="fas fa-user"></i>
@@ -33,11 +32,7 @@
            		   </div>
            		   <div class="div">
            		   		<h5>First Name</h5>
-<<<<<<< HEAD
-           		   		<input type="text" class="input" id="firstname" required>
-=======
-           		   		<input type="text" class="input" name="firstname">
->>>>>>> 5d7dc6f02018c8fbe467b7a108ab843b29d61701
+           		   		<input type="text" class="input" id="firstname">
            		   </div>
            		</div>
            		<div class="input-div one">
@@ -46,11 +41,7 @@
            		   </div>
            		   <div class="div">
            		   		<h5>Last Name</h5>
-<<<<<<< HEAD
-           		   		<input type="text" class="input" id="lastname" required>
-=======
-           		   		<input type="text" class="input" name="lastname">
->>>>>>> 5d7dc6f02018c8fbe467b7a108ab843b29d61701
+           		   		<input type="text" class="input" id="lastname">
            		   </div>
            		</div>
            		<div class="input-div pass">

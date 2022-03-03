@@ -50,7 +50,7 @@
   <div class="user_hover">
     <div class="hover_list">
       <ul class="hover_content">
-        <li class="list_item"><a href="/user.html" class="link_hover"><i class="las la-user-circle icon_link" id="profile"></i>My Profile</a>
+        <li class="list_item"><a href="./user.php" class="link_hover"><i class="las la-user-circle icon_link" id="profile"></i>My Profile</a>
         <li class="list_item"><a href="" class="link_hover"><i class="las la-shopping-bag icon_link"></i>My Orders</a>
         <li class="list_item"><a href="./php/logout.php" target="_self" class="link_hover"><i class="las la-door-open icon_link"></i>Logout</li></a>
       </ul>

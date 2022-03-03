@@ -101,14 +101,13 @@ nav{
 }
 
 .user_hover{
-    width: 230px;
-    position: absolute;
+    width: 200px;
+    position: fixed;
     top: 13%;
     right: 5%;
     background-color: #fff;
     border-radius: 5%;
     visibility: hidden;
-    z-index: 1000;
     box-shadow: 1px 1px 1px 1px rgb(211, 210, 210);
 }
 
@@ -148,7 +147,7 @@ nav{
 }
 
 .user_hover.active{
-    visibility: hidden;
+    visibility: visible;
 }
 
 

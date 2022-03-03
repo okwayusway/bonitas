@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/user.css">
+    <link rel="stylesheet" href="./css/user.css">
     <script src='https://use.fontawesome.com/826a7e3dce.js'></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
@@ -18,13 +18,7 @@
     <!--Navbar-->
   <nav class="navigation-bar">
       <div class="navigation-logo">
-          <img class="logo" src="/Images/bonitaslogo.png" alt="">
-      </div>
-      <div class="user_avatar">
-        <i class="las la-user-circle" id="avatar"></i>
-      </div>
-      <div class="cart">
-        <a href="/user.html"><i class="las la-shopping-bag" id="shopping-bag"></i></a>
+          <img class="logo" src="./Images/bonitaslogo.png" alt="">
       </div>
       <div class="hamburger">
           <span class="bar"></span>
@@ -45,12 +39,12 @@
 
   <div class="navigation-menu">
     <i class="las la-times" id="close-menu"></i>
-    <div class="additional-img"><img src="/Images/Untitled-1.png" alt=""></div>
+    <div class="additional-img"><img src="./Images/pexels-eva-elijas-6956352.jpg" alt=""></div>
     <div class="list">
       <ul class="navigation-list">
-        <li class="navigation-item"><a href="/index.html" class="navItem-list">Home</a></li>
-        <li class="navigation-item"><a href="/menu.html" class="navItem-list">Menu</a></li>
-        <li class="navigation-item"><a href="/reservation.html" class="navItem-list">Reservation</a></li>
+        <li class="navigation-item"><a href="./index.php" class="navItem-list">Home</a></li>
+        <li class="navigation-item"><a href="./menu.php" class="navItem-list">Menu</a></li>
+        <li class="navigation-item"><a href="./reservation.php" class="navItem-list">Reservation</a></li>
       </ul>
     </div>
   </div>
@@ -80,13 +74,12 @@
                 <table class="table table-bordered">
                   <thead>
                     <th class="text-center">Order no.</th>
-                    <th class="text-center">Date/Time</th>
                     <th class="text-center">Name</th>
-                    <th class="text-center">Order/s</th>
+                    <th class="text-center">Orders</th>
                     <th class="text-center">Price</th>
                     <th class="text-center">MOP-Status</th>
                     <th class="text-center">Status</th>
-                    <th class="text-center">Action</th>
+                    <th class="text-center">Time</th>
                   </thead>
                   <tbody>
                     <tr>
@@ -97,7 +90,6 @@
                       <td class="text-center">P 500</td>
                       <td class="text-center">COD <span class="badge badge-danger">Unpaid</span></td>
                       <td class="text-center">Pending</td>
-                      <td class="text-center" style="cursor: pointer; color: red; font-weight: 700;"><i class="las la-times" alt="tooltip" title="Cancel" data-toggle="modal" data-target="#CancelModal"></i></td>
                     </tr>
                     <tr>
                       <td class="text-center">002</td>
@@ -107,7 +99,6 @@
                       <td class="text-center">P 600</td>
                       <td class="text-center">COD <span class="badge badge-danger">Unpaid</span></td>
                       <td class="text-center">Pending</td>
-                      <td class="text-center" style="cursor: pointer; color: red; font-weight: 700;"><i class="las la-times" alt="tooltip" title="Cancel" data-toggle="modal" data-target="#CancelModal"></i></td>
                     </tr>
                     <tr>
                       <td class="text-center">002</td>
@@ -117,7 +108,6 @@
                       <td class="text-center">P 600</td>
                       <td class="text-center">COD <span class="badge badge-danger">Unpaid</span></td>
                       <td class="text-center">Pending</td>
-                      <td class="text-center" style="cursor: pointer; color: red; font-weight: 700;"><i class="las la-times" alt="tooltip" title="Cancel" data-toggle="modal" data-target="#CancelModal"></i></td>
                     </tr>
                     <tr>
                       <td class="text-center">002</td>
@@ -127,7 +117,6 @@
                       <td class="text-center">P 600</td>
                       <td class="text-center">COD <span class="badge badge-danger">Unpaid</span></td>
                       <td class="text-center">Pending</td>
-                      <td class="text-center" style="cursor: pointer; color: red; font-weight: 700;"><i class="las la-times" alt="tooltip" title="Cancel" data-toggle="modal" data-target="#CancelModal"></i></td>
                     </tr>
                   </tbody>
                 </table>
@@ -146,7 +135,6 @@
                     <th class="text-center">Order/s</th>
                     <th class="text-center">Price</th>
                     <th class="text-center">MOP-Status</th>
-                    <th class="text-center">Status</th>
                   </thead>
                   <tbody>
                     <tr>
@@ -156,7 +144,6 @@
                       <td class="text-center">Family Meal - Blessed</td>
                       <td class="text-center">P 500</td>
                       <td class="text-center">COD <span class="badge badge-success">Paid</span></td>
-                      <td class="text-center">Delivered</td>
                     </tr>
                     <tr>
                       <td class="text-center">002</td>
@@ -165,7 +152,6 @@
                       <td class="text-center">Family Meal - Thankful</td>
                       <td class="text-center">P 600</td>
                       <td class="text-center">COD <span class="badge badge-success">Paid</span></td>
-                      <td class="text-center">Delivered</td>
                     </tr>
                     <tr>
                       <td class="text-center">002</td>
@@ -174,7 +160,6 @@
                       <td class="text-center">Family Meal - Thankful</td>
                       <td class="text-center">P 600</td>
                       <td class="text-center">COD <span class="badge badge-success">Paid</span></td>
-                      <td class="text-center">Delivered</td>
                     </tr>
                     <tr>
                       <td class="text-center">002</td>
@@ -183,7 +168,6 @@
                       <td class="text-center">Family Meal - Thankful</td>
                       <td class="text-center">P 600</td>
                       <td class="text-center">COD <span class="badge badge-success">Paid</span></td>
-                      <td class="text-center">Delivered</td>
                     </tr>                   
                   </tbody>
                 </table>

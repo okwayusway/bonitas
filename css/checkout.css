@@ -268,9 +268,11 @@ form{
     background: #f0e9e9;
     border: none;
     outline: none;
-    padding: 1rem;
+    padding: 8px 10px;
     width: 100%;
     pointer-events: none;
+    border-radius: 1rem;
+    color: #24262b;
 }
 
 .num-field{
@@ -283,8 +285,11 @@ form{
 
 .user-contact input{
     width: 100%;
-    padding: 1rem;
+    padding: 6px 15px;
     background: #f0e9e9;
+    border: none;
+    border-radius: 1rem;
+    color: #24262b;
 }
 
 .loc-payment-details{
@@ -297,8 +302,10 @@ form{
     background: #f0e9e9;
     border: none;
     outline: none;
-    padding: 1rem;
+    padding: 6px 15px;
     width: 100%;
+    border-radius: 1rem;
+    color: #24262b;
 }
 
 .user-address .address{
@@ -318,7 +325,8 @@ form{
 
 .select-address{
     width: 100%;
-    padding: 5px;
+    padding: 2px;
+    margin-bottom: 10px;
 }
 
 .delivery-field{
@@ -334,6 +342,7 @@ form{
 
 .order-summary{
     width: 45rem;
+    margin-top: 2rem;
 }
 
 .order-summary .order-title{
@@ -375,17 +384,23 @@ form{
 }
 
 .checkout-quanti{
-    font-size: 1.3rem;
+    font-size: 1rem;
+    text-transform: lowercase;
+    font-family: 'Poppins', sans-serif;
 }
 
 .order-text{
     font-size: 1rem;
+    text-transform: lowercase;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bolder;
 }
 
 .item-price span{
     font-family: 'Poppins', sans-serif;
     font-size: 1rem;
     color: crimson;
+    font-weight: bolder;
 }
 
 .total-container{

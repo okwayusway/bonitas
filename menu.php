@@ -61,7 +61,7 @@
         </div>
         <div class="total-container">
             <div>
-                <button class="checkout-btn" type="button" onclick="window.location.href='/checkout.html'">Proceed to Checkout</button>
+                <button class="checkout-btn" type="button" onclick="window.location.href='./checkout.php'">Proceed to Checkout</button>
             </div>
             <div class="row-sub">
                 <div class="col-left sub">
@@ -92,7 +92,7 @@
     <div class="user_hover">
       <div class="hover_list">
         <ul class="hover_content">
-          <li class="list_item"><a href="/user.html" class="link_hover"><i class="las la-user-circle icon_link" id="profile"></i>My Profile</a>
+          <li class="list_item"><a href="./user.php" class="link_hover"><i class="las la-user-circle icon_link" id="profile"></i>My Profile</a>
           <li class="list_item"><a href="" class="link_hover"><i class="las la-shopping-bag icon_link"></i>My Orders</a>
           <li class="list_item"><a href="./php/logout.php" class="link_hover"><i class="las la-door-open icon_link"></i>Logout</li></a>
         </ul>
@@ -124,7 +124,7 @@
 
     <!-- Menu List -->
     <div class="start-heading">
-        <p class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium corrupti ullam sequi, reprehenderit harum at dignissimos ut neque culpa ipsum cumque iusto libero consequatur incidunt, quae, alias illum deleniti enim.</p><br>
+        <p class="text-center">“Then Jesus said, ‘I am the bread of life. Whoever comes to me will never go hungry, and whoever believes in me will never be thirsty.'”<br>Sam Smith 9:39</p><br>
         <p class="text-center">Opening hours: Monday-Saturday 9:00 AM to 8:00 PM<br> Sunday: 11:00 AM to 6:00 PM</p>
     </div>
 

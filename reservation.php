@@ -44,7 +44,7 @@
 <div class="user_hover">
   <div class="hover_list">
     <ul class="hover_content">
-      <li class="list_item"><a href="user.html" class="link_hover"><i class="las la-user-circle icon_link" id="profile"></i>My Profile</a>
+      <li class="list_item"><a href="./user.php" class="link_hover"><i class="las la-user-circle icon_link" id="profile"></i>My Profile</a>
       <li class="list_item"><a href="" class="link_hover"><i class="las la-shopping-bag icon_link"></i>My Orders</a>
       <li class="list_item"><a href="./php/logout.php" class="link_hover"><i class="las la-door-open icon_link"></i>Logout</li></a>
     </ul>
@@ -79,33 +79,33 @@
     <!-- End -->
 
 <!-- Modal for reserve -->
-<div class="modal fade" id="reserveModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Reservation</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body d-flex justify-content-center">
-              <h5 class="conModal-title">Select your option.</h5>
-              <form action="" class="option-button">
-                  <div class="btn-dineIn">
-                    <input type="button" value="Dine-In" data-dismiss="modal" data-toggle="modal" data-target="#dineIn-container">
-                  </div>
-                  <div class="btn-events">
-                    <input type="button" value="Events" data-dismiss="modal" data-toggle="modal" data-target="#event-container">
-                  </div>
-              </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-success">Okay</button>
-            <button type="button" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" data-target="#incomingOrders">Cancel</button>
+  <div class="modal fade" id="reserveModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Reservation</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body d-flex justify-content-center">
+                <h5 class="conModal-title">Select your option.</h5>
+                <form action="" class="option-button">
+                    <div class="btn-dineIn">
+                      <input type="button" value="Dine-In" data-dismiss="modal" data-toggle="modal" data-target="#dineIn-container">
+                    </div>
+                    <div class="btn-events">
+                      <input type="button" value="Events" data-dismiss="modal" data-toggle="modal" data-target="#event-container">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-success">Okay</button>
+              <button type="button" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" data-target="#incomingOrders">Cancel</button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
     <div class="modal fade" id="dineIn-container" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
