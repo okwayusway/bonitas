@@ -663,10 +663,13 @@ header h4 {
   color: var(--maroon);
 }
 
-.image-gallery .gallery-title h2 {
+.image-gallery .gallery-title a{
+  font-size: 1.5rem;
   font-family: 'Poppins', sans-serif;
   text-transform: uppercase;
   color: var(--maroon);
+  text-decoration: none;
+  font-weight: bolder;
 }
 
 .image-gallery {
@@ -765,17 +768,17 @@ header h4 {
   transition: all 0.3s 0.2s ease;
 }
 
-.image-gallery .image-box .details .title a {
+.image-gallery .image-box .details .title p {
   color: #fff;
   text-decoration: none;
   font-weight: 300;
 }
 
-.image-gallery .image-box .details .category a {
+.image-gallery .image-box .details .category p {
   color: #fff;
   text-decoration: none;
   font-weight: 300;
-  font-family: 'Work Sans', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: .9rem;
 }
 

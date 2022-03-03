@@ -148,7 +148,7 @@ nav{
 }
 
 .user_hover.active{
-    visibility: visible;
+    visibility: hidden;
 }
 
 
