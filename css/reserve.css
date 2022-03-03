@@ -116,7 +116,7 @@ nav{
 .user_hover{
     width: 200px;
     position: fixed;
-    top: 13%;
+    top: 11%;
     right: 5%;
     background-color: #fff;
     border-radius: 5%;
@@ -135,6 +135,7 @@ nav{
     align-items: flex-start;
     flex-direction: column;
     width: 100%;
+    margin-top: 1rem;
 }
 
 .list_item{

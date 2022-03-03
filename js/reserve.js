@@ -10,19 +10,6 @@ document.querySelectorAll("#close-menu").forEach(n => n.addEventListener("click"
     navMenu.classList.remove("active");
 }))
 
-const viewmap = document.querySelector(".view-map");
-const mapContainer = document.querySelector(".map-container");
-const closeMap = document.querySelector("#close-map");
-
-viewmap.addEventListener("click", () => {
-  mapContainer.classList.toggle("active");
-})
-
-document.querySelectorAll("#close-map").forEach(n => n.addEventListener("click", () => {
-  viewmap.classList.remove("active");
-  mapContainer.classList.remove("active");
-}))
-
 
 this.addEventListener("DOMContentLoaded", () =>{
   const questions = document.querySelectorAll(".question")
@@ -46,26 +33,3 @@ const hover = document.querySelector(".user_hover");
 user_avatar.addEventListener("click", () => {
     hover.classList.toggle("active");
 })
-
-//Cart JS
-const btnCart = document.querySelector("#shopping-bag");
-const cartCon = document.querySelector(".cart-container");
-
-btnCart.addEventListener("click", () => {
-    cartCon.classList.toggle("active");
-})
-
-function incrementValue()
-{
-    var value = parseInt(document.getElementById('number').value, 10);
-    value = isNaN(value) ? 0 : value;
-    value++;
-    document.getElementById('number').value = value;
-}
-
-function decrementValue(){
-    var value = parseInt(document.getElementById('number').value, 10);
-    value = isNaN(value) ? 0 : value;
-    value--;
-    document.getElementById('number').value = value;
-}

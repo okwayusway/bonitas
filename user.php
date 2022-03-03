@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/user.css">
+    <script src='https://use.fontawesome.com/826a7e3dce.js'></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <title>Bonitas | My Account</title>
+</head>
+<body>
+
+    <!--Navbar-->
+  <nav class="navigation-bar">
+      <div class="navigation-logo">
+          <img class="logo" src="/Images/bonitaslogo.png" alt="">
+      </div>
+      <div class="user_avatar">
+        <i class="las la-user-circle" id="avatar"></i>
+      </div>
+      <div class="cart">
+        <a href="/user.html"><i class="las la-shopping-bag" id="shopping-bag"></i></a>
+      </div>
+      <div class="hamburger">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+      </div>
+  </nav>
+
+  <div class="user_hover">
+    <div class="hover_list">
+      <ul class="hover_content">
+        <li class="list_item"><a href="user.html" class="link_hover"><i class="las la-user-circle icon_link" id="profile"></i>My Profile</a>
+        <li class="list_item"><a href="" class="link_hover"><i class="las la-shopping-bag icon_link"></i>My Orders</a>
+        <li class="list_item"><a href="" class="link_hover"><i class="las la-door-open icon_link"></i>Logout</li></a>
+      </ul>
+    </div>
+  </div>
+
+  <div class="navigation-menu">
+    <i class="las la-times" id="close-menu"></i>
+    <div class="additional-img"><img src="/Images/Untitled-1.png" alt=""></div>
+    <div class="list">
+      <ul class="navigation-list">
+        <li class="navigation-item"><a href="/index.html" class="navItem-list">Home</a></li>
+        <li class="navigation-item"><a href="/menu.html" class="navItem-list">Menu</a></li>
+        <li class="navigation-item"><a href="/reservation.html" class="navItem-list">Reservation</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="container-body">
+    <div class="content">
+        <h1 class="text-title">My Account</h1>
+        <div class="content-1">
+            <div class="user-profile">
+                <i class="las la-user-circle" id="user-avatar"></i>
+            </div>
+            <div class="user-credentials">
+                <h2 class="user-name">Julius Cariño</h2>
+                <h4 class="user-email">kuyajuls01@gmail.com</h4>
+                <h4 class="user-phone">09234291714</h4>
+            </div>
+        </div>
+        <div class="content-2">
+            <button class="btn btn-default" data-toggle="modal" data-target="#EditModal"><i class="las la-pen"></i>Edit profile..</button>
+        </div>
+        <div class="content-3">
+          <div class="activeOrders">
+              <div class="activeTitle">
+                <h5>Active Orders</h5>
+              </div>
+              <div class="tableActive table-responsive mt-2">
+                <table class="table table-bordered">
+                  <thead>
+                    <th class="text-center">Order no.</th>
+                    <th class="text-center">Date/Time</th>
+                    <th class="text-center">Name</th>
+                    <th class="text-center">Order/s</th>
+                    <th class="text-center">Price</th>
+                    <th class="text-center">MOP-Status</th>
+                    <th class="text-center">Status</th>
+                    <th class="text-center">Action</th>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="text-center">001</td>
+                      <td class="text-center">February 20, 2022, 6:00 pm</td>
+                      <td class="text-center">Julius Boomer</td>
+                      <td class="text-center">Family Meal - Blessed</td>
+                      <td class="text-center">P 500</td>
+                      <td class="text-center">COD <span class="badge badge-danger">Unpaid</span></td>
+                      <td class="text-center">Pending</td>
+                      <td class="text-center" style="cursor: pointer; color: red; font-weight: 700;"><i class="las la-times" alt="tooltip" title="Cancel" data-toggle="modal" data-target="#CancelModal"></i></td>
+                    </tr>
+                    <tr>
+                      <td class="text-center">002</td>
+                      <td class="text-center">February 20, 2022, 6:00 pm</td>
+                      <td class="text-center">Julius Boomer</td>
+                      <td class="text-center">Family Meal - Thankful</td>
+                      <td class="text-center">P 600</td>
+                      <td class="text-center">COD <span class="badge badge-danger">Unpaid</span></td>
+                      <td class="text-center">Pending</td>
+                      <td class="text-center" style="cursor: pointer; color: red; font-weight: 700;"><i class="las la-times" alt="tooltip" title="Cancel" data-toggle="modal" data-target="#CancelModal"></i></td>
+                    </tr>
+                    <tr>
+                      <td class="text-center">002</td>
+                      <td class="text-center">February 20, 2022, 6:00 pm</td>
+                      <td class="text-center">Julius Boomer</td>
+                      <td class="text-center">Family Meal - Thankful</td>
+                      <td class="text-center">P 600</td>
+                      <td class="text-center">COD <span class="badge badge-danger">Unpaid</span></td>
+                      <td class="text-center">Pending</td>
+                      <td class="text-center" style="cursor: pointer; color: red; font-weight: 700;"><i class="las la-times" alt="tooltip" title="Cancel" data-toggle="modal" data-target="#CancelModal"></i></td>
+                    </tr>
+                    <tr>
+                      <td class="text-center">002</td>
+                      <td class="text-center">February 20, 2022, 6:00 pm</td>
+                      <td class="text-center">Julius Boomer</td>
+                      <td class="text-center">Family Meal - Thankful</td>
+                      <td class="text-center">P 600</td>
+                      <td class="text-center">COD <span class="badge badge-danger">Unpaid</span></td>
+                      <td class="text-center">Pending</td>
+                      <td class="text-center" style="cursor: pointer; color: red; font-weight: 700;"><i class="las la-times" alt="tooltip" title="Cancel" data-toggle="modal" data-target="#CancelModal"></i></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+          </div>
+          <div class="pastOrders">
+            <div class="pastTitle">
+              <h5>Past Orders</h5>
+            </div>
+              <div class="tablePast table-responsive mt-2">
+                <table class="table table-bordered">
+                  <thead>
+                    <th class="text-center">Order no.</th>
+                    <th class="text-center">Date/Time</th>
+                    <th class="text-center">Name</th>
+                    <th class="text-center">Order/s</th>
+                    <th class="text-center">Price</th>
+                    <th class="text-center">MOP-Status</th>
+                    <th class="text-center">Status</th>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="text-center">001</td>
+                      <td class="text-center">February 20, 2022, 6:00 pm</td>
+                      <td class="text-center">Julius Boomer</td>
+                      <td class="text-center">Family Meal - Blessed</td>
+                      <td class="text-center">P 500</td>
+                      <td class="text-center">COD <span class="badge badge-success">Paid</span></td>
+                      <td class="text-center">Delivered</td>
+                    </tr>
+                    <tr>
+                      <td class="text-center">002</td>
+                      <td class="text-center">February 20, 2022, 6:00 pm</td>
+                      <td class="text-center">Julius Boomer</td>
+                      <td class="text-center">Family Meal - Thankful</td>
+                      <td class="text-center">P 600</td>
+                      <td class="text-center">COD <span class="badge badge-success">Paid</span></td>
+                      <td class="text-center">Delivered</td>
+                    </tr>
+                    <tr>
+                      <td class="text-center">002</td>
+                      <td class="text-center">February 20, 2022, 6:00 pm</td>
+                      <td class="text-center">Julius Boomer</td>
+                      <td class="text-center">Family Meal - Thankful</td>
+                      <td class="text-center">P 600</td>
+                      <td class="text-center">COD <span class="badge badge-success">Paid</span></td>
+                      <td class="text-center">Delivered</td>
+                    </tr>
+                    <tr>
+                      <td class="text-center">002</td>
+                      <td class="text-center">February 20, 2022, 6:00 pm</td>
+                      <td class="text-center">Julius Boomer</td>
+                      <td class="text-center">Family Meal - Thankful</td>
+                      <td class="text-center">P 600</td>
+                      <td class="text-center">COD <span class="badge badge-success">Paid</span></td>
+                      <td class="text-center">Delivered</td>
+                    </tr>                   
+                  </tbody>
+                </table>
+              </div>
+          </div>
+        </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="CancelModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle" style="font-weight: 600;">Cancel Order</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body text-center">
+            <p>Are you sure you want to cancel your order?</p>
+        </div>
+        <div class="modal-footer d-flex justify-content-center">
+          <button type="button" class="btn btn-success">Yes</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="EditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle" style="font-weight: 600;">Edit Profile</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" style="overflow-y: scroll; height: 400px;">
+            <form action="">
+                <div class="input-group">
+                  <label for="ppicture">Profile Picture:</label>
+                  <input type="file" id="ppicture" class="input-control">
+                </div>
+                <div class="input-group">
+                    <label for="fname">First Name:</label>
+                    <input type="text" id="fname" class="input-control">
+                </div>
+                <div class="input-group">
+                    <label for="lname">Last Name:</label>
+                    <input type="text" id="lname" class="input-control">
+                </div>
+                <div class="input-group">
+                  <label for="email">Email:</label>
+                  <input type="email" id="email" class="input-control">
+                </div>
+                <div class="input-group">
+                    <label for="num">Contact Number:</label>
+                    <input type="number" id="num" class="input-control">
+                </div>
+                <hr>
+                <label style="font-weight: 600;">Change Address</label>
+                <div class="input-group">
+                  <label for="Street">Street no./House no.:</label>
+                  <input type="text" id="Street" class="input-control">
+                </div>
+                <div class="input-group">
+                  <label for="brgy">Barangay:</label>
+                  <input type="text" id="brgy" class="input-control">
+                </div>
+                <div class="input-group">
+                  <label for="city">City:</label>
+                  <input type="text" id="city" class="input-control">
+                </div>
+                <div class="input-group">
+                  <label for="prov">Province:</label>
+                  <input type="text" id="prov" class="input-control" value="Bulacan" disabled>
+                </div>
+                <hr>
+                <label style="font-weight: 600;">Change Password</label>
+                <div class="input-group">
+                    <label for="curPt">Current Password:</label>
+                    <input type="password" id="curP" class="input-control">
+                </div>
+                <div class="input-group">
+                    <label for="newP">New Password:</label>
+                    <input type="password" id="newP" class="input-control">
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer d-flex justify-content-center">
+          <button type="button" class="btn btn-success">Save</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+</div>
+ `
+        <!-- partial -->
+        <script src="js/user.js"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"  crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"  crossorigin="anonymous"></script>
+  </body>
+  </html>
