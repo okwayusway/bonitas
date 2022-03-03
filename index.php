@@ -1,6 +1,7 @@
 <?php 
  session_start();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -102,34 +103,45 @@
     <!-- Carousel HTML -->
       <div id="myCarousel" class="carousel slide">
         <div class="carousel-inner">
-          <div class="item active">
-            <img src="Images/slide-01.jpg" alt="" id="images1">
-            <div class="container">
-              <div class="carousel-caption">
-                <h1 class="carousel_text">try our blueberry cheesecake now.</h1>
-                <a class="btn btn-large btn-primary" data-toggle="modal" data-target="#modalCarousel"><i class="las la-cart-plus"></i></a>
+          <?php
+            include './php/connection.php';
+
+            $sql = "SELECT id, category FROM menucategory ORDER By Id";
+            $result = mysqli_query($conn, $sql);
+
+            if (!$result) {
+                echo 'Could not run query: ' . mysqli_error();
+                exit;
+            }
+            $count = 0;
+            $active = "";
+            while($row = $result->fetch_assoc()) {
+              $categories[] = $row;
+              $images = array("1" => "Images/slide-01.jpg",
+              "2" => "./Images/slide-01.jpg",
+              "3" => "./Images/slide-01.jpg",
+              "4" => "./Images/slide-01.jpg",
+              "5" => "./Images/slide-01.jpg",
+              "6" => "./Images/slide-01.jpg",
+              "7" => "./Images/slide-01.jpg");
+              $active = ($count == 0)?"item active" : "item";
+              $count++;
+              $categoryLabel = $row["category"];
+              $currentImage = $images[$row["id"]];
+              $foodId = "food-$count";
+              echo "<div class='$active'>
+              <img src='$currentImage' alt=''>
+              <div class='container'>
+                <div class='carousel-caption'>
+                  <h1 class='carousel_text'>$categoryLabel</h1>
+                </div>
               </div>
-            </div>
-          </div>
-          <div class="item">
-            <img src="Images/slide-02.jpg" alt="">
-            <div class="container">
-              <div class="carousel-caption">
-                <h1 class="carousel_text">checkout our mouthwatering desserts</h1>
-                <a class="btn btn-large btn-primary" data-toggle="modal" data-target="#modalCarousel"><i class="las la-cart-plus"></i></a>
-              </div>
-            </div>
-          </div>
-          <div class="item active">
-            <img src="Images/slide-03.jpg" alt="">
-            <div class="container">
-              <div class="carousel-caption">
-                <h1 class="carousel_text">Ribs steak available at Bonita's.</h1>
-                <a class="btn btn-large btn-primary" data-toggle="modal" data-target="#modalCarousel"><i class="las la-cart-plus"></i></a>
-              </div>
-            </div>
-          </div> 
+              </div>";
+            }
+           $conn -> close();
+          ?>
         </div>
+
         <a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
         <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
       </div>
