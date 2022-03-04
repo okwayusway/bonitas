@@ -59,7 +59,6 @@
 
   <div class="navigation-menu">
     <i class="las la-times" id="close-menu"></i>
-    <div class="additional-img"><img src="./Images/img-menu.jpg" alt=""></div>
     <div class="list">
       <ul class="navigation-list">
         <li class="navigation-item"><a href="index.php" class="navItem-list">Home</a></li>
@@ -117,13 +116,13 @@
             $active = "";
             while($row = $result->fetch_assoc()) {
               $categories[] = $row;
-              $images = array("1" => "Images/slide-01.jpg",
-              "2" => "./Images/slide-01.jpg",
-              "3" => "./Images/slide-01.jpg",
-              "4" => "./Images/slide-01.jpg",
-              "5" => "./Images/slide-01.jpg",
-              "6" => "./Images/slide-01.jpg",
-              "7" => "./Images/slide-01.jpg");
+              $images = array("1" => "Images/Blessed.jpg",
+              "2" => "./Images/beef-tapa.jpg",
+              "3" => "./Images/baby-back.jpg",
+              "4" => "./Images/platter.jpg",
+              "5" => "./Images/choco-heart.jpg",
+              "6" => "./Images/frappe.jpg",
+              "7" => "./Images/milktea.jpg");
               $active = ($count == 0)?"item active" : "item";
               $count++;
               $categoryLabel = $row["category"];
@@ -258,7 +257,7 @@
       <div class="gallery-con">
         <div class="image-gallery">
             <div class="gallery-title">
-                <a href="./gallery.html"> our <span>Gallery</span></a>
+                <a href="./gallery.php"> our <span>Gallery</span></a>
             </div>
             <div class="image-box">
               <img src="Images/sotry1.jpg" alt="img.jpg" />

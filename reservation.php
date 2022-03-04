@@ -53,7 +53,6 @@
 
 <div class="navigation-menu">
   <i class="las la-times" id="close-menu"></i>
-  <div class="additional-img"><img src="./Images/img-menu.jpg" alt=""></div>
   <div class="list">
     <ul class="navigation-list">
       <li class="navigation-item"><a href="index.php" class="navItem-list">Home</a></li>

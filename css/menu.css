@@ -62,9 +62,9 @@ nav{
 }
 
 .navigation-menu{
-    width: 100%; height: 44rem;
+    width: 30rem; height: 44rem;
     position: fixed; z-index: 1500;
-    top: -200%; left: 0;
+    right: -200%; top: 0;
     background: #24262b;
     transition: all 0.4s ease-in-out;
     display: flex;
@@ -78,21 +78,8 @@ nav{
 }
 
 .navigation-menu.active{
-    top: 0;
+    right: 0;
 }
-
-.additional-img {
-    width: 100%;
-    border: 1px solid #fff;
-    height: 20rem;
-    margin-left: 3rem;
-  }
-  
-  .additional-img img {
-    width: 47rem;
-    height: 20rem;
-    padding: .5rem;
-  }
 
 .list{
     width: 100%;
@@ -107,8 +94,8 @@ nav{
 }
 
 .navigation-list .navItem-list{
-    font-size: 3.4rem; text-decoration: none; color: #af9e9e; transition: 0.7s;
-    font-family: 'Poppins', sans-serif; font-weight: bolder; text-transform: uppercase;
+    font-size: 4rem; text-decoration: none; color: #af9e9e; transition: 0.7s;
+    font-family: 'Bebas Neue', cursive; font-weight: bold; text-transform: uppercase;
     margin: 0;
 }
 .navItem-list:hover{
@@ -203,7 +190,7 @@ nav{
     width: 100%;
   }
   
-  .hover_list{
+  .hover_list .hover_content{
     margin-top: 1rem;
     display: flex;
     justify-content: center;
@@ -214,7 +201,7 @@ nav{
   
   .list_item {
     font-family: 'Poppins', sans-serif;
-    text-decoration: none;
+    width: 100%;
   }
   
   .link_hover {
@@ -237,6 +224,30 @@ nav{
   .user_hover.active {
     visibility: visible;
   }
+
+  /* Media Queries Navbar*/
+
+@media(max-width:1400px){
+
+    .hamburger{
+        display: block;
+    }
+}
+
+@media(max-width: 1150px){
+    .additional-img{
+        display: none;
+    }
+    .navigation-list .navItem-list{
+        font-size: 3rem;
+    }
+}
+@media(max-width: 430px){
+    .navigation-list .navItem-list{
+        font-size: 8vw;
+        padding: 0;
+    }
+}
 
 /* Cart CSS */
 
@@ -358,33 +369,6 @@ nav{
 
 /* END */
 
-/* Media Queries Navbar*/
-
-@media(max-width:1400px){
-
-    .hamburger{
-        display: block;
-    }
-}
-
-@media(max-width: 1150px){
-    .additional-img{
-        display: none;
-    }
-    .navigation-list .navItem-list{
-        font-size: 3rem;
-    }
-}
-@media(max-width: 430px){
-    .additional-img{
-        display: none;
-    }
-    .navigation-list .navItem-list{
-        font-size: 8vw;
-        padding: 0;
-    }
-}
-
 /* Carousel CSS */
 
 .menu-container{
@@ -441,7 +425,7 @@ nav{
 }
 
 .menu_con{
-    margin-bottom: 78rem;
+    margin-bottom: 86rem;
 }
 
 .menu-tabs{
@@ -574,5 +558,4 @@ container-fluid {
     font-weight: bold;
     font-family: 'Poppins', sans-serif;
     text-transform: capitalize;
-    margin-left: 14rem;
 }
