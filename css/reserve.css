@@ -604,3 +604,14 @@ select{
     color: #f14805;
     font-size: 1.5rem; margin-right: 6px;
 }
+
+.email-con{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.email-con h3{
+    font-size: 1rem;
+    margin: .4rem .5rem;
+}
