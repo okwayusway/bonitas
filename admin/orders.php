@@ -1,5 +1,31 @@
 <?php
+include './php/dbconnection.php';
 
+$sqlPendingOrders = "Select * From orders where order_status ='PENDING'";
+$pendingOrders = array();
+
+$pendingOrdersResult = mysqli_query($conn, $sqlPendingOrders);
+if(!$pendingOrdersResult){
+  echo 'Could not run query: ' . mysqli_error();
+  exit;
+}
+
+while($pendingOrderRow = $pendingOrdersResult -> fetch_assoc()) {
+  $pendingOrders[]= $pendingOrderRow;
+}
+
+$sqlPrepairingOrders = "Select * From orders where order_status ='PREPAIRING'";
+$prepairingOrders = array();
+
+$prepairingOrdersResult = mysqli_query($conn, $sqlPrepairingOrders);
+if(!$prepairingOrdersResult){
+  echo 'Could not run query: ' . mysqli_error();
+  exit;
+}
+
+while($prepairingOrderRow = $prepairingOrdersResult -> fetch_assoc()) {
+  $prepairingOrders[]= $prepairingOrderRow;
+}
 
 ?>
 
@@ -18,11 +44,13 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
     <link rel="stylesheet" href="css/orders.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <title>Bonitas | Orders</title>
+
 </head>
 <body>
     <!--Navbar-->
@@ -57,7 +85,104 @@
                 <div class="col-12 col-md-3 orders">
                     <h4 class="fw-bold lTitle"><i class="fas fa-clipboard"></i> Incoming Orders</h4>
                     <ul class="list-group">
-                        <li class="list-group-item" data-toggle="modal" data-target="#incomingOrders">Order No. 001</li>
+                        <?php
+                         foreach($pendingOrders as $orders){
+                            $orderDetails = json_decode($orders["order_raw_details"], true);
+                            $user = array();    
+                            $userid = $orders["ordered_by"];
+                            $usql = "Select * From users where userid=$userid";
+                            
+                            $uresult = mysqli_query($conn, $usql);
+                            
+                            if (!$uresult) {
+                                echo 'Could not run query: ' . mysqli_error();
+                                exit;
+                            }
+                            
+                            while($urow = $uresult->fetch_assoc()) {
+                              $user[]= $urow;
+                            }
+
+
+                            $detailsContainer ="";
+                            foreach($orderDetails as $details){
+                              $detailsContainer .= '<div class="row">
+                              <div class="col-sm font-weight-bold h6 text-left">
+                               '.$details["name"].'
+                              </div>
+                              <div class="col-sm text-muted text-center">
+                              x'.$details["orderTotal"].'
+                              </div>
+                              <div class="col-sm text-muted text-center">
+                              ₱'.$details["price"].'
+                              </div>
+                              </div>';
+                            }
+
+
+                             echo ' <li class="list-group-item" data-toggle="modal" data-target="#incoming-'.$orders["id"].'">ORDER-00'.$orders["id"].'</li>';
+                             echo '   <div class="modal fade" id="incoming-'.$orders["id"].'" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                             <div class="modal-dialog modal-dialog-centered" role="document">
+                               <div class="modal-content">
+                                 <div class="modal-header">
+                                   <h5 class="modal-title" id="exampleModalLongTitle">ORDER-00'.$orders["id"].'</h5>
+                                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                     <span aria-hidden="true">&times;</span>
+                                   </button>
+                                 </div>
+                                 <div class="modal-body">
+                                     <div class="deets_modal">
+                                         <div class="dhead d-block">
+                                             <p style="font-weight: 600;">Name: <span>'.$user[0]["first_name"]." ".$user[0]["last_name"].'</span></p>
+                                             <p style="font-weight: 600;">Address: <span>'.$user[0]["household_no"]." ".$user[0]["street"]." ".$user[0]["barangay"]." ".$user[0]["city"].'</span></p>
+                                         </div>
+                                         <label for="ul">Order(s):</label>
+                                         <ul>
+                                          '.$detailsContainer.'
+                                         </ul>
+                                     </div>
+                                     <div class="totalPrice d-flex justify-content-end">
+                                         <small class="fw-bold">Total Price: <span>P '.$orders["total_price"].'</span></small>
+                                     </div>
+                                 </div>
+                                 <div class="modal-footer">
+                                   <button type="button" class="btn btn-success" data-toggle="modal" data-target="#timeKitchen-'.$orders["id"].'" data-dismiss="modal">Confirm Order</button>
+                                 </div>
+                               </div>
+                             </div>
+                           </div>';
+
+                           echo '  <div class="modal fade" id="timeKitchen-'.$orders["id"].'" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                           <div class="modal-dialog modal-dialog-centered" role="document">
+                             <div class="modal-content">
+                               <div class="modal-header">
+                                 <h5 class="modal-title" id="exampleModalLongTitle">Estimated Time in the Kitchen</h5>
+                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                   <span aria-hidden="true">&times;</span>
+                                 </button>
+                               </div>
+                               <div class="modal-body d-flex justify-content-center">
+                                   <form action="">
+                                       <label for="KTime" style="margin-right: 5px;">Estimated Time:</label>
+                                       <select class="form-select" aria-label="Default select example">
+                                           <option selected>Select time</option>
+                                           <option value="1">2-5 minutes</option>
+                                           <option value="2">5-10 minutes</option>
+                                           <option value="3">10-15 minutes</option>
+                                           <option value="4">15-20 minutes</option>
+                                           <option value="5">20-30 minutes</option>
+                                         </select>
+                                   </form>
+                               </div>
+                               <div class="modal-footer">
+                                 <button type="button" class="btn btn-success"  onclick="addToKitchen('.$orders["id"].')"  id="tokitchen-'.$orders["id"].'" data-order="'.$orders["id"].'" >Okay</button>
+                                 <button type="button" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" data-target="#timeKitchen-'.$orders["id"].'">Cancel</button>
+                               </div>
+                             </div>
+                           </div>
+                         </div>';
+                         }
+                        ?>
                     </ul>
                 </div>
                 <div class="col-12 col-md-9">
@@ -66,7 +191,40 @@
                             <h4 class="fw-bold lTitle"><i class="fas fa-utensils"></i> In the Kitchen</h4>
                             <div class="kitchen">
                                 <ul class="list-group">
-                                    <li class="list-group-item d-flex justify-content-between"><span data-toggle="modal" data-target="#orderSummary"> Order No. 001 <span class="badge badge-secondary">10-15 minutes</span></span> <button class="btn btn-success" data-toggle="modal" data-target="#timeDelivery">Done</button></li>
+                                   <?php
+                                   foreach($prepairingOrders as $p){
+                                       echo ' <li class="list-group-item d-flex justify-content-between"><span data-toggle="modal" data-target="#orderSummary">ORDER-00'.$p["id"].'<span class="badge badge-secondary">10-15 minutes</span></span> <button class="btn btn-success" data-toggle="modal" data-target="#prep-'.$p["id"].'">Done</button></li>';
+                                       echo ' <div class="modal fade" id="prep-'.$p["id"].'" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                       <div class="modal-dialog modal-dialog-centered" role="document">
+                                         <div class="modal-content">
+                                           <div class="modal-header">
+                                             <h5 class="modal-title" id="exampleModalLongTitle">Estimated Time on Delivery</h5>
+                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                               <span aria-hidden="true">&times;</span>
+                                             </button>
+                                           </div>
+                                           <div class="modal-body d-flex justify-content-center">
+                                               <form action="">
+                                                   <label for="KTime" style="margin-right: 5px;">Estimated Time:</label>
+                                                   <select class="form-select" aria-label="Default select example">
+                                                       <option selected>Select time</option>
+                                                       <option value="1">2-5 minutes</option>
+                                                       <option value="2">5-10 minutes</option>
+                                                       <option value="3">10-15 minutes</option>
+                                                       <option value="4">15-20 minutes</option>
+                                                       <option value="5">20-30 minutes</option>
+                                                     </select>
+                                               </form>
+                                           </div>
+                                           <div class="modal-footer">
+                                             <button type="button" class="btn btn-success">Okay</button>
+                                             <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                                           </div>
+                                         </div>
+                                       </div>
+                                     </div>';
+                                   }
+                                   ?>
                                 </ul>
                             </div>
                         </div>
@@ -85,42 +243,6 @@
     </div>
 
     <!-- Modal for Incoming Orders -->
-
-    <div class="modal fade" id="incomingOrders" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLongTitle">Order No. 001</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-                <div class="deets_modal">
-                    <div class="dhead d-block">
-                        <p style="font-weight: 600;">Name: <span>Julius Boomer</span></p>
-                        <p style="font-weight: 600;">Address: <span>0570 Sulucan St. Bagbaguin, Sta. Maria, Bulacan</span></p>
-                    </div>
-                    <label for="ul">Order/s:</label>
-                    <ul>
-                        <li>- <span>2</span> T-bone Steak w/rice</li>
-                        <li>- <span>1</span> Baby Back Ribs Platter</li>
-                        <li>- <span>1</span> Trio Bundle Snacks</li>
-                    </ul>
-                </div>
-                <div class="pMethod">
-                    <p>Payment Method: <span>GCASH</span> <span class="badge badge-success">Paid</span></p>
-                </div>
-                <div class="totalPrice d-flex justify-content-end">
-                    <small class="fw-bold">Total Price: <span>P 1,000</span></small>
-                </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-success" data-toggle="modal" data-target="#timeKitchen" data-dismiss="modal">Confirm Order</button>
-            </div>
-          </div>
-        </div>
-      </div>
 
       <!-- Modal for order summary -->
 
@@ -240,8 +362,22 @@
         </div>
       </div>
 
+      <script>
+          function addToKitchen(order){
+            $.ajax({
+            url: './php/update-order.php',
+            data: {
+              orderId:order,
+              preparing:true
+            },
+            type: 'POST',
+            success: function(response) {
+                alert("Orders Successfully Updated");
+            }
+            });
+          }
+      </script>
       <script src="js/orders.js"></script>
-      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"  crossorigin="anonymous"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"  crossorigin="anonymous"></script>
 

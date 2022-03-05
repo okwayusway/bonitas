@@ -225,6 +225,7 @@ $conn -> close();
             alert("Orders Successfully Submitted");
             setTimeout(() => {
                 window.location.href = "user.php";
+                localStorage.remove("cart-order");
             }, 1200);
         }
         });
