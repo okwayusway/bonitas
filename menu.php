@@ -1,6 +1,13 @@
 <?php 
  session_start();
  $total = 0;
+ $orders = array();
+  class Order
+  {
+        public $orderId;
+        public $orderName;
+        public $orderTotal;
+  }
 ?>
 
 <!DOCTYPE html>
@@ -14,10 +21,16 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+      crossorigin="anonymous">
+    </script>
     <script src="./js/menu.js" defer async = false></script>
     <title>Menu | Bonitas</title>
     <script>
      let total = 0;
+     let orders = new Map();
      let event = new CustomEvent(
         "AddToCartEvent", 
         {
@@ -60,7 +73,7 @@
         </div>
         <div class="total-container">
             <div>
-                <button class="checkout-btn" type="button" onclick="window.location.href='./checkout.php'" data-toggle="modal" data-target="#placeOrderModal">Proceed to Checkout</button>
+                <button class="checkout-btn" type="button" onclick="proceedToCheckOut()" data-toggle="modal" data-target="#placeOrderModal">Proceed to Checkout</button>
             </div>
             <div class="row-sub">
                 <div class="col-left sub">
@@ -251,6 +264,7 @@
                                document.getElementById("cart-'.$row["id"].'").onclick = function(){
                                   if(!addedToCart.includes("'.$row["id"].'")){
                                   total +=  Number.parseInt("'.$row["price"].'");
+                                  orders.set("'.$row["id"].'", {total:1, price:Number.parseInt('.$row["price"].'), name:"'.$row["name"].'"});
                                   document.dispatchEvent(event);
                                   addedToCart.push("'.$row["id"].'");
                                   document.getElementById("shopping-bag").dataset.count = Number.parseInt(document.getElementById("shopping-bag").dataset.count) + 1
@@ -279,7 +293,9 @@
                                     quantity.value = val;
                                     price.innerHTML =  Number.parseInt("'.$row["price"].'") + Number.parseInt(price.innerHTML);
                                     total +=  Number.parseInt("'.$row["price"].'");
-
+                                    let updateOrder = orders.get("'.$row["id"].'");
+                                    let totalOrder = updateOrder.total + 1
+                                    orders.set("'.$row["id"].'", {total:totalOrder, price:Number.parseInt('.$row["price"].'), name:"'.$row["name"].'"});
                                     document.dispatchEvent(event);
                                   }
                                   document.querySelector(".dec-'.$row["id"].'").onclick = function(){
@@ -292,6 +308,9 @@
                                       price.innerHTML =  tprice;
                                       total -= Number.parseInt("'.$row["price"].'")
                                       document.dispatchEvent(event);
+                                      let updateOrder = orders.get("'.$row["id"].'");
+                                      let totalOrder = updateOrder.total - 1
+                                      orders.set("'.$row["id"].'", {total:totalOrder, price:Number.parseInt('.$row["price"].'), name:"'.$row["name"].'"});
                                     }
                                   }
                                   document.querySelector(".inc-'.$row["id"].'").onclick = function(){
@@ -303,6 +322,9 @@
                                     price.innerHTML = tprice;
                                     total +=  Number.parseInt("'.$row["price"].'");
                                     document.dispatchEvent(event);
+                                    let updateOrder = orders.get("'.$row["id"].'");
+                                    let totalOrder = updateOrder.total + 1
+                                    orders.set("'.$row["id"].'", {total:totalOrder, price:Number.parseInt('.$row["price"].'), name:"'.$row["name"].'"});
                                   }
                                   
                                  } 
@@ -373,6 +395,7 @@
                              document.getElementById("cart-'.$row["id"].'").onclick = function(){
                                 if(!addedToCart.includes("'.$row["id"].'")){
                                 total +=  Number.parseInt("'.$row["price"].'");
+                                orders.set("'.$row["id"].'", {total:1, price:Number.parseInt('.$row["price"].'),name:"'.$row["name"].'"});
                                 document.dispatchEvent(event);
                                 addedToCart.push("'.$row["id"].'");
                                 document.getElementById("shopping-bag").dataset.count = Number.parseInt(document.getElementById("shopping-bag").dataset.count) + 1
@@ -401,7 +424,9 @@
                                   quantity.value = val;
                                   price.innerHTML =  Number.parseInt("'.$row["price"].'") + Number.parseInt(price.innerHTML);
                                   total +=  Number.parseInt("'.$row["price"].'");
-
+                                  let updateOrder = orders.get("'.$row["id"].'");
+                                  let totalOrder = updateOrder.total + 1
+                                  orders.set("'.$row["id"].'", {total:totalOrder, price:Number.parseInt('.$row["price"].'),name:"'.$row["name"].'"});
                                   document.dispatchEvent(event);
                                 }
                                 document.querySelector(".dec-'.$row["id"].'").onclick = function(){
@@ -413,6 +438,9 @@
                                     let tprice = Number.parseInt(price.innerHTML) - Number.parseInt("'.$row["price"].'");
                                     price.innerHTML =  tprice;
                                     total -= Number.parseInt("'.$row["price"].'")
+                                    let updateOrder = orders.get("'.$row["id"].'");
+                                    let totalOrder = updateOrder.total - 1
+                                    orders.set("'.$row["id"].'", {total:totalOrder, price:Number.parseInt('.$row["price"].'), name:"'.$row["name"].'"});
                                     document.dispatchEvent(event);
                                   }
                                 }
@@ -424,6 +452,9 @@
                                   let tprice =  Number.parseInt("'.$row["price"].'") + Number.parseInt(price.innerHTML);
                                   price.innerHTML = tprice;
                                   total +=  Number.parseInt("'.$row["price"].'");
+                                  let updateOrder = orders.get("'.$row["id"].'");
+                                  let totalOrder = updateOrder.total + 1
+                                  orders.set("'.$row["id"].'", {total:totalOrder, price:Number.parseInt('.$row["price"].'),name:"'.$row["name"].'"});
                                   document.dispatchEvent(event);
                                 }
                                 
@@ -494,6 +525,7 @@
                              document.getElementById("cart-'.$row["id"].'").onclick = function(){
                                 if(!addedToCart.includes("'.$row["id"].'")){
                                 total +=  Number.parseInt("'.$row["price"].'");
+                                orders.set("'.$row["id"].'", {total:totalOrder, price:Number.parseInt('.$row["price"].'),name:"'.$row["name"].'"});
                                 document.dispatchEvent(event);
                                 addedToCart.push("'.$row["id"].'");
                                 document.getElementById("shopping-bag").dataset.count = Number.parseInt(document.getElementById("shopping-bag").dataset.count) + 1
@@ -522,7 +554,9 @@
                                   quantity.value = val;
                                   price.innerHTML =  Number.parseInt("'.$row["price"].'") + Number.parseInt(price.innerHTML);
                                   total +=  Number.parseInt("'.$row["price"].'");
-
+                                  let updateOrder = orders.get("'.$row["id"].'");
+                                  let totalOrder = updateOrder.total + 1
+                                  orders.set("'.$row["id"].'", {total:totalOrder, price:Number.parseInt('.$row["price"].'), name:"'.$row["name"].'"});
                                   document.dispatchEvent(event);
                                 }
                                 document.querySelector(".dec-'.$row["id"].'").onclick = function(){
@@ -534,6 +568,9 @@
                                     let tprice = Number.parseInt(price.innerHTML) - Number.parseInt("'.$row["price"].'");
                                     price.innerHTML =  tprice;
                                     total -= Number.parseInt("'.$row["price"].'")
+                                    let updateOrder = orders.get("'.$row["id"].'");
+                                    let totalOrder = updateOrder.total - 1
+                                    orders.set("'.$row["id"].'", {total:totalOrder, price:Number.parseInt('.$row["price"].'), name:"'.$row["name"].'"});
                                     document.dispatchEvent(event);
                                   }
                                 }
@@ -545,6 +582,9 @@
                                   let tprice =  Number.parseInt("'.$row["price"].'") + Number.parseInt(price.innerHTML);
                                   price.innerHTML = tprice;
                                   total +=  Number.parseInt("'.$row["price"].'");
+                                  let updateOrder = orders.get("'.$row["id"].'");
+                                  let totalOrder = updateOrder.total + 1
+                                  orders.set("'.$row["id"].'", {total:totalOrder, price:Number.parseInt('.$row["price"].'), name:"'.$row["name"].'"});
                                   document.dispatchEvent(event);
                                 }
                                 
@@ -617,6 +657,7 @@
                              document.getElementById("cart-'.$row["id"].'").onclick = function(){
                                 if(!addedToCart.includes("'.$row["id"].'")){
                                 total +=  Number.parseInt("'.$row["price"].'");
+                                orders.set("'.$row["id"].'", {total:totalOrder, price:Number.parseInt('.$row["price"].'), name:"'.$row["name"].'"});
                                 document.dispatchEvent(event);
                                 addedToCart.push("'.$row["id"].'");
                                 document.getElementById("shopping-bag").dataset.count = Number.parseInt(document.getElementById("shopping-bag").dataset.count) + 1
@@ -645,6 +686,9 @@
                                   quantity.value = val;
                                   price.innerHTML =  Number.parseInt("'.$row["price"].'") + Number.parseInt(price.innerHTML);
                                   total +=  Number.parseInt("'.$row["price"].'");
+                                  let updateOrder = orders.get("'.$row["id"].'");
+                                  let totalOrder = updateOrder.total + 1
+                                  orders.set("'.$row["id"].'", {total:totalOrder, price:Number.parseInt('.$row["price"].'), name:"'.$row["name"].'"});
 
                                   document.dispatchEvent(event);
                                 }
@@ -657,6 +701,9 @@
                                     let tprice = Number.parseInt(price.innerHTML) - Number.parseInt("'.$row["price"].'");
                                     price.innerHTML =  tprice;
                                     total -= Number.parseInt("'.$row["price"].'")
+                                    let updateOrder = orders.get("'.$row["id"].'");
+                                    let totalOrder = updateOrder.total - 1
+                                    orders.set("'.$row["id"].'", {total:totalOrder, price:Number.parseInt('.$row["price"].'),name:"'.$row["name"].'"});
                                     document.dispatchEvent(event);
                                   }
                                 }
@@ -668,6 +715,9 @@
                                   let tprice =  Number.parseInt("'.$row["price"].'") + Number.parseInt(price.innerHTML);
                                   price.innerHTML = tprice;
                                   total +=  Number.parseInt("'.$row["price"].'");
+                                  let updateOrder = orders.get("'.$row["id"].'");
+                                  let totalOrder = updateOrder.total + 1
+                                  orders.set("'.$row["id"].'", {total:totalOrder, price:Number.parseInt('.$row["price"].'),name:"'.$row["name"].'"});
                                   document.dispatchEvent(event);
                                 }
                                 
@@ -800,6 +850,7 @@
                              document.getElementById("cart-'.$row["id"].'").onclick = function(){
                                 if(!addedToCart.includes("'.$row["id"].'")){
                                 total +=  Number.parseInt("'.$row["price"].'");
+                                orders.set("'.$row["id"].'", {total:totalOrder, price:Number.parseInt('.$row["price"].'), name:"'.$row["name"].'"});
                                 document.dispatchEvent(event);
                                 addedToCart.push("'.$row["id"].'");
                                 document.getElementById("shopping-bag").dataset.count = Number.parseInt(document.getElementById("shopping-bag").dataset.count) + 1
@@ -828,7 +879,9 @@
                                   quantity.value = val;
                                   price.innerHTML =  Number.parseInt("'.$row["price"].'") + Number.parseInt(price.innerHTML);
                                   total +=  Number.parseInt("'.$row["price"].'");
-
+                                  let updateOrder = orders.get("'.$row["id"].'");
+                                  let totalOrder = updateOrder.total + 1
+                                  orders.set("'.$row["id"].'", {total:totalOrder, price:Number.parseInt('.$row["price"].'), name:"'.$row["name"].'"});
                                   document.dispatchEvent(event);
                                 }
                                 document.querySelector(".dec-'.$row["id"].'").onclick = function(){
@@ -840,6 +893,9 @@
                                     let tprice = Number.parseInt(price.innerHTML) - Number.parseInt("'.$row["price"].'");
                                     price.innerHTML =  tprice;
                                     total -= Number.parseInt("'.$row["price"].'")
+                                    let updateOrder = orders.get("'.$row["id"].'");
+                                  let totalOrder = updateOrder.total - 1
+                                  orders.set("'.$row["id"].'", {total:totalOrder, price:Number.parseInt('.$row["price"].'), name:'.$row["name"].'});
                                     document.dispatchEvent(event);
                                   }
                                 }
@@ -851,6 +907,9 @@
                                   let tprice =  Number.parseInt("'.$row["price"].'") + Number.parseInt(price.innerHTML);
                                   price.innerHTML = tprice;
                                   total +=  Number.parseInt("'.$row["price"].'");
+                                  let updateOrder = orders.get("'.$row["id"].'");
+                                  let totalOrder = updateOrder.total + 1
+                                  orders.set("'.$row["id"].'", {total:totalOrder, price:Number.parseInt('.$row["price"].'), name:'.$row["name"].'});
                                   document.dispatchEvent(event);
                                 }
                                 
@@ -922,6 +981,7 @@
                              document.getElementById("cart-'.$row["id"].'").onclick = function(){
                                 if(!addedToCart.includes("'.$row["id"].'")){
                                 total +=  Number.parseInt("'.$row["price"].'");
+                                orders.set("'.$row["id"].'", {total:totalOrder, price:Number.parseInt('.$row["price"].'), name:'.$row["name"].'});
                                 document.dispatchEvent(event);
                                 addedToCart.push("'.$row["id"].'");
                                 document.getElementById("shopping-bag").dataset.count = Number.parseInt(document.getElementById("shopping-bag").dataset.count) + 1
@@ -950,7 +1010,9 @@
                                   quantity.value = val;
                                   price.innerHTML =  Number.parseInt("'.$row["price"].'") + Number.parseInt(price.innerHTML);
                                   total +=  Number.parseInt("'.$row["price"].'");
-
+                                  let updateOrder = orders.get("'.$row["id"].'");
+                                  let totalOrder = updateOrder.total + 1
+                                  orders.set("'.$row["id"].'", {total:totalOrder, price:Number.parseInt('.$row["price"].'), name:'.$row["name"].'});
                                   document.dispatchEvent(event);
                                 }
                                 document.querySelector(".dec-'.$row["id"].'").onclick = function(){
@@ -962,6 +1024,9 @@
                                     let tprice = Number.parseInt(price.innerHTML) - Number.parseInt("'.$row["price"].'");
                                     price.innerHTML =  tprice;
                                     total -= Number.parseInt("'.$row["price"].'")
+                                    let updateOrder = orders.get("'.$row["id"].'");
+                                    let totalOrder = updateOrder.total - 1
+                                    orders.set("'.$row["id"].'", {total:totalOrder, price:Number.parseInt('.$row["price"].'), name:'.$row["name"].'});
                                     document.dispatchEvent(event);
                                   }
                                 }
@@ -973,6 +1038,9 @@
                                   let tprice =  Number.parseInt("'.$row["price"].'") + Number.parseInt(price.innerHTML);
                                   price.innerHTML = tprice;
                                   total +=  Number.parseInt("'.$row["price"].'");
+                                  let updateOrder = orders.get("'.$row["id"].'");
+                                  let totalOrder = updateOrder.total + 1
+                                  orders.set("'.$row["id"].'", {total:totalOrder, price:Number.parseInt('.$row["price"].'), name:'.$row["name"].'});
                                   document.dispatchEvent(event);
                                 }
                                } 
@@ -1007,37 +1075,46 @@
                   </div>
                 </div>
         </div>
-        <!--Place Order-->
-        <div class="modal fade" id="placeOrderModal" tabindex="-1" role="dialog">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title">Place Order</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <p>Are you sure you want to place your order?</p>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Place Order</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
 <script>
-   document.addEventListener("AddToCartEvent",function(){
-    document.querySelector(".sub-total").innerHTML = total;
-    document.querySelector(".total-price").innerHTML = total + (total * 0.15);
-   },false)
+    document.addEventListener("AddToCartEvent",function(){
+      document.querySelector(".sub-total").innerHTML = total;
+      document.querySelector(".total-price").innerHTML = total + (total * 0.15);
+      localStorage.setItem("cart",document.getElementById("cart-main-container").innerHTML.toString());
+      console.log(orders)
+    },false)
 </script>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>
+<script>
+function proceedToCheckOut(){
+  let form = []
+
+  orders.forEach((value, key)=>{
+    let obj = {
+      orderId:key,
+      orderTotal:value.total,
+      price:value.price,
+      name:value.name
+    }
+    form.push(obj);
+  });
+
+  localStorage.setItem("cart-order", JSON.stringify(form));
+  $.post({
+    url: "checkout.php",
+    dataType:"text",
+		success: function(data){
+				window.location.href = "checkout.php";
+		},
+    error:function(request, status, error){
+      console.log(error)
+    }
+  });
+}
+</script>
+
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"  crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"  crossorigin="anonymous"></script>
 <script src="./js/cart.js"></script>
-
 </body>
 </html>

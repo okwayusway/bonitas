@@ -1,3 +1,52 @@
+<?php
+include './php/connection.php';
+session_start();
+$userId = $_SESSION["userid"];
+$userInfo = array();    
+$sql = "Select * From users where userid=$userId";
+
+$result = mysqli_query($conn, $sql);
+
+if (!$result) {
+    echo 'Could not run query: ' . mysqli_error();
+    exit;
+}
+
+while($row = $result->fetch_assoc()) {
+  $userInfo[]= $row;
+}
+
+$sqlPendingOrders = "Select * From orders where ordered_by=$userId AND order_status !='DONE'";
+$pendingOrders = array();
+
+$pendingOrdersResult = mysqli_query($conn, $sqlPendingOrders);
+if(!$pendingOrdersResult){
+  echo 'Could not run query: ' . mysqli_error();
+  exit;
+}
+
+while($pendingOrderRow = $pendingOrdersResult -> fetch_assoc()) {
+  $pendingOrders[]= $pendingOrderRow;
+}
+
+$sqlfinishedOrders = "Select * From orders where ordered_by=$userId AND order_status='DONE'";
+$finishedOrders = array();
+
+$finishedOrdersResult = mysqli_query($conn, $sqlfinishedOrders);
+if(!$finishedOrdersResult){
+  echo 'Could not run query: ' . mysqli_error();
+  exit;
+}
+
+while($finishedOrderRow = $finishedOrdersResult -> fetch_assoc()) {
+  $finishedOrders[]= $finishedOrderRow;
+}
+
+
+
+$conn -> close(); 
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -57,9 +106,9 @@
                 <i class="las la-user-circle" id="user-avatar"></i>
             </div>
             <div class="user-credentials">
-                <h2 class="user-name">Julius Cariño</h2>
-                <h4 class="user-email">kuyajuls01@gmail.com</h4>
-                <h4 class="user-phone">09234291714</h4>
+                <h2 class="user-name">"<?php echo $userInfo[0]["first_name"]." ".$userInfo[0]["last_name"]; ?>"</h2>
+                <h4 class="user-email">"<?php echo $userInfo[0]["email"]; ?>"</h4>
+                <h4 class="user-phone">"<?php echo $userInfo[0]["phone_number"]; ?>"</h4>
             </div>
         </div>
         <div class="content-2">
@@ -74,50 +123,68 @@
                 <table class="table table-bordered">
                   <thead>
                     <th class="text-center">Order no.</th>
-                    <th class="text-center">Name</th>
+                    <th class="text-center">Time</th>
                     <th class="text-center">Orders</th>
                     <th class="text-center">Price</th>
                     <th class="text-center">MOP-Status</th>
                     <th class="text-center">Status</th>
-                    <th class="text-center">Time</th>
+                 
                   </thead>
                   <tbody>
-                    <tr>
-                      <td class="text-center">001</td>
-                      <td class="text-center">February 20, 2022, 6:00 pm</td>
-                      <td class="text-center">Julius Boomer</td>
-                      <td class="text-center">Family Meal - Blessed</td>
-                      <td class="text-center">P 500</td>
+                    <?php 
+                    foreach($pendingOrders as $orders){
+                      $orderDetails = json_decode($orders["order_raw_details"], true);
+                      $detailsContainer ="";
+                      foreach($orderDetails as $details){
+                        $detailsContainer .= '<div class="row">
+                        <div class="col-sm font-weight-bold h6 text-left">
+                         '.$details["name"].'
+                        </div>
+                        <div class="col-sm text-muted text-center">
+                        x'.$details["orderTotal"].'
+                        </div>
+                        <div class="col-sm text-muted text-center">
+                        ₱'.$details["price"].'
+                        </div>
+                        </div>';
+                      }
+                      $orderDetailsMap = array_column($orderDetails,'name', 'total');
+                      echo '
+                      <tr>
+                      <td class="text-center">'.$orders["id"].'</td>
+                      <td class="text-center">'.$orders["ordered_at"].'</td>
+                      <td class="text-center"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#order-'.$orders["id"].'">
+                       Show more info
+                    </button></td>
+                      <td class="text-center">₱'.$orders["total_price"].'</td>
+                      <td class="text-center">'.$orders["order_status"].'</td>
                       <td class="text-center">COD <span class="badge badge-danger">Unpaid</span></td>
-                      <td class="text-center">Pending</td>
-                    </tr>
-                    <tr>
-                      <td class="text-center">002</td>
-                      <td class="text-center">February 20, 2022, 6:00 pm</td>
-                      <td class="text-center">Julius Boomer</td>
-                      <td class="text-center">Family Meal - Thankful</td>
-                      <td class="text-center">P 600</td>
-                      <td class="text-center">COD <span class="badge badge-danger">Unpaid</span></td>
-                      <td class="text-center">Pending</td>
-                    </tr>
-                    <tr>
-                      <td class="text-center">002</td>
-                      <td class="text-center">February 20, 2022, 6:00 pm</td>
-                      <td class="text-center">Julius Boomer</td>
-                      <td class="text-center">Family Meal - Thankful</td>
-                      <td class="text-center">P 600</td>
-                      <td class="text-center">COD <span class="badge badge-danger">Unpaid</span></td>
-                      <td class="text-center">Pending</td>
-                    </tr>
-                    <tr>
-                      <td class="text-center">002</td>
-                      <td class="text-center">February 20, 2022, 6:00 pm</td>
-                      <td class="text-center">Julius Boomer</td>
-                      <td class="text-center">Family Meal - Thankful</td>
-                      <td class="text-center">P 600</td>
-                      <td class="text-center">COD <span class="badge badge-danger">Unpaid</span></td>
-                      <td class="text-center">Pending</td>
-                    </tr>
+                      </tr>
+                      ';
+
+                      echo ' <!-- Modal -->
+                      <div class="modal fade" id="order-'.$orders["id"].'" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLongTitle">Order Info</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                             <div class="container">
+                             '.$detailsContainer.'
+                             </div>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>';
+                    }
+                    ?>
                   </tbody>
                 </table>
               </div>
@@ -129,46 +196,28 @@
               <div class="tablePast table-responsive mt-2">
                 <table class="table table-bordered">
                   <thead>
-                    <th class="text-center">Order no.</th>
-                    <th class="text-center">Date/Time</th>
-                    <th class="text-center">Name</th>
-                    <th class="text-center">Order/s</th>
+                   <th class="text-center">Order no.</th>
+                    <th class="text-center">Time</th>
+                    <th class="text-center">Orders</th>
                     <th class="text-center">Price</th>
                     <th class="text-center">MOP-Status</th>
+                    <th class="text-center">Status</th>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td class="text-center">001</td>
-                      <td class="text-center">February 20, 2022, 6:00 pm</td>
+                  <?php 
+                    foreach($finishedOrders as $orders){
+                      echo '
+                      <tr>
+                      <td class="text-center">"'.$orders["id"].'"</td>
+                      <td class="text-center">"'.$orders["ordered_at"].'"</td>
                       <td class="text-center">Julius Boomer</td>
-                      <td class="text-center">Family Meal - Blessed</td>
-                      <td class="text-center">P 500</td>
-                      <td class="text-center">COD <span class="badge badge-success">Paid</span></td>
-                    </tr>
-                    <tr>
-                      <td class="text-center">002</td>
-                      <td class="text-center">February 20, 2022, 6:00 pm</td>
-                      <td class="text-center">Julius Boomer</td>
-                      <td class="text-center">Family Meal - Thankful</td>
-                      <td class="text-center">P 600</td>
-                      <td class="text-center">COD <span class="badge badge-success">Paid</span></td>
-                    </tr>
-                    <tr>
-                      <td class="text-center">002</td>
-                      <td class="text-center">February 20, 2022, 6:00 pm</td>
-                      <td class="text-center">Julius Boomer</td>
-                      <td class="text-center">Family Meal - Thankful</td>
-                      <td class="text-center">P 600</td>
-                      <td class="text-center">COD <span class="badge badge-success">Paid</span></td>
-                    </tr>
-                    <tr>
-                      <td class="text-center">002</td>
-                      <td class="text-center">February 20, 2022, 6:00 pm</td>
-                      <td class="text-center">Julius Boomer</td>
-                      <td class="text-center">Family Meal - Thankful</td>
-                      <td class="text-center">P 600</td>
-                      <td class="text-center">COD <span class="badge badge-success">Paid</span></td>
-                    </tr>                   
+                      <td class="text-center">"'.$orders["total_price"].'"</td>
+                      <td class="text-center">"'.$orders["order_status"].'"</td>
+                      <td class="text-center">COD <span class="badge badge-danger">PAID</span></td>
+                      </tr>
+                      ';
+                    }
+                    ?>                 
                   </tbody>
                 </table>
               </div>
