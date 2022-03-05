@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Responsive Image Gallery With Cool Hover Effect</title>
+    <title>Bonitas | Gallery</title>
     <!-- Google Fonts Link -->
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700;900&display=swap" rel="stylesheet"/>
     <!-- stylesheet -->
@@ -79,9 +79,6 @@
         </div>
 
         <div class="container-fluid">
-                <div class="gallery-text">
-                        <h3>Our Gallery</h3>
-                </div>
                <div class="con-gallery1">
                 <div class="row mt-4">
                         <div class="item col-sm-6 col-md-4 mb-3">
