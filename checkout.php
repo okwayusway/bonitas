@@ -1,3 +1,24 @@
+<?php
+include './php/connection.php';
+session_start();
+$userId = $_SESSION["userid"];
+$userInfo = array();    
+$sql = "Select * From users where userid=$userId";
+
+$result = mysqli_query($conn, $sql);
+
+if (!$result) {
+    echo 'Could not run query: ' . mysqli_error();
+    exit;
+}
+
+while($row = $result->fetch_assoc()) {
+  $userInfo[]= $row;
+}
+
+$conn -> close(); 
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,11 +34,14 @@
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/bootstrap-responsive.min.css">
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/bootstrap-responsive.min.css">
     <link rel="stylesheet" href="./css/checkout.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src ="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <title>Bonita's | Checkout</title>
 </head>
 <body>
@@ -49,7 +73,7 @@
 
   <div class="navigation-menu">
     <i class="las la-times" id="close-menu"></i>
-    <div class="additional-img"><img src="/Images/img-menu.jpg" alt=""></div>
+    <div class="additional-img"><img src="./Images/img-menu.jpg" alt=""></div>
     <div class="list">
       <ul class="navigation-list">
         <li class="navigation-item"><a href="index.html" class="navItem-list">Home</a></li>
@@ -69,13 +93,13 @@
                       <div class="text-field">
                           <label for="">First Name</label>
                           <div class="user-first">
-                              <input type="text" value="Julius">
+                              <input type="text" value="<?php echo $userInfo[0]["first_name"]; ?>">
                           </div>
                       </div>
                       <div class="text-field">
                           <label for="">Last Name</label>
                           <div class="user-last">
-                              <input type="text" value="Cariño">
+                              <input type="text" value="<?php echo $userInfo[0]["last_name"]; ?>">
                           </div>
                       </div>
                   </div>
@@ -85,7 +109,7 @@
                     <div class="num-field">
                         <label for="">Mobile Number</label>
                         <div class="user-contact">
-                            <input type="number" placeholder="+63 XXX-XXX-XXXX">
+                            <input type="number" placeholder="+63 XXX-XXX-XXXX" value="<?php echo $userInfo[0]["phone_number"]; ?>">
                         </div>
                     </div>
                   </div>
@@ -97,7 +121,7 @@
                         <div class="user-address">
                             <div class="adress-con">
                                 <select class="select-address">
-                                  <option value="0">#0570 Sulucan St. Bagbaguin Sta. Maria Bulacan</option>
+                                  <option value="0"><?php echo $userInfo[0]["household_no"]." ".$userInfo[0]["street"]." ".$userInfo[0]["barangay"]." ".$userInfo[0]["city"]; ?></option>
                                 </select>
                               </div>
                             <input type="button" class="btn-address" value="Add additional address">
@@ -117,39 +141,6 @@
         <h3 class="order-title">Order Summary</h3>
         <div class="order-container">
             <div class="summary-con">
-                <div class="row-item">
-                    <div class="quantity">
-                        <h5 class="checkout-quanti">x1</h5>
-                    </div>
-                    <div class="user-orders">
-                        <h4 class="order-text">Baby Backribs w/ Nachos.</h4>
-                    </div>
-                    <div class="item-price">
-                        <span class="peso-sign-regular">₱129.00</span>
-                    </div>
-                </div>
-                <div class="row-item">
-                    <div class="quantity">
-                        <h5 class="checkout-quanti">x1</h5>
-                    </div>
-                    <div class="user-orders">
-                        <h4 class="order-text">Baby Backribs w/ Nachos.</h4>
-                    </div>
-                    <div class="item-price">
-                        <span class="peso-sign-regular">₱129.00</span>
-                    </div>
-                </div>
-                <div class="row-item">
-                    <div class="quantity">
-                        <h5 class="checkout-quanti">x1</h5>
-                    </div>
-                    <div class="user-orders">
-                        <h4 class="order-text">Baby Backribs w/ Nachos.</h4>
-                    </div>
-                    <div class="item-price">
-                        <span class="peso-sign-regular">₱129.00</span>
-                    </div>
-                </div>
             </div>
             <div class="total-container">
                 <div class="row-sub">
@@ -157,7 +148,7 @@
                         Subtotal
                     </div>
                     <div class="col-right sub">
-                        <span class="peso-sign-regular">₱129.00</span>
+                        <span class="peso-sign-regular sub-total"></span>
                     </div>
                 </div>
                 <div class="row-delivery-fee">
@@ -165,7 +156,7 @@
                         Tax
                     </div>
                     <div class="col-right sub">
-                        <span class="peso-sign-regular">15%</span>
+                        <span class="peso-sign-regular">12%</span>
                     </div>
                 </div>
                 <div class="row-total">
@@ -173,16 +164,75 @@
                         Total
                     </div>
                     <div class="col-right sub">
-                        <span class="peso-sign-regular">₱129.00</span>
+                        <span class="peso-sign-regular net-total"></span>
                     </div>
                 </div>
                 <div>
-                    <button class="checkout-btn">Checkout</button>
+                    <button class="checkout-btn" id="submit-order">Checkout</button>
                 </div>
             </div>
         </div>
       </div>
   </div>
+  <script>
+    let dateOptions  = {
+        year: 'numeric', month: 'numeric', day: 'numeric',
+        hour: 'numeric', minute: 'numeric', second: 'numeric',
+        hour12: false,
+        timeZone: 'America/Los_Angeles'
+        }
+    let orders = localStorage.getItem("cart-order");
+    let orderArray = JSON.parse(orders);
+    let menuList = orderArray.map(x => x.orderId);
+    let orderBy = "<?php $_SESSION["userid"];?>";
+    let orderAt = new Intl.DateTimeFormat('default', dateOptions).format(new Date());
+    let orderStatus = "PENDING"
+    let subPrice = 0;
+    let orderTotal = orderArray.map(x => x.orderTotal);
+    for(let item of orderArray){
+      subPrice += item.price;
+      let summary =  document.querySelector(".summary-con");
+      summary.innerHTML += `
+                 <div class="row-item">
+                    <div class="quantity">
+                        <h5 class="checkout-quanti">x${item.orderTotal}</h5>
+                    </div>
+                    <div class="user-orders">
+                        <h4 class="order-text">${item.name}</h4>
+                    </div>
+                    <div class="item-price">
+                        <span class="peso-sign-regular">₱${item.orderTotal * item.price}</span>
+                    </div>
+                </div>`
+    }
+    document.querySelector(".sub-total").innerHTML = "₱"+" "+subPrice;
+    document.querySelector(".net-total").innerHTML = "₱"+" "+((subPrice*.12) + subPrice)
+    let totalPrice = (subPrice *.12) + subPrice;
+
+    document.getElementById("submit-order").onclick = function(){
+        $.ajax({
+        url: './php/submit-order.php',
+        data: {
+            rawDetails:orders,
+            orderedAt: orderAt,
+            orderStatus: orderStatus,
+            orderTotalPrice:totalPrice,
+            orderTotal:JSON.stringify(orderTotal),
+            menuIds:JSON.stringify(menuList)
+        },
+        type: 'POST',
+        success: function(response) {
+            alert("Orders Successfully Submitted");
+            setTimeout(() => {
+                window.location.href = "user.php";
+            }, 1200);
+        }
+        });
+    }
+
+  
+
+  </script>
 
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/owl.carousel.min.js'></script>
